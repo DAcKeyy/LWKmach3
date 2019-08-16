@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class GridAutoSize : MonoBehaviour
 {
-    [SerializeField] GameObject Conatainer;
+    [SerializeField] GameObject Conatainer = null;
 
     void Update()
     {
