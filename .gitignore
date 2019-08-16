@@ -28,9 +28,13 @@ ExportedObj/
 *.pidb.meta
 *.pdb.meta
 
+# include meta files
+!*.*.meta
+
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
 
 # Builds
 *.apk
 *.unitypackage
+/GSD/
