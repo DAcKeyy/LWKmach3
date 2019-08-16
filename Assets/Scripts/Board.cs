@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using NaughtyAttributes;
+using System;
 
 public class Board : MonoBehaviour
 {
+    public static Action BoardUp = delegate { };
+
     [BoxGroup("Board settings")]
     public int width = 7;
     [BoxGroup("Board settings")]
@@ -23,6 +26,7 @@ public class Board : MonoBehaviour
     [BoxGroup("Board settings")]
     [ReadOnly]
     public int _diggerDeep = 0;
+
 
     [BoxGroup("Tile prefabs")]
     [ShowAssetPreview(32, 32)]
@@ -50,6 +54,7 @@ public class Board : MonoBehaviour
     private BoardDeadlock _boardDeadlock;
     private BoardShuffler _boardShuffler;
     private UpTimer _upTimer;
+    
 
     private void OnEnable()
     {
@@ -196,6 +201,7 @@ public class Board : MonoBehaviour
         {
             _diggerDeep++;
             _upTimer.AddTime();
+             BoardUp();
             _boardManager._canTouch = true;
         }
     }

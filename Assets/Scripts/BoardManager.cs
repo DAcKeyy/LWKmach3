@@ -6,8 +6,8 @@ using UnityEngine;
 public class BoardManager
 {
     public static Action OnDeselected = delegate { };
+    public static Action<int> OnScoreCounted = delegate { };
 
-    
 
     private Piece[,] _pieces;
     private Tile[,] _tiles;
@@ -220,6 +220,8 @@ public class BoardManager
             _pieces[piece.xIndex, piece.yIndex] = null;
             _canTouch = false;
         }
+
+        OnScoreCounted(piecesToDelete.Count);
 
         return piecesToDelete;
     }
