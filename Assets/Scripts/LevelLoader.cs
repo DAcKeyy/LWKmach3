@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class LevelLoader : MonoBehaviour
 {
     [SerializeField] GameObject loadingPanel = null;
-    [SerializeField] Image LoadIndicator;
+    [SerializeField] Image LoadIndicator = null;
 
     public void LoadLevel(string Scene)
     {
