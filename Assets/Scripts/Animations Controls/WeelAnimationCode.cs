@@ -8,12 +8,12 @@ public class WeelAnimationCode : MonoBehaviour
     
     private void OnEnable()
     {
-        SpinCasinoWeel.EndRotate += PlayEndAnimation;
+        RouletteMover.EndRotate += PlayEndAnimation;
     }
 
     private void OnDisable()
     {
-        SpinCasinoWeel.EndRotate -= PlayEndAnimation;
+        RouletteMover.EndRotate -= PlayEndAnimation;
     }
 
     public void PlayStartAnimation(string Anim)
@@ -30,6 +30,8 @@ public class WeelAnimationCode : MonoBehaviour
 
     private void PlayEndAnimation()
     {
+
+        Debug.Log("Ended");
 
         this.GetComponent<Animation>().Play("WeelDisappear");
     }

@@ -39,6 +39,10 @@ public class SpinCasinoWeel : MonoBehaviour
         CoplexAngle = (Angle / 360) + (transform.rotation.eulerAngles.z / 360);
         int IntCoplexAngle = (int)CoplexAngle;
 
+
+        Debug.Log(transform.rotation.eulerAngles.z);
+
+
         GloabalDataBase.NumberOfWeel = weelSection.WeelSectionConst((CoplexAngle - IntCoplexAngle));
 
        

@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 152479800}
   - component: {fileID: 152479799}
   - component: {fileID: 152479802}
+  - component: {fileID: 152479803}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -307,6 +308,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingPanel: {fileID: 1881989622}
   LoadIndicator: {fileID: 182536151}
+--- !u!114 &152479803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152479798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91842327415796b4fb8aca54e8e8cf66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &182536149
 GameObject:
   m_ObjectHideFlags: 0
@@ -772,7 +785,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0
+  m_padding: 1.25
   m_canvasRenderer: {fileID: 682999154}
   m_TextComponent: {fileID: 1016937644}
   m_materialReferenceIndex: 1
@@ -1428,6 +1441,7 @@ GameObject:
   - component: {fileID: 1016937643}
   - component: {fileID: 1016937645}
   - component: {fileID: 1016937644}
+  - component: {fileID: 1016937646}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1575,6 +1589,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016937642}
   m_CullTransparentMesh: 0
+--- !u!114 &1016937646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1016937642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnglishText: Timer
+  RussianText: "\u0412\u0440\u0435\u043C\u044F"
+  GermanText: Zeit
 --- !u!1 &1236960650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1611,7 +1640,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -0.0000038146973}
+  m_AnchoredPosition: {x: 0, y: -0.0000038146973}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1236960652
@@ -1686,7 +1715,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.24499893, y: 0.0000076293945}
+  m_AnchoredPosition: {x: -0.24499512, y: 0.0000076293945}
   m_SizeDelta: {x: 0.48999786, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1526603188
@@ -1820,6 +1849,7 @@ GameObject:
   - component: {fileID: 1527499261}
   - component: {fileID: 1527499263}
   - component: {fileID: 1527499262}
+  - component: {fileID: 1527499264}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1966,6 +1996,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527499260}
   m_CullTransparentMesh: 0
+--- !u!114 &1527499264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527499260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnglishText: 'Lvl:'
+  RussianText: "\u0443\u0440\u043E\u0432\u0435\u043D\u044C:"
+  GermanText: 'Level:'
 --- !u!1 &1687384556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,6 +2099,7 @@ GameObject:
   - component: {fileID: 1785586609}
   - component: {fileID: 1785586611}
   - component: {fileID: 1785586610}
+  - component: {fileID: 1785586612}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2077,7 +2123,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.2425003, y: 0.000020980835}
+  m_AnchoredPosition: {x: -0.24249268, y: 0.000020980835}
   m_SizeDelta: {x: 0.49, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1785586610
@@ -2200,6 +2246,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785586608}
   m_CullTransparentMesh: 0
+--- !u!114 &1785586612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785586608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnglishText: 'Score:'
+  RussianText: "\u0421\u0447\u0451\u0442:"
+  GermanText: 'Rechnung:'
 --- !u!1 &1840198641
 GameObject:
   m_ObjectHideFlags: 0
