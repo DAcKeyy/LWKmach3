@@ -38,26 +38,10 @@ public class WeelAnimationCode : MonoBehaviour
 
     private void ActivateWinGift()
     {
-        string TestText = "Да";
-
-        if (GloabalDataBase.NumberOfWeel == 1)
-        {
-            TestText = "хуй";
-        }
-        else if(GloabalDataBase.NumberOfWeel > 1 && GloabalDataBase.NumberOfWeel < 5)
-        {
-            TestText = "хуя";
-        }
-        else if (GloabalDataBase.NumberOfWeel >= 5)
-        {
-            TestText = "хуёв";
-        }
-
         WinGiftPanel.SetActive(true);
         WinGiftPanel.transform.Find("Panel").transform.Find("Text (TMP)").
             gameObject.GetComponent<TMP_Text>().text =
-            "Ты выйграл\n" + GloabalDataBase.NumberOfWeel + "\n" + TestText + " в жопу\n\n" + "Поздравляем!";
-
+            "Ты выйграл\n" + GloabalDataBase.NumberOfWeel + "\n" + "Поздравляем!";
     }
 
     public void SetActive()
