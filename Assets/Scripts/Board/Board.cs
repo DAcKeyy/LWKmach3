@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using NaughtyAttributes;
 using System;
+using TMPro;
 
 public class Board : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class Board : MonoBehaviour
     [ShowAssetPreview(32, 32)]
     public GameObject tileMaskPrefab;
 
+    [BoxGroup("Score")]
+    [SerializeField] TMP_Text ScoreText = null;
+    [BoxGroup("Level")]
+    [SerializeField] TMP_Text LevelText = null;
+
     [ReorderableList]
     public List<GameObject> piecePrefabs;
 
@@ -62,6 +68,8 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesMoved += PiecesMoved;
         PieceAnimator.PiecesDeleted += PiecesDeleted;
         PieceAnimator.BoardMovedUp += BoardMovedUp;
+        BoardManager.OnScoreCounted += ScoreCount;
+        Board.BoardUp += AddLvl;
     }
 
     private void OnDisable()
@@ -70,6 +78,8 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesMoved -= PiecesMoved;
         PieceAnimator.PiecesDeleted -= PiecesDeleted;
         PieceAnimator.BoardMovedUp -= BoardMovedUp;
+        BoardManager.OnScoreCounted += ScoreCount;
+        Board.BoardUp += AddLvl;
     }
 
     public void Restart()
@@ -125,6 +135,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         StartGame();
+        AddLvl();
     }
 
     private void SetupCamera()
@@ -236,5 +247,23 @@ public class Board : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void ScoreCount(int picesDeletedCount)
+    {
+        var scoreText = Convert.ToInt32(ScoreText.text);
+
+        scoreText += picesDeletedCount * 100; //Шаманить тут 
+
+        ScoreText.text = Convert.ToString(scoreText);
+    }
+
+    private void AddLvl()
+    {
+        var lvlText = Convert.ToInt32(LevelText.text);
+
+        lvlText += 1;
+
+        LevelText.text = Convert.ToString(lvlText);
     }
 }

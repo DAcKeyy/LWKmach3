@@ -25,6 +25,7 @@ public class RouletteMover : MonoBehaviour
     {
         rouletteObject = this.transform;
         roulette = new Roulette(sectorCount);
+        needSector = UnityEngine.Random.Range(0, sectorCount);
         GloabalDataBase.NumberOfWeel = needSector;
         StartCoroutine(SpinRoutine());
     }
@@ -32,6 +33,6 @@ public class RouletteMover : MonoBehaviour
     private IEnumerator SpinRoutine()
     {
         yield return null; //For unity lag on start
-        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.OutQuad).OnComplete(() => EndRotate());
+        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.OutCubic).OnComplete(() => EndRotate());
     }
 }

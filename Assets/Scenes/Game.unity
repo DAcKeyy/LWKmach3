@@ -155,8 +155,6 @@ MonoBehaviour:
   timeToAdd: 30
   timeSlider: {fileID: 1865658222}
   EndPanel: {fileID: 320500759}
-  ScoreText: {fileID: 1526603188}
-  LevelText: {fileID: 1840198643}
 --- !u!114 &70460417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +185,8 @@ MonoBehaviour:
     type: 3}
   tileMaskPrefab: {fileID: 290528888157342910, guid: 83dddd36481357c42929d5cf8444c807,
     type: 3}
+  ScoreText: {fileID: 1526603188}
+  LevelText: {fileID: 1840198643}
   piecePrefabs:
   - {fileID: 2330679820881723247, guid: 8e1e5b6530354ac448c31ac252937ec0, type: 3}
   - {fileID: 8112250458827032103, guid: 4a5c2cfa9f55dc84ab6267142337df7b, type: 3}
