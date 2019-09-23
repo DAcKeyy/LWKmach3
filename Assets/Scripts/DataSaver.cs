@@ -2,6 +2,8 @@
 using System.IO;
 using System.Text;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class DataSaver
 {
@@ -25,7 +27,7 @@ public class DataSaver
         try
         {
             File.WriteAllBytes(tempPath, jsonByte);
-            Debug.Log("Saved Data to: " + tempPath.Replace("/", "\\"));
+            //Debug.Log("Saved Data to: " + tempPath.Replace("/", "\\"));
         }
         catch (Exception e)
         {
@@ -34,35 +36,55 @@ public class DataSaver
         }
     }
 
-    //Load Data
-    public static T loadData<T>(string dataFileName)
+
+    public static List<Сoupon> FindData<T>()
     {
-        string tempPath = Path.Combine(Application.persistentDataPath, "data");
-        tempPath = Path.Combine(tempPath, dataFileName + ".txt");
+        List<Сoupon> Coupons = new List<Сoupon>();
 
-        //Exit if Directory or File does not exist
-        if (!Directory.Exists(Path.GetDirectoryName(tempPath)))
+        FileInfo[] files = null;;
+
+        var root = new DirectoryInfo(Path.Combine(Application.persistentDataPath, "data"));
+
+        try
         {
-            Debug.LogWarning("Directory does not exist");
-            return default(T);
+            files = root.GetFiles("*.*");
         }
-
-        if (!File.Exists(tempPath))
+        catch (UnauthorizedAccessException e)
         {
-            Debug.Log("File does not exist");
-            return default(T);
+            Debug.Log(e.Message);
         }
+        catch (DirectoryNotFoundException e)
+        {
+            Debug.Log(e.Message);
+        }
+        if (files != null)
+        {
+            foreach (FileInfo file in files)
+            {
+                string fileFullName = file.FullName;
+                double fileSize = Convert.ToDouble(file.Length);
+                //Debug.Log(fileFullName);
+                Coupons.Add(loadData<Сoupon>(fileFullName));
+            }
 
-        //Load saved Json
+            return Coupons;
+        }
+        return default;
+    }
+
+    //Load Data
+    public static T loadData<T>(string fileFullName)
+    {
+
         byte[] jsonByte = null;
         try
         {
-            jsonByte = File.ReadAllBytes(tempPath);
-            Debug.Log("Loaded Data from: " + tempPath.Replace("/", "\\"));
+            jsonByte = File.ReadAllBytes(fileFullName);
+            //Debug.Log("Loaded Data from: " + fileFullName.Replace("/", "\\"));
         }
         catch (Exception e)
         {
-            Debug.LogWarning("Failed To Load Data from: " + tempPath.Replace("/", "\\"));
+            Debug.LogWarning("Failed To Load Data from: " + fileFullName.Replace("/", "\\"));
             Debug.LogWarning("Error: " + e.Message);
         }
 

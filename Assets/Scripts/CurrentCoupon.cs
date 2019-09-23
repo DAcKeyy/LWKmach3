@@ -6,7 +6,8 @@ public class CurrentCoupon : MonoBehaviour
     public string company = "TWIRL Games"
         , coupon = "None"
         , discription = "Coupon isn't correct"
-        , contact = "Contact:\ntwirlgamesteam@gmail.com";
+        , contact = "Contact:\ntwirlgamesteam@gmail.com"
+        , lifeSpain = null;
 
     GameObject CheckPanel;
 
@@ -26,6 +27,7 @@ public class CurrentCoupon : MonoBehaviour
         Panel.transform.Find("Coupon Text").gameObject.GetComponent<TMP_Text>().text = coupon;
         Panel.transform.Find("Description Text").gameObject.GetComponent<TMP_Text>().text = discription;
         Panel.transform.Find("Contact Text").gameObject.GetComponent<TMP_Text>().text = contact;
+        Panel.transform.Find("LifeSpain Text").gameObject.GetComponent<TMP_Text>().text = contact;
     }
 }
 
