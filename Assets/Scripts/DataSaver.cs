@@ -11,7 +11,7 @@ public class DataSaver
     public static void saveData<T>(T dataToSave, string dataFileName)
     {
         string tempPath = Path.Combine(Application.persistentDataPath, "data");
-        tempPath = Path.Combine(tempPath, dataFileName + ".txt");
+        tempPath = Path.Combine(tempPath, dataFileName + ".json");
 
         //Convert To Json then to bytes
         string jsonData = JsonUtility.ToJson(dataToSave, true);
@@ -57,12 +57,11 @@ public class DataSaver
         {
             Debug.Log(e.Message);
         }
-        if (files != null)
+        if (files.Length != 0)
         {
             foreach (FileInfo file in files)
             {
                 string fileFullName = file.FullName;
-                double fileSize = Convert.ToDouble(file.Length);
                 //Debug.Log(fileFullName);
                 Coupons.Add(loadData<Сoupon>(fileFullName));
             }
@@ -102,7 +101,7 @@ public class DataSaver
 
         //Load Data
         string tempPath = Path.Combine(Application.persistentDataPath, "data");
-        tempPath = Path.Combine(tempPath, dataFileName + ".txt");
+        tempPath = Path.Combine(tempPath, dataFileName + ".json");
 
         //Exit if Directory or File does not exist
         if (!Directory.Exists(Path.GetDirectoryName(tempPath)))

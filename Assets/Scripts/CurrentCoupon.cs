@@ -27,7 +27,7 @@ public class CurrentCoupon : MonoBehaviour
         Panel.transform.Find("Coupon Text").gameObject.GetComponent<TMP_Text>().text = coupon;
         Panel.transform.Find("Description Text").gameObject.GetComponent<TMP_Text>().text = discription;
         Panel.transform.Find("Contact Text").gameObject.GetComponent<TMP_Text>().text = contact;
-        Panel.transform.Find("LifeSpain Text").gameObject.GetComponent<TMP_Text>().text = contact;
+        Panel.transform.Find("LifeSpain Text").gameObject.GetComponent<TMP_Text>().text = lifeSpain;
     }
 }
 
