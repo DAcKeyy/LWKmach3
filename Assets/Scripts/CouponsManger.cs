@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using System.Collections;
+//hui
+using System;
 
 public class CouponsManger : MonoBehaviour
 {
@@ -13,7 +15,9 @@ public class CouponsManger : MonoBehaviour
 
     private void Start()
     {
-        GetCouponFromServer();
+        //GetCouponFromServer();
+        InstantiateCoupon();
+
     }
 
     void GetCouponFromServer()
@@ -81,7 +85,16 @@ public class CouponsManger : MonoBehaviour
             {
                 foreach (Сoupon coupon in Coupons)
                 {
-
+                    if(string.IsNullOrEmpty(coupon.expiration_date))
+                    {
+                        coupon.expiration_date = "Uses for once";
+                    }
+                    else
+                    {
+                        Debug.Log(coupon.expiration_date);
+                        ///Debug.Log(DateTime.Now.ToShortDateString());
+                        Debug.Log(DateTime.Now.Year);
+                    }
                     
                     Instantiate(Prefab, Parent);
                     Prefab.gameObject.GetComponent<CurrentCoupon>().company = coupon.company_name;
