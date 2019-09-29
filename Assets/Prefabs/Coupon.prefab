@@ -424,9 +424,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565c0a1c4b0a73143992d055e8193342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  company: TWIRL Games
-  coupon: PEPE9
-  discription: Coupon to the one of the best game of that company, babe ;)
-  contact: 'Contact:
-
-    twirlgamesteam@gmail.com'
+  "\u0441oupon":
+    company_name: SanyaXyiSosi
+    promo: GKFDT32
+    expiration_date: 13-10-2019
+    description: Yes Yes Yes Yes 20%
+    contact: 88004363264
+  CheckPanel: {fileID: 6670238002560396758, guid: 475d43772d4c4114b9c92f8bcf6549c5,
+    type: 3}

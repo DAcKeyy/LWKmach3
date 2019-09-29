@@ -3,21 +3,23 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using System.Collections;
-//hui
 using System;
 
 public class CouponsManger : MonoBehaviour
 {
+    Scene currentScene;
     string JSONcoupon;
     List<Сoupon> Coupons = new List<Сoupon>();
+
     [SerializeField] Transform Prefab = null;
     [SerializeField] Transform Parent = null;
 
     private void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
+
         //GetCouponFromServer();
         InstantiateCoupon();
-
     }
 
     void GetCouponFromServer()
@@ -50,7 +52,7 @@ public class CouponsManger : MonoBehaviour
             else
             {
                 JSONcoupon = webRequest.downloadHandler.text;
-                    GetCouponFromServer();
+                GetCouponFromServer();
             }
         }
     }
@@ -59,14 +61,16 @@ public class CouponsManger : MonoBehaviour
     void SaveCoupon(Сoupon coupon)
     {        
         DataSaver.saveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
+
         InstantiateCoupon();
     }
 
-    void DeleteCoupon(Сoupon coupon)
+    public void DeleteCoupon(CurrentCoupon obj)
     {
-        DataSaver.deleteData(coupon.company_name + "_" + coupon.promo + "_Coupon");
+        Debug.Log(obj._сoupon.company_name);
+        DataSaver.deleteData(obj._сoupon.company_name + "_" + obj._сoupon.promo + "_Coupon");
 
-
+        InstantiateCoupon();
     }
     #endregion
 
@@ -76,13 +80,14 @@ public class CouponsManger : MonoBehaviour
             //купоны и отобразить их в меню купоны 
         //Удалить "просроченные" купоны DeleteCoupon'ом
 
-        Scene currentScene = SceneManager.GetActiveScene(); //проверка - В меню ли я?
-        if (currentScene.name == "Menu")
+        if (currentScene.name == "Menu")//проверка - В меню ли я?
         {
             Coupons = DataSaver.FindData<Сoupon>();
 
-            if(Coupons.Count != 0)
+            if(Coupons != null)
             {
+                foreach (Transform child in Parent) Destroy(child.gameObject);
+
                 foreach (Сoupon coupon in Coupons)
                 {
                     if(string.IsNullOrEmpty(coupon.expiration_date))
@@ -91,17 +96,20 @@ public class CouponsManger : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log(coupon.expiration_date);
-                        ///Debug.Log(DateTime.Now.ToShortDateString());
-                        Debug.Log(DateTime.Now.Year);
+                        if( DateTime.Parse(coupon.expiration_date) .CompareTo(DateTime.Today) <= 0)
+                        {
+                            CurrentCoupon obj = new CurrentCoupon();
+                            obj._сoupon = coupon;
+                            DeleteCoupon(obj);
+                        }
                     }
                     
                     Instantiate(Prefab, Parent);
-                    Prefab.gameObject.GetComponent<CurrentCoupon>().company = coupon.company_name;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>().coupon = coupon.promo;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>().discription = coupon.description;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>().contact = coupon.contact;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>().lifeSpain = coupon.expiration_date;
+                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.company_name = coupon.company_name;
+                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.promo = coupon.promo;
+                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.description = coupon.description;
+                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.contact = coupon.contact;
+                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.expiration_date = coupon.expiration_date;
                 }
             }
         }

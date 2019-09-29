@@ -10,7 +10,7 @@ public class Сoupon
 {
     public string company_name = "TWIRL Games";
     public string promo = "NONE";
-    public string expiration_date = "0.0.0.";
+    public string expiration_date = System.DateTime.Today.ToString("d");
     public string description = "Something goes wrong to this coupon";
     public string contact = "Contact \n twirlgamesteam@gamil.com";
 }

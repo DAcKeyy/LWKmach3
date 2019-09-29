@@ -65,10 +65,8 @@ public class DataSaver
                 //Debug.Log(fileFullName);
                 Coupons.Add(loadData<Сoupon>(fileFullName));
             }
-
-            return Coupons;
         }
-        return default;
+        return Coupons;
     }
 
     //Load Data
@@ -103,6 +101,7 @@ public class DataSaver
         string tempPath = Path.Combine(Application.persistentDataPath, "data");
         tempPath = Path.Combine(tempPath, dataFileName + ".json");
 
+        Debug.Log(tempPath);
         //Exit if Directory or File does not exist
         if (!Directory.Exists(Path.GetDirectoryName(tempPath)))
         {
