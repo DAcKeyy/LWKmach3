@@ -1,18 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections.Generic;
-using UnityEngine.Networking;
+﻿using System;
 using System.Collections;
-using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CouponsManger : MonoBehaviour
 {
-    Scene currentScene;
-    string JSONcoupon;
-    List<Сoupon> Coupons = new List<Сoupon>();
+    private Scene currentScene;
+    private string JSONcoupon;
+    private List<Сoupon> Coupons = new List<Сoupon>();
 
-    [SerializeField] Transform Prefab = null;
-    [SerializeField] Transform Parent = null;
+    [SerializeField] private Transform Prefab = null;
+    [SerializeField] private Transform Parent = null;
+    [SerializeField] private GameObject Text = null;
 
     private void Start()
     {
@@ -23,11 +25,11 @@ public class CouponsManger : MonoBehaviour
     }
 
     #region GetCouponFromServer
-    void GetCouponFromServer()
+    private void GetCouponFromServer()
     {   //Код ПОСТ, ГЕТ и прочих запросов и тд... и и нацализация SaveCoupon
         //Расщифровка принятого жысона
 
-        if(string.IsNullOrEmpty(JSONcoupon)) //Тут рекурсия, лучше не придумал
+        if (string.IsNullOrEmpty(JSONcoupon)) //Тут рекурсия, лучше не придумал
         {
             StartCoroutine("POST");
         }
@@ -36,7 +38,7 @@ public class CouponsManger : MonoBehaviour
             Debug.Log(JSONcoupon);
 
             SaveCoupon(JsonUtility.FromJson<Сoupon>(JSONcoupon));
-        } 
+        }
     }
     public IEnumerator POST()
     {
@@ -59,65 +61,86 @@ public class CouponsManger : MonoBehaviour
     #endregion
 
     #region Save/Delete
-    void SaveCoupon(Сoupon coupon)
-    {        
+    private void SaveCoupon(Сoupon coupon)
+    {
         DataSaver.saveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
 
         InstantiateCoupon();
     }
 
-    public void DeleteCoupon(CurrentCoupon obj)
+    public void DeleteInMenu(CurrentCoupon obj)
     {
-        Debug.Log(obj._сoupon.company_name);
         DataSaver.deleteData(obj._сoupon.company_name + "_" + obj._сoupon.promo + "_Coupon");
+
+        InstantiateCoupon();
+    }
+
+    public void DeleteCoupon(Сoupon obj)
+    {
+        DataSaver.deleteData(obj.company_name + "_" + obj.promo + "_Coupon");
 
         InstantiateCoupon();
     }
     #endregion
 
-    void InstantiateCoupon()    
+    private void ClearCoupon()
     {
-        //взять все сохранёные из папки data(Win: AppData\LocalLow\TWIRLgames\LWKmach3\) 
-            //купоны и отобразить их в меню купоны 
-        //Удалить "просроченные" купоны DeleteCoupon'ом
-
         if (currentScene.name == "Menu")//проверка - В меню ли я?
         {
             foreach (Transform child in Parent)
             {
-                Debug.Log(child.gameObject.GetComponent<CurrentCoupon>()._сoupon.company_name);
-
                 Destroy(child.gameObject);
             }
+        }
+    }
+
+    private void InstantiateCoupon()
+    {
+        //взять все сохранёные из папки data(Win: AppData\LocalLow\TWIRLgames\LWKmach3\) 
+        //купоны и отобразить их в меню купоны 
+        //Удалить "просроченные" купоны DeleteCoupon'ом
+
+        ClearCoupon();
+
+        if (currentScene.name == "Menu")//проверка - В меню ли я?
+        {
+            List<Сoupon> сoupons_to_delete = new List<Сoupon>();
 
             Coupons = DataSaver.FindData<Сoupon>();
 
-            if(Coupons != null)
+            if (Coupons.Count != 0)
             {
+                Text.GetComponent<TMP_Text>().enabled = false;
+
                 foreach (Сoupon coupon in Coupons)
                 {
-                    if(string.IsNullOrEmpty(coupon.expiration_date))
+                    if (string.IsNullOrEmpty(coupon.expiration_date))
                     {
                         coupon.expiration_date = "Uses for once";
                     }
                     else
                     {
-                        if( DateTime.Parse(coupon.expiration_date) .CompareTo(DateTime.Today) <= 0)
+                        if (DateTime.Parse(coupon.expiration_date).CompareTo(DateTime.Today) <= 0)
                         {
-                            CurrentCoupon obj = new CurrentCoupon();
-                            obj._сoupon = coupon;
-                            DeleteCoupon(obj);
+                            сoupons_to_delete.Add(coupon);
                             continue;
                         }
                     }
-                    
-                    Instantiate(Prefab, Parent);
-                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.company_name = coupon.company_name;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.promo = coupon.promo;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.description = coupon.description;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.contact = coupon.contact;
-                    Prefab.gameObject.GetComponent<CurrentCoupon>()._сoupon.expiration_date = coupon.expiration_date;
+
+                    var CouponObj = Instantiate(Prefab, Parent); //!!!!!!!!
+                    CouponObj.name = coupon.company_name + "_" + coupon.promo + "_Coupon";
+
+                    CouponObj.gameObject.GetComponent<CurrentCoupon>()._сoupon = coupon;
                 }
+
+                foreach(Сoupon coupon in сoupons_to_delete)
+                {
+                    DeleteCoupon(coupon);
+                }
+            }
+            else
+            {
+                Text.GetComponent<TMP_Text>().enabled = true;
             }
         }
     }

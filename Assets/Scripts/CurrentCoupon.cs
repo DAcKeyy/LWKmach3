@@ -1,10 +1,12 @@
 ﻿using TMPro;
 using UnityEngine;
+using System;
 
 public class CurrentCoupon : MonoBehaviour
 {
     public Сoupon _сoupon;
     private GameObject CheckPanel;
+    public Action<CurrentCoupon> ToDelete;
 
     private void Start()
     {
@@ -14,6 +16,11 @@ public class CurrentCoupon : MonoBehaviour
         }
 
         CheckPanel = GameObject.Find("Main Canvas/Coupons Panel/Check Panel").gameObject;
+    }
+
+    public void Delete()
+    {
+        ToDelete(this);
     }
 
     public void SetText()
