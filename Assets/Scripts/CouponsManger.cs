@@ -22,6 +22,7 @@ public class CouponsManger : MonoBehaviour
         InstantiateCoupon();
     }
 
+    #region GetCouponFromServer
     void GetCouponFromServer()
     {   //Код ПОСТ, ГЕТ и прочих запросов и тд... и и нацализация SaveCoupon
         //Расщифровка принятого жысона
@@ -35,7 +36,6 @@ public class CouponsManger : MonoBehaviour
             Debug.Log(JSONcoupon);
 
             SaveCoupon(JsonUtility.FromJson<Сoupon>(JSONcoupon));
-
         } 
     }
     public IEnumerator POST()
@@ -56,6 +56,7 @@ public class CouponsManger : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region Save/Delete
     void SaveCoupon(Сoupon coupon)
@@ -82,12 +83,17 @@ public class CouponsManger : MonoBehaviour
 
         if (currentScene.name == "Menu")//проверка - В меню ли я?
         {
+            foreach (Transform child in Parent)
+            {
+                Debug.Log(child.gameObject.GetComponent<CurrentCoupon>()._сoupon.company_name);
+
+                Destroy(child.gameObject);
+            }
+
             Coupons = DataSaver.FindData<Сoupon>();
 
             if(Coupons != null)
             {
-                foreach (Transform child in Parent) Destroy(child.gameObject);
-
                 foreach (Сoupon coupon in Coupons)
                 {
                     if(string.IsNullOrEmpty(coupon.expiration_date))
@@ -101,6 +107,7 @@ public class CouponsManger : MonoBehaviour
                             CurrentCoupon obj = new CurrentCoupon();
                             obj._сoupon = coupon;
                             DeleteCoupon(obj);
+                            continue;
                         }
                     }
                     
