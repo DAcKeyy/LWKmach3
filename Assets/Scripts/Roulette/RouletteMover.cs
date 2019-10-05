@@ -6,7 +6,8 @@ using System;
 
 public class RouletteMover : MonoBehaviour
 {
-    public static Action EndRotate = delegate { };
+    public static Action<int> EndRotate = delegate { };
+    public static Action StartRotate = delegate { };
 
     [BoxGroup("Roulette")]
     public int sectorCount = 8;
@@ -23,16 +24,16 @@ public class RouletteMover : MonoBehaviour
 
     public void Spin()
     {
+        StartRotate();
         rouletteObject = this.transform;
         roulette = new Roulette(sectorCount);
         needSector = UnityEngine.Random.Range(0, sectorCount);
-        GloabalDataBase.NumberOfWeel = needSector;
         StartCoroutine(SpinRoutine());
     }
 
     private IEnumerator SpinRoutine()
     {
         yield return null; //For unity lag on start
-        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.OutCubic).OnComplete(() => EndRotate());
+        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.OutCubic).OnComplete(() => EndRotate(needSector));
     }
 }
