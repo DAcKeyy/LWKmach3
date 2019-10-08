@@ -104,7 +104,7 @@ public class CouponsManger : MonoBehaviour
 
         if (currentScene.name == "Menu")//проверка - В меню ли я?
         {
-            List<Сoupon> сoupons_to_delete = new List<Сoupon>();
+            List<Сoupon> сoupons_to_delete = new List<Сoupon>();//это женерик нужен для хранения купонов, подлежащих 
 
             Coupons = DataSaver.FindData<Сoupon>();
 

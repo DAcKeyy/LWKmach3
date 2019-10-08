@@ -12,7 +12,7 @@ public class RouletteMover : MonoBehaviour
     [BoxGroup("Roulette")]
     public int sectorCount = 8;
     [BoxGroup("Roulette")]
-    public float spinTime = 7;
+    public float spinTime = 4;
 
     [Space(5)]
 
@@ -27,13 +27,13 @@ public class RouletteMover : MonoBehaviour
         StartRotate();
         rouletteObject = this.transform;
         roulette = new Roulette(sectorCount);
-        needSector = UnityEngine.Random.Range(0, sectorCount);
+        needSector = UnityEngine.Random.Range(1, sectorCount);
         StartCoroutine(SpinRoutine());
     }
 
     private IEnumerator SpinRoutine()
     {
         yield return null; //For unity lag on start
-        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.OutCubic).OnComplete(() => EndRotate(needSector));
+        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutSine).OnComplete(() => EndRotate(needSector));
     }
 }
