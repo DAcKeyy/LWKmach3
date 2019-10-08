@@ -1441,7 +1441,6 @@ GameObject:
   - component: {fileID: 1016937643}
   - component: {fileID: 1016937645}
   - component: {fileID: 1016937644}
-  - component: {fileID: 1016937646}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1589,21 +1588,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1016937642}
   m_CullTransparentMesh: 0
---- !u!114 &1016937646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016937642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnglishText: Timer
-  RussianText: "\u0412\u0440\u0435\u043C\u044F"
-  GermanText: Zeit
 --- !u!1 &1236960650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1771,7 +1755,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 300
   m_fontStyle: 0
   m_textAlignment: 513
   m_characterSpacing: 0
@@ -1849,7 +1833,6 @@ GameObject:
   - component: {fileID: 1527499261}
   - component: {fileID: 1527499263}
   - component: {fileID: 1527499262}
-  - component: {fileID: 1527499264}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1929,7 +1912,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 300
   m_fontStyle: 0
   m_textAlignment: 516
   m_characterSpacing: 0
@@ -1996,21 +1979,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527499260}
   m_CullTransparentMesh: 0
---- !u!114 &1527499264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527499260}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnglishText: 'Lvl:'
-  RussianText: "\u0443\u0440\u043E\u0432\u0435\u043D\u044C:"
-  GermanText: 'Level:'
 --- !u!1 &1687384556
 GameObject:
   m_ObjectHideFlags: 0
@@ -2099,7 +2067,6 @@ GameObject:
   - component: {fileID: 1785586609}
   - component: {fileID: 1785586611}
   - component: {fileID: 1785586610}
-  - component: {fileID: 1785586612}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2179,7 +2146,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 300
   m_fontStyle: 0
   m_textAlignment: 516
   m_characterSpacing: 0
@@ -2246,21 +2213,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785586608}
   m_CullTransparentMesh: 0
---- !u!114 &1785586612
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785586608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 754f0278740870c44b97d01c1e361691, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnglishText: 'Score:'
-  RussianText: "\u0421\u0447\u0451\u0442:"
-  GermanText: 'Rechnung:'
 --- !u!1 &1840198641
 GameObject:
   m_ObjectHideFlags: 0
@@ -2351,7 +2303,7 @@ MonoBehaviour:
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 300
   m_fontStyle: 0
   m_textAlignment: 513
   m_characterSpacing: 0
@@ -2523,6 +2475,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TimeSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496741468571400489, guid: 06e7fd17467268d459daa8826aeda254,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6496741468571400488, guid: 06e7fd17467268d459daa8826aeda254,
         type: 3}

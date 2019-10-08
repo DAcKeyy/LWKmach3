@@ -75,7 +75,7 @@ namespace NotificationSamples
 		}
 
 		[SerializeField, Tooltip("The operating mode for the notifications manager.")]
-		private OperatingMode mode;
+		private OperatingMode mode = 0x00;
 
 		[SerializeField, Tooltip(
 			 "Check to make the notifications manager automatically set badge numbers so that they increment.\n" +
@@ -275,6 +275,7 @@ namespace NotificationSamples
 			}
 
 			// Calculate notifications to save
+            
 			var notificationsToSave = new List<PendingNotification>(PendingNotifications.Count);
 			foreach (PendingNotification pendingNotification in PendingNotifications)
 			{
