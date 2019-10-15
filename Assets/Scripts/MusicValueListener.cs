@@ -1,16 +1,16 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
-public class SoundValueListener : MonoBehaviour
+public class MusicValueListener : MonoBehaviour
 {
     private void OnEnable()
     {
-        SetSoundValue.SoundValueChanged += SetValue;
+        MusicManager.MusicValueChanged += SetValue;
     }
 
     private void OnDisable()
     {
-        SetSoundValue.SoundValueChanged -= SetValue;
+        MusicManager.MusicValueChanged -= SetValue;
     }
 
     private void SetValue(float Value)

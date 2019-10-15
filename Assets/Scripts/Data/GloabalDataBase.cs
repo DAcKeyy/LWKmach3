@@ -2,7 +2,7 @@
 {
     public static int NumberOfWeel;
     public static float SoundValue;
-    
+    public static float MusicValue;
 }
 
 [System.Serializable]

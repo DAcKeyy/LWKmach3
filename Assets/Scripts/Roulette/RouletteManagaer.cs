@@ -12,10 +12,9 @@ public class RouletteManagaer : MonoBehaviour
     private int WinSector = 0;
     private Vector2 StartPosition;
 
-    private void Start()
+    private void Start() 
     {
         StartPosition = WeelPanel.transform.position;
-        Appear();
     }
 
     private void OnEnable()
@@ -29,19 +28,20 @@ public class RouletteManagaer : MonoBehaviour
         RouletteMover.StartRotate -= Moving;
     }
 
-    #region Appear
+    #region Whole Visual Process
+
     public void Appear()
     {
         WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = false;
         WeelPanel.transform.DOMove(Vector2.zero, 0.25F);
     }
 
-    #endregion
+
     private void Moving()
     {
         WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = true;
     }
-    #region Disappear
+
     private void Disappear(int Sector)
     {
         WinSector = Sector;
@@ -49,7 +49,7 @@ public class RouletteManagaer : MonoBehaviour
         ActivateWinGift();
     }
 
-    #endregion
+
 
     private void ActivateWinGift()
     {
@@ -63,4 +63,7 @@ public class RouletteManagaer : MonoBehaviour
     {
         WinGiftPanel.transform.DOMove(StartPosition, 0.25F);
     }
+
+#endregion
+
 }

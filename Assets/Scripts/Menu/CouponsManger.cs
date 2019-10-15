@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
-using TMPro;
 
 public class CouponsManger : MonoBehaviour
 {
@@ -18,6 +18,8 @@ public class CouponsManger : MonoBehaviour
 
     private void Start()
     {
+
+
         currentScene = SceneManager.GetActiveScene();
 
         //GetCouponFromServer();
@@ -133,7 +135,7 @@ public class CouponsManger : MonoBehaviour
                     CouponObj.gameObject.GetComponent<CurrentCoupon>()._сoupon = coupon;
                 }
 
-                foreach(Сoupon coupon in сoupons_to_delete)
+                foreach (Сoupon coupon in сoupons_to_delete)
                 {
                     DeleteCoupon(coupon);
                 }

@@ -13,13 +13,14 @@ public class NotificationsInitializer : MonoBehaviour
 
     private void InitializeNotification()
     {
-        GameNotificationChannel channel = new GameNotificationChannel("Id", "Chanel", "Mobile Notification");
+        var channel = new GameNotificationChannel("1", "Chanel", "Mobile Notification");
         NotificationsManager.Initialize(channel);
     }
 
     public void OnTimeInput()
     {
-        CreateNotification("Bruh", "Не грусти, братан =)", DateTime.Now.AddSeconds(10));
+        int time = 10;
+        CreateNotification("Bruh", "Не грусти, братан =)", DateTime.Now.AddSeconds(time));
     }
 
     private void CreateNotification(string title, string body, DateTime time)
