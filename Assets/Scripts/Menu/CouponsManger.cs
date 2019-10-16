@@ -27,7 +27,7 @@ public class CouponsManger : MonoBehaviour
     }
 
     #region GetCouponFromServer
-    private void GetCouponFromServer()
+    public void GetCouponFromServer()
     {   //Код ПОСТ, ГЕТ и прочих запросов и тд... и и нацализация SaveCoupon
         //Расщифровка принятого жысона
 
@@ -40,6 +40,7 @@ public class CouponsManger : MonoBehaviour
             Debug.Log(JSONcoupon);
 
             SaveCoupon(JsonUtility.FromJson<Сoupon>(JSONcoupon));
+            JSONcoupon = null;
         }
     }
     public IEnumerator POST()
