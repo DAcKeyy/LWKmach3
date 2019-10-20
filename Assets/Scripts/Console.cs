@@ -9,29 +9,18 @@ public class Console : MonoBehaviour
     public GUISkin consoleskin;
     private Vector2 scroll;
 
-    void Start()
-    {
-        ShowHideConsole();
-    }
-
     void OnGUI() 
     {
         GUI.skin = consoleskin;
         GUI.depth = -10000;
+
+        if (GUILayout.Button("Q"))
+        {
+            consoleishidden = !consoleishidden;
+        }
         if (consoleishidden)
         {
             ShowConsole();
-        }
-    }
-    void ShowHideConsole()
-    {
-        if (consoleishidden)
-        {
-            consoleishidden = false;
-        }
-        else
-        {
-            consoleishidden = true;
         }
     }
     void ShowConsole()

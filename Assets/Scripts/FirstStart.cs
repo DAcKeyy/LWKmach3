@@ -35,7 +35,6 @@ public class FirstStart : MonoBehaviour
             else
             {
                 var response = webRequest.downloadHandler.text;
-                Debug.Log(response);
             }
         }
     }

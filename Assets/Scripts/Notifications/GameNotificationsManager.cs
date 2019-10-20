@@ -528,8 +528,13 @@ namespace NotificationSamples
 			}
 		}
 
-		// Clear foreground notifications and reschedule stuff from a file
-		private void OnForegrounding()
+        void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
+
+        // Clear foreground notifications and reschedule stuff from a file
+        private void OnForegrounding()
 		{
 			PendingNotifications.Clear();
 

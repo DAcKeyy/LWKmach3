@@ -6,11 +6,19 @@ using TMPro;
 
 public class Test_CreateCoupon : MonoBehaviour
 {
-    [SerializeField] TMP_InputField Company, Promo, Description, Life_Spain, Contact = null;
+    [SerializeField] TMP_InputField Company = null,
+                                    Promo = null,
+                                    Description = null,
+                                    Life_Spain = null,
+                                    Contact = null;
 
     public void Send()
     {
-        StartCoroutine("POST","https://wingift.cf/api/promo/create?");
+        StartCoroutine("POST", "https://wingift.cf/api/promo/create?promo=" + Promo.text 
+            + "&company_name=" + Company.text 
+            + "&description=" + Description.text 
+            + "&contact=" + Contact.text 
+            + "&expiration_date=" + Life_Spain.text);
     }
 
     public IEnumerator POST(string URL)
@@ -19,12 +27,8 @@ public class Test_CreateCoupon : MonoBehaviour
 
         using (UnityWebRequest webRequest = UnityWebRequest.Post(URL, ""))
         {
-            webRequest.SetRequestHeader("promo", Promo.text);
-            webRequest.SetRequestHeader("company_name", Company.text);
-            webRequest.SetRequestHeader("description", Description.text);
-            webRequest.SetRequestHeader("contact", Contact.text);
-            webRequest.SetRequestHeader("expiration_date", Life_Spain.text);
-
+            Debug.Log(webRequest.url);
+           
             yield return webRequest.SendWebRequest();
 
             if (webRequest.isNetworkError)

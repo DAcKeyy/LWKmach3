@@ -6,32 +6,38 @@ public class NotificationsInitializer : MonoBehaviour
 {
     [SerializeField] GameNotificationsManager NotificationsManager = null;
 
-    private void Start()
+    public const string ChannelId = "game_channel0";
+
+    void Awake()
     {
-        InitializeNotification();
+        DontDestroyOnLoad(this.gameObject);
     }
 
-    private void InitializeNotification()
+    private void Start()
     {
-        var channel = new GameNotificationChannel("1", "Chanel", "Mobile Notification");
-        NotificationsManager.Initialize(channel);
+        var channel1 = new GameNotificationChannel(ChannelId, "Game Chanel", "Generic Notification");
+
+        NotificationsManager.Initialize(channel1);
     }
 
     public void OnTimeInput()
     {
         int time = 10;
-        CreateNotification("Bruh", "Не грусти, братан =)", DateTime.Now.AddSeconds(time));
+        CreateNotification("Bruh", "Good *datetime*, young developer =)", ChannelId, DateTime.Now.AddSeconds(time));
     }
 
-    private void CreateNotification(string title, string body, DateTime time)
+    private void CreateNotification(string title, string body, string channelId, DateTime time)
     {
         IGameNotification notification = NotificationsManager.CreateNotification();
+
         if(notification != null)
         {
             notification.Title = title;
             notification.Body = body;
+            notification.Group = channelId;
             notification.DeliveryTime = time;
             notification.LargeIcon = "pepelarge";
+
             NotificationsManager.ScheduleNotification(notification);
         }
     }
