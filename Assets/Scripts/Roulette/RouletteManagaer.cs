@@ -19,13 +19,13 @@ public class RouletteManagaer : MonoBehaviour
 
     private void OnEnable()
     {
-        RouletteMover.EndRotate += Disappear;
         RouletteMover.StartRotate += Moving;
+        RouletteMover.EndRotate += Disappear;
     }
     private void OnDisable()
     {
-        RouletteMover.EndRotate -= Disappear;
         RouletteMover.StartRotate -= Moving;
+        RouletteMover.EndRotate -= Disappear;
     }
 
     #region Whole Visual Process
@@ -65,5 +65,4 @@ public class RouletteManagaer : MonoBehaviour
     }
 
 #endregion
-
 }

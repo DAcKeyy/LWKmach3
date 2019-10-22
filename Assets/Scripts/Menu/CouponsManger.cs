@@ -16,10 +16,8 @@ public class CouponsManger : MonoBehaviour
     [SerializeField] private Transform Parent = null;
     [SerializeField] private GameObject Text = null;
 
-    private void Start()
+    private void Awake()
     {
-
-
         currentScene = SceneManager.GetActiveScene();
 
         //GetCouponFromServer();

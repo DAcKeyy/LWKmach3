@@ -73,12 +73,11 @@ namespace NotificationSamples
 			/// </summary>
 			QueueClearAndReschedule = Queue | ClearOnForegrounding | RescheduleAfterClearing,
 		}
-#pragma warning disable CS0649
-        [SerializeField, Tooltip("The operating mode for the notifications manager.")]
-		private OperatingMode mode;
-#pragma warning restore CS0649
 
-        [SerializeField, Tooltip(
+		[SerializeField, Tooltip("The operating mode for the notifications manager.")]
+		private OperatingMode mode = 0x00;
+
+		[SerializeField, Tooltip(
 			 "Check to make the notifications manager automatically set badge numbers so that they increment.\n" +
 			 "Schedule notifications with no numbers manually set to make use of this feature.")]
 		private bool autoBadging = true;
@@ -126,7 +125,7 @@ namespace NotificationSamples
 		/// Gets whether this manager has been initialized.
 		/// </summary>
 		public bool Initialized { get; private set; }
-
+		
 		// Flag set when we're in the foreground
 		private bool inForeground = true;
 
@@ -337,7 +336,11 @@ namespace NotificationSamples
 					doneDefault = true;
 					((AndroidNotificationsPlatform)Platform).DefaultChannelId = notificationChannel.Id;
 				}
-				
+
+				long[] vibrationPattern = null;
+				if (notificationChannel.VibrationPattern != null)
+					vibrationPattern = notificationChannel.VibrationPattern.Select(v => (long) v).ToArray();
+
 				// Wrap channel in Android object
 				var androidChannel = new AndroidNotificationChannel(notificationChannel.Id, notificationChannel.Name,
 				                                                    notificationChannel.Description,
@@ -348,7 +351,7 @@ namespace NotificationSamples
 					EnableLights = notificationChannel.ShowLights,
 					EnableVibration = notificationChannel.Vibrates,
 					LockScreenVisibility = (LockScreenVisibility)notificationChannel.Privacy,
-					VibrationPattern = notificationChannel.VibrationPattern
+					VibrationPattern = vibrationPattern
 				};
 
 				AndroidNotificationCenter.RegisterNotificationChannel(androidChannel);
@@ -361,7 +364,7 @@ namespace NotificationSamples
 			{
 				return;
 			}
-
+			
 			PendingNotifications = new List<PendingNotification>();
 			Platform.NotificationReceived += OnNotificationReceived;
 
@@ -528,13 +531,8 @@ namespace NotificationSamples
 			}
 		}
 
-        void Awake()
-        {
-            DontDestroyOnLoad(this.gameObject);
-        }
-
-        // Clear foreground notifications and reschedule stuff from a file
-        private void OnForegrounding()
+		// Clear foreground notifications and reschedule stuff from a file
+		private void OnForegrounding()
 		{
 			PendingNotifications.Clear();
 

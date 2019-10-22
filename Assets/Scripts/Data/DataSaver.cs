@@ -41,7 +41,7 @@ public class DataSaver
     {
         List<Сoupon> Coupons = new List<Сoupon>();
 
-        FileInfo[] files = null;;
+        FileInfo[] files = null;
 
         var root = new DirectoryInfo(Path.Combine(Application.persistentDataPath, "data"));
 
@@ -57,6 +57,7 @@ public class DataSaver
         {
             Debug.Log(e.Message);
         }
+
         if (files.Length != 0)
         {
             foreach (FileInfo file in files)

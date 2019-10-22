@@ -12,7 +12,7 @@ public class RouletteMover : MonoBehaviour
     [BoxGroup("Roulette")]
     public int sectorCount = 8;
     [BoxGroup("Roulette")]
-    public float spinTime = 4;
+    public float spinTime = 2;
 
     [Space(5)]
 
@@ -34,6 +34,6 @@ public class RouletteMover : MonoBehaviour
     private IEnumerator SpinRoutine()
     {
         yield return null; //For unity lag on start
-        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutSine).OnComplete(() => EndRotate(needSector));
+        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutCubic).OnComplete(() => EndRotate(needSector));
     }
 }
