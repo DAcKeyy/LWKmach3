@@ -8,29 +8,45 @@ public class MusicManager : MonoBehaviour
     readonly PlayerPreffsManager prefs = new PlayerPreffsManager();
 
     [SerializeField] Slider SliderObject = null;
+    [SerializeField] AudioSource MusicSource = null;
 
     private void Start()
     {
-        GloabalDataBase.MusicValue = prefs.GetMusicValue();
-        MusicValueChanged(GloabalDataBase.MusicValue);
-        SliderObject.value = GloabalDataBase.MusicValue;
+        GlobalDataBase.MusicValue = prefs.GetMusicValue();
+        MusicValueChanged(GlobalDataBase.MusicValue);
+        SliderObject.value = GlobalDataBase.MusicValue;
+    }
+
+    private void OnEnable()
+    {
+        MusicManager.MusicValueChanged += SetValue;
+    }
+
+    private void OnDisable()
+    {
+        MusicManager.MusicValueChanged -= SetValue;
+    }
+
+    private void SetValue(float Value)
+    {
+        MusicSource.volume = Value;
     }
 
     public void Set(Slider slider)
     {
-        GloabalDataBase.MusicValue = slider.value;
-        MusicValueChanged(GloabalDataBase.MusicValue);
+        GlobalDataBase.MusicValue = slider.value;
+        MusicValueChanged(GlobalDataBase.MusicValue);
     }
 
     #region Saving value to prefs
     private void OnApplicationPause(bool pause)
     {
-        if (pause) prefs.SetMusicValue(GloabalDataBase.MusicValue);
+        if (pause) prefs.SetMusicValue(GlobalDataBase.MusicValue);
     }
 
     private void OnApplicationQuit()
     {
-        prefs.SetMusicValue(GloabalDataBase.MusicValue);
+        prefs.SetMusicValue(GlobalDataBase.MusicValue);
     }
     #endregion
 }

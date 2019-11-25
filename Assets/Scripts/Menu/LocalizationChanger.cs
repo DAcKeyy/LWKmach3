@@ -3,6 +3,24 @@ using Assets.SimpleLocalization;
 
 public class LocalizationChanger : MonoBehaviour
 {
+    public void Awake()
+    {
+        LocalizationManager.Read();
+
+        switch (Application.systemLanguage)
+        {
+            case SystemLanguage.German:
+                LocalizationManager.Language = "German";
+                break;
+            case SystemLanguage.Russian:
+                LocalizationManager.Language = "Russian";
+                break;
+            default:
+                LocalizationManager.Language = "English";
+                break;
+        }
+    }
+
     public void SetLanguage(int Language)
     {
         switch (Language)
@@ -17,5 +35,13 @@ public class LocalizationChanger : MonoBehaviour
                 LocalizationManager.Language = "German";
                 break;
         }
+    }
+
+    /// <summary>
+    /// Change localization at runtime
+    /// </summary>
+    public void SetLocalization(string localization)
+    {
+        LocalizationManager.Language = localization;
     }
 }

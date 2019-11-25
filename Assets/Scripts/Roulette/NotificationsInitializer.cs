@@ -8,11 +8,6 @@ public class NotificationsInitializer : MonoBehaviour
 
     public const string ChannelId = "game_channel0";
 
-    //void Awake()
-    //{
-    //    DontDestroyOnLoad(this.gameObject);
-    //}
-
     private void Start()
     {
         var channel1 = new GameNotificationChannel(ChannelId, "Game Chanel", "Generic Notification");

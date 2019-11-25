@@ -1,8 +1,18 @@
-﻿public static class GloabalDataBase
+﻿public static class GlobalDataBase
 {
     public static int NumberOfWeel;
     public static float SoundValue;
     public static float MusicValue;
+    public static string Token = null;
+    public static bool ConectionToServer = false;
+    public static string FirstName = null;
+    public static string SecondName = null;
+    public static string Email = null;
+    public static string NickName = null;
+    public static string Password = null;
+    public static string TypeOfToken = null;
+    public static int Gold;
+    public static int IdInMedia = 0;
 }
 
 [System.Serializable]
@@ -22,5 +32,38 @@ public class Сoupon
     //    description = Description;
     //    contact = Contact;
     //}
+}
+
+
+[System.Serializable]
+public class user
+{
+    public int id;
+    public string name;
+    public string email;
+    public string password;
+    public string status;
+    public string verify_token;
+    public string created_at;
+    public string updated_at;
+    public string error;
+}
+
+[System.Serializable]
+public class register
+{
+    public string message;
+    public string verify;
+    public string error;
+}
+
+
+[System.Serializable]
+public class login
+{
+    public string token_type;
+    public string token;
+    public string expires_at;
+    public string error;
 }
 

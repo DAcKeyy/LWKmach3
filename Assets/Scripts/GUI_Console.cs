@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Console : MonoBehaviour
+public class GUI_Console : MonoBehaviour
 {
     private bool consoleishidden;
     private string output;

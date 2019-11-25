@@ -11,26 +11,26 @@ public class SoundManager : MonoBehaviour
 
     private void Start()
     {        
-        GloabalDataBase.SoundValue = prefs.GetSoundValue();
-        SoundValueChanged(GloabalDataBase.SoundValue);
-        SliderObject.value = GloabalDataBase.SoundValue;
+        GlobalDataBase.SoundValue = prefs.GetSoundValue();
+        SoundValueChanged(GlobalDataBase.SoundValue);
+        SliderObject.value = GlobalDataBase.SoundValue;
     }
 
     public void Set(Slider slider)
     {
-        GloabalDataBase.SoundValue = slider.value;
-        SoundValueChanged(GloabalDataBase.SoundValue);
+        GlobalDataBase.SoundValue = slider.value;
+        SoundValueChanged(GlobalDataBase.SoundValue);
     }
 
     #region Saving value to prefs
     private void OnApplicationPause(bool pause)
     {
-        if(pause) prefs.SetSoundValue(GloabalDataBase.SoundValue);
+        if(pause) prefs.SetSoundValue(GlobalDataBase.SoundValue);
     }
 
     private void OnApplicationQuit()
     {
-        prefs.SetSoundValue(GloabalDataBase.SoundValue);
+        prefs.SetSoundValue(GlobalDataBase.SoundValue);
     }
     #endregion
 }
