@@ -10,6 +10,10 @@ public class Board : MonoBehaviour
 {
     public static Action BoardUp = delegate { };
 
+    [BoxGroup("TaskManager")]
+    public TaskManager taskManager;
+
+    [Space(10)]
     [BoxGroup("Board settings")]
     public int width = 7;
     [BoxGroup("Board settings")]
@@ -24,6 +28,8 @@ public class Board : MonoBehaviour
     public int boardUpHeight = 2;
     [BoxGroup("Board settings")]
     public int colorCount = 4;
+    [BoxGroup("Board settings")]
+    public float cameraOffset = 1f;
     [BoxGroup("Board settings")]
     [ReadOnly]
     public int _diggerDeep = 0;
@@ -60,16 +66,15 @@ public class Board : MonoBehaviour
     private BoardDeadlock _boardDeadlock;
     private BoardShuffler _boardShuffler;
     private UpTimer _upTimer;
-    
 
     private void OnEnable()
     {
         PieceAnimator.PiecesSwitched += PiecesSwitched;
         PieceAnimator.PiecesMoved += PiecesMoved;
         PieceAnimator.PiecesDeleted += PiecesDeleted;
-        PieceAnimator.BoardMovedUp += BoardMovedUp;
+        //PieceAnimator.BoardMovedUp += BoardMovedUp;
         BoardManager.OnScoreCounted += ScoreCount;
-        Board.BoardUp += AddLvl;
+        //Board.BoardUp += AddLvl;
     }
 
     private void OnDisable()
@@ -77,9 +82,9 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesSwitched -= PiecesSwitched;
         PieceAnimator.PiecesMoved -= PiecesMoved;
         PieceAnimator.PiecesDeleted -= PiecesDeleted;
-        PieceAnimator.BoardMovedUp -= BoardMovedUp;
+        //PieceAnimator.BoardMovedUp -= BoardMovedUp;
         BoardManager.OnScoreCounted += ScoreCount;
-        Board.BoardUp += AddLvl;
+        //Board.BoardUp += AddLvl;
     }
 
     public void Restart()
@@ -100,6 +105,8 @@ public class Board : MonoBehaviour
         }
 
         SetupCamera();
+        taskManager.Init();
+
 
         _matcher = new Matcher(width, height);
         _upTimer = GetComponent<UpTimer>();
@@ -129,7 +136,17 @@ public class Board : MonoBehaviour
         yield return null;
         yield return null;
 
-        transform.DOMove(new Vector3(0f, 0f, 0f), 0.5f).SetEase(Ease.OutCubic);
+        transform.DOMove(new Vector3(0f, 0f, 0f), 0.5f).SetEase(Ease.OutCubic).OnComplete(() => DeadLockOnStart());
+    }
+
+    private void DeadLockOnStart()
+    {
+        if (_boardDeadlock.IsDeadlocked(_boardManager.GetPieces(), 3))
+        {
+            Debug.Log("DeadLocked");
+            Shuffle();
+            _boardManager._canTouch = false;
+        }
     }
 
     private void Start()
@@ -145,6 +162,7 @@ public class Board : MonoBehaviour
         float verticalSize = height / 2f + borderSize;
         float horizontalSize = (width / 2f + borderSize) / aspectRatio;
         Camera.main.orthographicSize = (verticalSize > horizontalSize) ? verticalSize : horizontalSize;
+        Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y + cameraOffset, Camera.main.transform.position.z);
     }
 
 
@@ -154,6 +172,7 @@ public class Board : MonoBehaviour
 
         if (piecesToDelete.Count > 0)
         {
+            taskManager.CheckTask(piecesToDelete[0]);
             List<Piece> pieces = _boardManager.ClearBoard(piecesToDelete);
             _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
         }
@@ -212,7 +231,7 @@ public class Board : MonoBehaviour
         {
             _diggerDeep++;
             _upTimer.AddTime();
-             BoardUp();
+            BoardUp();
             _boardManager._canTouch = true;
         }
     }
@@ -231,20 +250,22 @@ public class Board : MonoBehaviour
         {
             if (_boardDeadlock.IsDeadlocked(_boardManager.GetPieces(), 3))
             {
-                _boardManager._canTouch = false;
+                Debug.Log("DeadLocked");
                 Shuffle();
+                _boardManager._canTouch = false;
             }
             else
             {
-                if (_boardManager.HorizonFree())
-                {
-                    _boardManager._canTouch = false;
-                    MoveBoardUp();
-                }
-                else
-                {
-                    _boardManager._canTouch = true;
-                }
+                //Использовать для подъема боарда
+                //if (_boardManager.HorizonFree())
+                //{
+                //    _boardManager._canTouch = false;
+                //    MoveBoardUp();
+                //}
+                //else
+                //{
+                _boardManager._canTouch = true;
+                //}
             }
         }
     }

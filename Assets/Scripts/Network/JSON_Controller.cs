@@ -11,7 +11,7 @@ public class JSON_Controller : MonoBehaviour
     public static Action<string> GetUserDataErrors;
 
     string URL;
-    [SerializeField] GameObject EventSystem = null;
+    //[SerializeField] GameObject EventSystem = null;
     #endregion
 
     #region GET

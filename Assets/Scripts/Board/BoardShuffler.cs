@@ -65,6 +65,7 @@ public class BoardShuffler
 
     public void Shuffle()
     {
+        Debug.Log("Shuffling");
         List<Piece> pieces = RemoveNormalPieces();
         List<Piece> p = ShuffleList(pieces);
         _boardManager.FillBoardFromList(p);

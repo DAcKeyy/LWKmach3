@@ -6,7 +6,7 @@ public class TokenCheker : MonoBehaviour
 {
     #region Field
     [SerializeField] GameObject DialogPanel = null;
-    [SerializeField] GameObject EventSystem = null;
+    //[SerializeField] GameObject EventSystem = null;
     [SerializeField] GameObject BlockPanel = null;
 
     [Header("For Usual Aut")]
@@ -14,7 +14,7 @@ public class TokenCheker : MonoBehaviour
     [SerializeField] GameObject PasswordField = null;
 
     //private string URL = null;
-    private JSON_Controller JS = null;
+    //private JSON_Controller JS = null;
     private GameObject ExclamationMarkForLogin = null;
     private GameObject ExclamationMarkForPassword = null;
     private string FirstPass;

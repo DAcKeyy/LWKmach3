@@ -70,7 +70,7 @@ public class BoardManager
         SetupTiles();
         FillBoard();
         SpawnMaskTiles();
-        MakeHorizon();
+        //MakeHorizon();
     }
 
 
@@ -406,16 +406,17 @@ public class BoardManager
     {
         _tiles = new Tile[_width, _height];
 
-        if (_obstaclesHeight > 0)
-        {
-            for (int i = 0; i < _width; i++)
-            {
-                for (int j = 0; j < _obstaclesHeight; j++)
-                {
-                    MakeTile(_tileObstacle, i, j);
-                }
-            }
-        }
+                        //Использовать для заполнения нижнего ряда обстаклами
+        //if (_obstaclesHeight > 0)
+        //{
+        //    for (int i = 0; i < _width; i++)
+        //    {
+        //        for (int j = 0; j < _obstaclesHeight; j++)
+        //        {
+        //            MakeTile(_tileObstacle, i, j);
+        //        }
+        //    }
+        //}
 
         for (int i = 0; i < _width; i++)
         {
