@@ -1,9 +1,12 @@
 ﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TaskManager : MonoBehaviour
 {
+    public static Action TaskComplete;
+
     public Board board;
     public float taskScale = 1f;
 
@@ -32,7 +35,11 @@ public class TaskManager : MonoBehaviour
     {
         if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
         {
+            GlobalDataBase.Gold += 1;
+
             Debug.Log("Task complete!");
+            TaskComplete();
+
             UpdateTask();
         }
     }
@@ -59,7 +66,7 @@ public class TaskManager : MonoBehaviour
 
     private void SpawnTask(Transform parent)
     {
-        GameObject taskObject = Instantiate(pieces[Random.Range(0, board.colorCount)]);
+        GameObject taskObject = Instantiate(pieces[UnityEngine.Random.Range(0, board.colorCount)]);
         taskObject.transform.SetParent(parent);
         taskObject.transform.localScale = new Vector2(taskScale, taskScale);
         taskObject.transform.localPosition = parent.localPosition;

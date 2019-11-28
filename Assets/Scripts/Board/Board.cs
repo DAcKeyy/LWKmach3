@@ -73,7 +73,7 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesMoved += PiecesMoved;
         PieceAnimator.PiecesDeleted += PiecesDeleted;
         //PieceAnimator.BoardMovedUp += BoardMovedUp;
-        BoardManager.OnScoreCounted += ScoreCount;
+        
         //Board.BoardUp += AddLvl;
     }
 
@@ -83,7 +83,7 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesMoved -= PiecesMoved;
         PieceAnimator.PiecesDeleted -= PiecesDeleted;
         //PieceAnimator.BoardMovedUp -= BoardMovedUp;
-        BoardManager.OnScoreCounted += ScoreCount;
+        
         //Board.BoardUp += AddLvl;
     }
 
@@ -152,7 +152,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         StartGame();
-        AddLvl();
+        //AddLvl();
     }
 
     private void SetupCamera()
@@ -270,21 +270,21 @@ public class Board : MonoBehaviour
         }
     }
 
-    private void ScoreCount(int picesDeletedCount)
-    {
-        var scoreText = Convert.ToInt32(ScoreText.text);
+    //private void ScoreCount(int picesDeletedCount)
+    //{
+    //    var scoreText = Convert.ToInt32(ScoreText.text);
 
-        scoreText += picesDeletedCount * 100; //Шаманить тут 
+    //    scoreText += picesDeletedCount * 100; //Шаманить тут 
 
-        ScoreText.text = Convert.ToString(scoreText);
-    }
+    //    ScoreText.text = Convert.ToString(scoreText);
+    //}
 
-    private void AddLvl()
-    {
-        var lvlText = Convert.ToInt32(LevelText.text);
+    //private void AddLvl()
+    //{
+    //    var lvlText = Convert.ToInt32(LevelText.text);
 
-        lvlText += 1;
+    //    lvlText += 1;
 
-        LevelText.text = Convert.ToString(lvlText);
-    }
+    //    LevelText.text = Convert.ToString(lvlText);
+    //}
 }
