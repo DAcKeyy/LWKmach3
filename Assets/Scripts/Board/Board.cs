@@ -51,11 +51,6 @@ public class Board : MonoBehaviour
     [ShowAssetPreview(32, 32)]
     public GameObject tileMaskPrefab;
 
-    [BoxGroup("Score")]
-    [SerializeField] TMP_Text ScoreText = null;
-    [BoxGroup("Level")]
-    [SerializeField] TMP_Text LevelText = null;
-
     [ReorderableList]
     public List<GameObject> piecePrefabs;
 

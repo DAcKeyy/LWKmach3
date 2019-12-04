@@ -12,7 +12,7 @@ public class AuthorizationButtonClicked : MonoBehaviour, IPointerClickHandler
     private enum TypeOfButton
     {
         LogIn = 5,
-        UsualAut = 4,
+        Registration = 4,
         AppleID = 3,
         Google = 1,
         Facebook = 2,

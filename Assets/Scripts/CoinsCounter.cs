@@ -3,7 +3,7 @@ using TMPro;
 
 public class CoinsCounter : MonoBehaviour
 {
-    [SerializeField] TMP_Text text;
+    [SerializeField] TMP_Text text = null;
 
     private void OnEnable()
     {
