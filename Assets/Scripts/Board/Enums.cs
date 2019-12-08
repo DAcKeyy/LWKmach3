@@ -6,6 +6,7 @@
     Yellow,
     White,
     Black,
+    Orange,
     None
 }
 
