@@ -10,43 +10,35 @@ public enum TypeRequest
     Post
 }
 
-public class WebSender
+public class WebSender 
 {
     public Action<string> Response;
+    public Action<string> Error;
 
-    public IEnumerator POST(string URL, Dictionary<string, string> form , Action<string> Response)
+    public IEnumerator POST(string URL, Dictionary<string, string> form , Action<string> Response, Action<string> Error)
     {
-        Response = delegate { };
-
-        Debug.Log(form);
-
-
         using (var webRequest = UnityWebRequest.Post(URL, form))
         {
-            //Debug.Log(form.Values + "///" + form.Keys.Count  +"///" + form.Keys); vnd.api+json
 
-            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
-
-            //webRequest.uploadHandler.contentType = "application/vnd.api+json";
+            webRequest.SetRequestHeader("Accept", "application/vnd.api+json"); //vnd.api+json
 
             yield return webRequest.SendWebRequest();
 
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
-                Debug.Log(webRequest.error + "<b>///<b>" + webRequest.downloadHandler.text);
-                Response(webRequest.error);
-                
+                if (String.IsNullOrEmpty(webRequest.downloadHandler.text))
+                    Error(webRequest.error);
+                else Error(webRequest.downloadHandler.text);
             }
 
             else
             {
-                Debug.Log(webRequest.downloadHandler.text);
                 Response(webRequest.downloadHandler.text);
             }
         }
     }
 
-    public IEnumerator GET(string URL, Action<string> Response)
+    public IEnumerator GET<T>(string URL, Action<string> Response, Action<string> Error)
     {
         Response = delegate { };
 
@@ -56,8 +48,9 @@ public class WebSender
 
             if (webRequest.isNetworkError || webRequest.isHttpError)
             {
-                Debug.Log(webRequest.error);
-                Response(webRequest.error);
+                if (String.IsNullOrEmpty(webRequest.downloadHandler.text))
+                    Error(webRequest.error);
+                else Error(webRequest.downloadHandler.text);
             }
 
             else

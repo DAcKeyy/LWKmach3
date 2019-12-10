@@ -35,4 +35,29 @@ public class AuthorizationForm
     }
 }
 
+[System.Serializable]
+public class ErrorResponse
+{
+    public List<ErrorData> errors;
+}
+
+[System.Serializable]
+public class ErrorData
+{
+    public string status;
+    public string title;
+    public string detail;
+}
+
+[System.Serializable]
+public class GetToken
+{
+    public string token_type;
+    public string expires_in;
+    public string access_token;
+    public string refresh_token;
+}
+
+
+
 

@@ -1,6 +1,18 @@
 ﻿using UnityEngine;
 using TMPro;
 using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Text.RegularExpressions;
+
+public enum ErrorType
+{
+    None,
+    Error500,
+    VerifyEmail,
+    EmailIsExist,
+}
+
 
 public class AuthorizationProcessing : MonoBehaviour
 {
@@ -9,10 +21,12 @@ public class AuthorizationProcessing : MonoBehaviour
     [SerializeField] TMP_InputField EmailField = null;
     [SerializeField] TMP_InputField PasswordField = null;
     [SerializeField] TMP_Text TextUponFields = null;
+    [SerializeField] GameObject BigFuckingPanel = null;
     [SerializeField] LevelLoader levelLoader = null;
 
     WebSender Sender = new WebSender();
     RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
+    ErrorTypeCheker errorTypeCheker = new ErrorTypeCheker();
 
     public static Action FirstStartUp;
 
@@ -34,11 +48,13 @@ public class AuthorizationProcessing : MonoBehaviour
 
         if (PlayerPrefs.HasKey("Token"))
         {
-            //StartCoroutine(Sender.POST(URLStruct.Authorization,  ,TokenAuthorization));
-            //AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
+            GlobalDataBase.Email = PlayerPrefs.GetString("Email");
+            GlobalDataBase.Password = PlayerPrefs.GetString("Password");
+            GlobalDataBase.Token = PlayerPrefs.GetString("Token");
+
             AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
-            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization));
+            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization, Errors));
         }
 
         else 
@@ -47,7 +63,7 @@ public class AuthorizationProcessing : MonoBehaviour
         }
     }
 
-    void StartRqesting (byte type)
+    void StartRqesting(byte type)
     {
         if (FieldsCheker.CheckFields(EmailField, PasswordField) == false)
         {
@@ -65,35 +81,31 @@ public class AuthorizationProcessing : MonoBehaviour
 
         if (type == 5) //Autharization
         {
-
             AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
-            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization));
+            Debug.Log("ADSAD");
+
+            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization, Errors));
         }
 
         if(type == 4) //Registration
         {
-            Debug.Log(GlobalDataBase.Email);
-
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
-            StartCoroutine(Sender.POST(URLStruct.Registration, RegForm.Form, Registration));
+            StartCoroutine(Sender.POST(URLStruct.Registration, RegForm.Form, Registration, Errors));
         }
     }
 
-
-
     void Authorization(string Response)
     {
-        Debug.Log(Response);
+        var Objcet = JsonUtility.FromJson<GetToken>(Response);
 
+        PlayerPrefs.SetString("Token", Objcet.access_token);
+        PlayerPrefs.SetString("Refresh_Token", Objcet.refresh_token);
+        PlayerPrefs.SetString("Password", GlobalDataBase.Password);
+        PlayerPrefs.SetString("Email", GlobalDataBase.Email);
 
-        /*else
-         * {
-         *     levelLoader.LoadLevel("Menu");
-         * }
-         * 
-         */
+        levelLoader.LoadLevel("Menu");
     }
 
     void Registration(string Response)
@@ -101,8 +113,46 @@ public class AuthorizationProcessing : MonoBehaviour
         Debug.Log(Response);
     }
 
-    void TokenAuthorization(string Response)
+    void Errors(string Response)
     {
         Debug.Log(Response);
+        var ErrorObjcet = JsonUtility.FromJson<ErrorResponse>(Response);
+
+        if(String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
+            TextUponFields.text = ErrorObjcet.errors[0].title;
+        else TextUponFields.text = ErrorObjcet.errors[0].detail;
+
+        if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.EmailIsExist)
+            EmailErrorSign.SetActive(true);
+
+        if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.VerifyEmail)
+        {
+            BigFuckingPanel.SetActive(true);
+            var text = BigFuckingPanel.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+            text.text = "Verify account on your email";
+        }           
     }
 }
+
+public class ErrorTypeCheker
+{
+    public ErrorType CheckType(string title, string detail)
+    {
+        Regex emailIsExist = new Regex(@"The email has already been taken.");
+        Regex error500 = new Regex(@"Internal Server Error");
+        Regex verifyEmail = new Regex(@"Your email address is not verified.");
+
+        if (String.IsNullOrEmpty(detail) == false && emailIsExist.IsMatch(detail))
+            return ErrorType.EmailIsExist;
+
+        if (error500.IsMatch(detail))
+            return ErrorType.Error500;
+
+        if (String.IsNullOrEmpty(detail) == false && verifyEmail.IsMatch(detail))
+            return ErrorType.VerifyEmail;
+
+        return ErrorType.None;
+    }
+
+}
+
