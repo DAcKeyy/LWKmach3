@@ -187,8 +187,6 @@ MonoBehaviour:
     type: 3}
   tileMaskPrefab: {fileID: 290528888157342910, guid: 83dddd36481357c42929d5cf8444c807,
     type: 3}
-  ScoreText: {fileID: 1526603188}
-  LevelText: {fileID: 0}
   piecePrefabs:
   - {fileID: 2330679820881723247, guid: 8e1e5b6530354ac448c31ac252937ec0, type: 3}
   - {fileID: 8112250458827032103, guid: 4a5c2cfa9f55dc84ab6267142337df7b, type: 3}
@@ -2548,10 +2546,10 @@ RectTransform:
   m_Father: {fileID: 559063593}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.0000084989715, y: 0}
-  m_AnchorMax: {x: 0.9999944, y: 1}
-  m_AnchoredPosition: {x: -85.52997, y: 421.35504}
-  m_SizeDelta: {x: -320.2, y: -842.32}
+  m_AnchorMin: {x: 0.14857215, y: 0.94416606}
+  m_AnchorMax: {x: 0.5106332, y: 1.0002185}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.000030517578}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1687384558
 MonoBehaviour:
@@ -3034,8 +3032,8 @@ RectTransform:
   m_Father: {fileID: 926306341}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2629698, y: 0.036276076}
-  m_AnchorMax: {x: 0.7370302, y: 0.1168207}
+  m_AnchorMin: {x: 0.2629698, y: 0.16607581}
+  m_AnchorMax: {x: 0.7370302, y: 0.24662043}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

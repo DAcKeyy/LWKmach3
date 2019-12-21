@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using TMPro;
 
 public class StartupPanelSwitcher : MonoBehaviour
 {
@@ -31,6 +32,7 @@ public class StartupPanelSwitcher : MonoBehaviour
     {
         Debug.Log("NoConection");
         NoConectionPanel.SetActive(true);
+        NoConectionPanel.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "No internet Conection";
     }
 
     void FirstStartUp()

@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 using TMPro;
 using System;
-using System.Collections.Generic;
 using System.Collections;
 using System.Text.RegularExpressions;
+
 
 public enum ErrorType
 {
@@ -23,9 +25,11 @@ public class AuthorizationProcessing : MonoBehaviour
     [SerializeField] TMP_Text TextUponFields = null;
     [SerializeField] GameObject BigFuckingPanel = null;
     [SerializeField] LevelLoader levelLoader = null;
+    [SerializeField] Image LoadIndicator = null;
 
     WebSender Sender = new WebSender();
     RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
+    ServerLoadProcess ServerLoading = new ServerLoadProcess();
     ErrorTypeCheker errorTypeCheker = new ErrorTypeCheker();
 
     public static Action FirstStartUp;
@@ -33,6 +37,8 @@ public class AuthorizationProcessing : MonoBehaviour
     private void OnEnable()
     {
         AuthorizationButtonClicked.AccButtPres += StartRqesting;
+
+        ServerLoading.loadIndicator = LoadIndicator;
     }
 
     private void OnDisable()
@@ -46,6 +52,8 @@ public class AuthorizationProcessing : MonoBehaviour
         FieldsCheker.ErrorSignPassword = PasswordErrorSign;
         FieldsCheker.DescriptionText = TextUponFields;
 
+        
+
         if (PlayerPrefs.HasKey("Token"))
         {
             GlobalDataBase.Email = PlayerPrefs.GetString("Email");
@@ -54,7 +62,10 @@ public class AuthorizationProcessing : MonoBehaviour
 
             AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
-            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization, Errors));
+            var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
+
+            StartCoroutine(Sender.POST(webRequest, Authorization, Errors));
+            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
         }
 
         else 
@@ -85,14 +96,21 @@ public class AuthorizationProcessing : MonoBehaviour
 
             Debug.Log("ADSAD");
 
-            StartCoroutine(Sender.POST(URLStruct.Authorization, AuthForm.Form, Authorization, Errors));
+            var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
+
+            StartCoroutine(Sender.POST(webRequest, Authorization, Errors));
+            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
+
         }
 
         if(type == 4) //Registration
         {
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
-            StartCoroutine(Sender.POST(URLStruct.Registration, RegForm.Form, Registration, Errors));
+            var webRequest = UnityWebRequest.Post(URLStruct.Registration, RegForm.Form);
+
+            StartCoroutine(Sender.POST(webRequest, Registration, Errors));
+            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
         }
     }
 
@@ -155,4 +173,33 @@ public class ErrorTypeCheker
     }
 
 }
+
+public class ServerLoadProcess
+{
+    public Image loadIndicator;
+    private float fillValue = 0.02f;
+
+    public IEnumerator LoadAsynchronously(UnityWebRequest webRequest)
+    {
+        while (!webRequest.isDone)
+        {
+            loadIndicator.fillAmount += fillValue;
+
+            if(loadIndicator.fillAmount == 1f)
+            {
+                loadIndicator.fillClockwise = !loadIndicator.fillClockwise;
+                fillValue *= -1;
+            }
+
+            if(loadIndicator.fillAmount == 0f)
+            {
+                loadIndicator.fillClockwise = !loadIndicator.fillClockwise;
+                fillValue *= -1;
+            }
+
+            yield return null;
+        }
+    }
+}
+
 
