@@ -25,20 +25,17 @@ public class AuthorizationProcessing : MonoBehaviour
     [SerializeField] TMP_Text TextUponFields = null;
     [SerializeField] GameObject BigFuckingPanel = null;
     [SerializeField] LevelLoader levelLoader = null;
-    [SerializeField] Image LoadIndicator = null;
+    [SerializeField] ServerLoadingProcess LoadIndicator = null;
 
-    WebSender Sender = new WebSender();
     RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
-    ServerLoadProcess ServerLoading = new ServerLoadProcess();
     ErrorTypeCheker errorTypeCheker = new ErrorTypeCheker();
+    WebSender Sender = new WebSender();
 
     public static Action FirstStartUp;
 
     private void OnEnable()
     {
         AuthorizationButtonClicked.AccButtPres += StartRqesting;
-
-        ServerLoading.loadIndicator = LoadIndicator;
     }
 
     private void OnDisable()
@@ -52,8 +49,6 @@ public class AuthorizationProcessing : MonoBehaviour
         FieldsCheker.ErrorSignPassword = PasswordErrorSign;
         FieldsCheker.DescriptionText = TextUponFields;
 
-        
-
         if (PlayerPrefs.HasKey("Token"))
         {
             GlobalDataBase.Email = PlayerPrefs.GetString("Email");
@@ -64,14 +59,10 @@ public class AuthorizationProcessing : MonoBehaviour
 
             var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
 
-            StartCoroutine(Sender.POST(webRequest, Authorization, Errors));
-            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
+            StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
         }
-
-        else 
-        {
-            FirstStartUp();
-        }
+        else FirstStartUp();
     }
 
     void StartRqesting(byte type)
@@ -98,19 +89,19 @@ public class AuthorizationProcessing : MonoBehaviour
 
             var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
 
-            StartCoroutine(Sender.POST(webRequest, Authorization, Errors));
-            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
+            StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
 
         }
 
-        if(type == 4) //Registration
+        if (type == 4) //Registration
         {
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
             var webRequest = UnityWebRequest.Post(URLStruct.Registration, RegForm.Form);
 
-            StartCoroutine(Sender.POST(webRequest, Registration, Errors));
-            StartCoroutine(ServerLoading.LoadAsynchronously(webRequest));
+            StartCoroutine(Sender.SendWebRequest(webRequest, Registration, Errors));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
         }
     }
 
@@ -136,7 +127,7 @@ public class AuthorizationProcessing : MonoBehaviour
         Debug.Log(Response);
         var ErrorObjcet = JsonUtility.FromJson<ErrorResponse>(Response);
 
-        if(String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
+        if (String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
             TextUponFields.text = ErrorObjcet.errors[0].title;
         else TextUponFields.text = ErrorObjcet.errors[0].detail;
 
@@ -148,7 +139,7 @@ public class AuthorizationProcessing : MonoBehaviour
             BigFuckingPanel.SetActive(true);
             var text = BigFuckingPanel.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
             text.text = "Verify account on your email";
-        }           
+        }
     }
 }
 
@@ -173,33 +164,3 @@ public class ErrorTypeCheker
     }
 
 }
-
-public class ServerLoadProcess
-{
-    public Image loadIndicator;
-    private float fillValue = 0.02f;
-
-    public IEnumerator LoadAsynchronously(UnityWebRequest webRequest)
-    {
-        while (!webRequest.isDone)
-        {
-            loadIndicator.fillAmount += fillValue;
-
-            if(loadIndicator.fillAmount == 1f)
-            {
-                loadIndicator.fillClockwise = !loadIndicator.fillClockwise;
-                fillValue *= -1;
-            }
-
-            if(loadIndicator.fillAmount == 0f)
-            {
-                loadIndicator.fillClockwise = !loadIndicator.fillClockwise;
-                fillValue *= -1;
-            }
-
-            yield return null;
-        }
-    }
-}
-
-

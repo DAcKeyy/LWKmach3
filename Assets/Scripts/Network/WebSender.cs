@@ -1,22 +1,18 @@
-﻿using UnityEngine;
-using UnityEngine.Networking;
+﻿using UnityEngine.Networking;
+using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 using System;
-
-public enum TypeRequest
-{
-    Get,
-    Post
-}
 
 public class WebSender 
 {
     public Action<string> Response;
     public Action<string> Error;
 
-    public IEnumerator POST(UnityWebRequest webRequest, Action<string> Response, Action<string> Error)
+    public IEnumerator SendWebRequest(UnityWebRequest webRequest, Action<string> Response, Action<string> Error)
     {
+        Debug.Log("???????");
+        Debug.Log(webRequest.method);
+
         webRequest.SetRequestHeader("Accept", "application/vnd.api+json"); //vnd.api+json
 
         yield return webRequest.SendWebRequest();
@@ -31,28 +27,6 @@ public class WebSender
         else
         {
             Response(webRequest.downloadHandler.text);
-        }
-    }
-
-    public IEnumerator GET<T>(string URL, Action<string> Response, Action<string> Error)
-    {
-        Response = delegate { };
-
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(URL, ""))
-        {
-            yield return webRequest.SendWebRequest();
-
-            if (webRequest.isNetworkError || webRequest.isHttpError)
-            {
-                if (String.IsNullOrEmpty(webRequest.downloadHandler.text))
-                    Error(webRequest.error);
-                else Error(webRequest.downloadHandler.text);
-            }
-
-            else
-            {
-                Response(webRequest.downloadHandler.text);
-            }
         }
     }
 }

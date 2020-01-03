@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public struct URLStruct
 {
-    public const string Registration = "http://wingift.cf/api/register";
-    public const string Authorization = "http://wingift.cf/oauth/token";
-    public const string SpeenWeel = "aoao";
+    public const string Registration = "https://wingift.cf/api/register";
+    public const string Authorization = "https://wingift.cf/oauth/token";
+    public const string SpinWeel = "https://wingift.cf/rand";
     public const string SendCoins = "aoao";
 }
 
@@ -31,7 +31,7 @@ public class AuthorizationForm
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "kON2KfJmoCV6ve8tAQ4AL5BP917UaqxVzBZDZQqU");
+        Form.Add("client_secret", "9KqxP2UiZz0Udj68Ixu3uCVNEfPNRZrmQhwMGeAy");
     }
 }
 
