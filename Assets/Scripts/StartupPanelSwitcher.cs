@@ -10,23 +10,16 @@ public class StartupPanelSwitcher : MonoBehaviour
     [SerializeField] GameObject AccountRequestPanel = null;
     [SerializeField] GameObject NoConectionPanel = null;
 
-    private void OnEnable()
+    private void Awake()
     {
         UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
         AccountAcceptedPanel.SetActive(false);
         AccountRequestPanel.SetActive(false);
 
         StartCoroutine(checkInternetConnection(NoConection));
-
-        
-
-        AuthorizationProcessing.FirstStartUp += FirstStartUp;
     }
 
-    private void OnDisable()
-    {
-        AuthorizationProcessing.FirstStartUp -= FirstStartUp;
-    }
+
 
     void NoConection()
     {
@@ -46,6 +39,8 @@ public class StartupPanelSwitcher : MonoBehaviour
     {
         var www = new UnityEngine.Networking.UnityWebRequest("http://google.com");
         yield return www;
+
+        Debug.Log("Checking...");
         if (www.error != null)
         {
             NoConetion();

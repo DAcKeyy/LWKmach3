@@ -18,20 +18,24 @@ public enum ErrorType
 
 public class AuthorizationProcessing : MonoBehaviour
 {
+    [SerializeField] GameObject UserPanel = null;
+    [SerializeField] GameObject CouponsPanel = null;
+    [SerializeField] GameObject AccountAcceptedPanel = null;
+    [SerializeField] GameObject AccountRequestPanel = null;
     [SerializeField] GameObject PasswordErrorSign = null;
     [SerializeField] GameObject EmailErrorSign = null;
     [SerializeField] TMP_InputField EmailField = null;
     [SerializeField] TMP_InputField PasswordField = null;
     [SerializeField] TMP_Text TextUponFields = null;
-    [SerializeField] GameObject BigFuckingPanel = null;
+    [SerializeField] GameObject PanelWithText = null;
     [SerializeField] LevelLoader levelLoader = null;
     [SerializeField] ServerLoadingProcess LoadIndicator = null;
+
 
     RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
     ErrorTypeCheker errorTypeCheker = new ErrorTypeCheker();
     WebSender Sender = new WebSender();
 
-    public static Action FirstStartUp;
 
     private void OnEnable()
     {
@@ -45,24 +49,18 @@ public class AuthorizationProcessing : MonoBehaviour
 
     private void Start()
     {
+        UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
+        AccountAcceptedPanel.SetActive(false);
+        AccountRequestPanel.SetActive(false);
+        CouponsPanel.SetActive(false);
+
+        var webRequest = UnityWebRequest.Get("http://google.com");
+        StartCoroutine(Sender.SendWebRequest(webRequest, IfNetworkOk, ConectionError));
+        StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+
         FieldsCheker.ErrorSignEmail = EmailErrorSign;
         FieldsCheker.ErrorSignPassword = PasswordErrorSign;
         FieldsCheker.DescriptionText = TextUponFields;
-
-        if (PlayerPrefs.HasKey("Token"))
-        {
-            GlobalDataBase.Email = PlayerPrefs.GetString("Email");
-            GlobalDataBase.Password = PlayerPrefs.GetString("Password");
-            GlobalDataBase.Token = PlayerPrefs.GetString("Token");
-
-            AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
-
-            var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
-
-            StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
-            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
-        }
-        else FirstStartUp();
     }
 
     void StartRqesting(byte type)
@@ -122,24 +120,83 @@ public class AuthorizationProcessing : MonoBehaviour
         Debug.Log(Response);
     }
 
+
+
+    void ConectionError(string Response)
+    {
+        if (String.IsNullOrEmpty(Response))
+        {
+            CheckForFirstStartup();
+        }
+        else NoConection();
+    }
+
     void Errors(string Response)
     {
         Debug.Log(Response);
-        var ErrorObjcet = JsonUtility.FromJson<ErrorResponse>(Response);
 
-        if (String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
-            TextUponFields.text = ErrorObjcet.errors[0].title;
-        else TextUponFields.text = ErrorObjcet.errors[0].detail;
+        try
+        { 
+            var ErrorObjcet = JsonUtility.FromJson<ErrorResponse>(Response);
 
-        if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.EmailIsExist)
-            EmailErrorSign.SetActive(true);
+            if (String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
+                TextUponFields.text = ErrorObjcet.errors[0].title;
+            else TextUponFields.text = ErrorObjcet.errors[0].detail;
 
-        if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.VerifyEmail)
-        {
-            BigFuckingPanel.SetActive(true);
-            var text = BigFuckingPanel.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-            text.text = "Verify account on your email";
+            if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.EmailIsExist)
+                EmailErrorSign.SetActive(true);
+
+            if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.VerifyEmail)
+            {
+                PanelWithText.SetActive(true);
+                var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+                text.text = "Verify account on your email";
+            }
         }
+
+        catch
+        {
+            
+        }
+
+    }
+
+    void CheckForFirstStartup()
+    {
+        if (PlayerPrefs.HasKey("Token"))
+        {
+            GlobalDataBase.Email = PlayerPrefs.GetString("Email");
+            GlobalDataBase.Password = PlayerPrefs.GetString("Password");
+            GlobalDataBase.Token = PlayerPrefs.GetString("Token");
+
+            AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
+
+            var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
+
+            StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+        }
+        else FirstStartUp();
+    }
+
+    void FirstStartUp()
+    {
+        Debug.Log("FirstStartUp");
+        UserPanel.SetActive(true);
+        AccountRequestPanel.SetActive(true);
+    }
+    void NoConection()
+    {
+        Debug.Log("NoConection");
+        UserPanel.SetActive(true);
+        PanelWithText.SetActive(true);
+        CouponsPanel.SetActive(true);
+        PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "No internet Conection";
+    }
+
+    void IfNetworkOk(string Response)
+    {
+        CheckForFirstStartup();
     }
 }
 
@@ -162,5 +219,4 @@ public class ErrorTypeCheker
 
         return ErrorType.None;
     }
-
 }

@@ -5,8 +5,10 @@ public struct URLStruct
 {
     public const string Registration = "https://wingift.cf/api/register";
     public const string Authorization = "https://wingift.cf/oauth/token";
-    public const string SpinWeel = "https://wingift.cf/rand";
-    public const string SendCoins = "aoao";
+    public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
+    public const string SendCoins = "";
+    public const string GetCoin = "aoao";
+    public const string DaylyCoupon = "aoao";
 }
 
 public class RegistartionForm
@@ -31,8 +33,14 @@ public class AuthorizationForm
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "9KqxP2UiZz0Udj68Ixu3uCVNEfPNRZrmQhwMGeAy");
+        Form.Add("client_secret", "gi4KWHzhqz1HI1sQB3PcZz4UieqrI4hOlgKSVQqw");
     }
+}
+
+[System.Serializable]
+public class NetworkError
+{
+    public string Error;
 }
 
 [System.Serializable]
