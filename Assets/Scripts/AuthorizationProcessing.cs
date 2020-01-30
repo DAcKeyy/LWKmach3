@@ -55,6 +55,8 @@ public class AuthorizationProcessing : MonoBehaviour
         CouponsPanel.SetActive(false);
 
         var webRequest = UnityWebRequest.Get("http://google.com");
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+
         StartCoroutine(Sender.SendWebRequest(webRequest, IfNetworkOk, ConectionError));
         StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
 
@@ -86,6 +88,7 @@ public class AuthorizationProcessing : MonoBehaviour
             Debug.Log("ADSAD");
 
             var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
+            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
@@ -97,7 +100,7 @@ public class AuthorizationProcessing : MonoBehaviour
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
             var webRequest = UnityWebRequest.Post(URLStruct.Registration, RegForm.Form);
-
+            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             StartCoroutine(Sender.SendWebRequest(webRequest, Registration, Errors));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
         }
@@ -106,6 +109,8 @@ public class AuthorizationProcessing : MonoBehaviour
     void Authorization(string Response)
     {
         var Objcet = JsonUtility.FromJson<GetToken>(Response);
+
+        GlobalDataBase.Token = Objcet.access_token;
 
         PlayerPrefs.SetString("Token", Objcet.access_token);
         PlayerPrefs.SetString("Refresh_Token", Objcet.refresh_token);
@@ -172,7 +177,7 @@ public class AuthorizationProcessing : MonoBehaviour
             AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
 
             var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
-
+            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             StartCoroutine(Sender.SendWebRequest(webRequest, Authorization, Errors));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
         }

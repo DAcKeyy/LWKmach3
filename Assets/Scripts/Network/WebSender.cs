@@ -10,10 +10,7 @@ public class WebSender
 
     public IEnumerator SendWebRequest(UnityWebRequest webRequest, Action<string> Response, Action<string> Error)
     {
-        Debug.Log("???????");
         Debug.Log(webRequest.method);
-
-        webRequest.SetRequestHeader("Accept", "application/vnd.api+json"); //vnd.api+json
 
         yield return webRequest.SendWebRequest();
 

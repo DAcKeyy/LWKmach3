@@ -6,9 +6,9 @@ public struct URLStruct
     public const string Registration = "https://wingift.cf/api/register";
     public const string Authorization = "https://wingift.cf/oauth/token";
     public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
-    public const string SendCoins = "";
-    public const string GetCoin = "aoao";
-    public const string DaylyCoupon = "aoao";
+    public const string SendCoins = "https://wingift.cf/api/users/costs";
+    public const string GetCoin = "https://wingift.cf/api/users/me";
+    public const string DaylyCoupon = "https://wingift.cf/api/random";
 }
 
 public class RegistartionForm
@@ -33,7 +33,17 @@ public class AuthorizationForm
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "gi4KWHzhqz1HI1sQB3PcZz4UieqrI4hOlgKSVQqw");
+        Form.Add("client_secret", "bBhNCjnWXtBBjR7URQpsdYN9s5RTMeB84blEmCqf");
+    }
+}
+
+public class TokenForm
+{
+    public Dictionary<string, string> Form = new Dictionary<string, string>();
+
+    public TokenForm(string Token)
+    {
+        Form.Add("Bearer Token", Token);
     }
 }
 
@@ -43,6 +53,47 @@ public class NetworkError
     public string Error;
 }
 
+#region Roulette/Coins
+[System.Serializable]
+public class RoulleteResponse
+{
+    public List<metaData> meta;
+}
+
+[System.Serializable]
+public class metaData
+{
+    public string type;
+    public string title;
+    public string replacment;
+}
+#endregion 
+#region Roulette/Coupon
+[System.Serializable]
+public class CouponResponse
+{
+    public List<CouponData> data;
+}
+
+[System.Serializable]
+public class CouponData
+{
+    public string type;
+    public uint id;
+    public List<CouponAttributes> attributes;
+}
+
+[System.Serializable]
+public class CouponAttributes
+{
+    public string coupon;
+    public string expiration_date;
+    public string company;
+    public string description;
+    public string contact;
+}
+#endregion
+#region Error
 [System.Serializable]
 public class ErrorResponse
 {
@@ -56,6 +107,7 @@ public class ErrorData
     public string title;
     public string detail;
 }
+#endregion
 
 [System.Serializable]
 public class GetToken
@@ -65,7 +117,3 @@ public class GetToken
     public string access_token;
     public string refresh_token;
 }
-
-
-
-

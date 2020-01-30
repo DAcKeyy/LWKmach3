@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ServerLoadingProcess : MonoBehaviour
 {
-    [SerializeField] Image loadIndicator;
-    [SerializeField] List<Sprite> Sprites;
+    [SerializeField] Image loadIndicator = null;
+    [SerializeField] List<Sprite> Sprites = null;
 
     [SerializeField] private float fillValue = 0.02f;
 

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Networking;
 using TMPro;
 using DG.Tweening;
+using System.Text.RegularExpressions;
 
 public class RouletteManagaer : MonoBehaviour
 {
@@ -42,24 +43,27 @@ public class RouletteManagaer : MonoBehaviour
     public void SendingRquest()
     {
         var webRequest = UnityWebRequest.Get(URLStruct.SpinWeel);
-
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Authorization", "Bearer "+ GlobalDataBase.Token);
         StartCoroutine(Sender.SendWebRequest(webRequest, Response, Errors));
-
     }
 
     void Response(string value)
     {
-
         Debug.Log(value);
 
-        //ResetWeelSlider();
+        Regex Money = new Regex(@"meta");
+        Regex Coupon = new Regex(@"coupon");
+
+        if (String.IsNullOrEmpty(value) == false && Money.IsMatch(value))
+            Debug.Log("Dat's money");
+        if (String.IsNullOrEmpty(value) == false && Coupon.IsMatch(value))
+            Debug.Log("Dat's coupon");
     }
 
-    void Errors(string value)
+    void Errors(string Response)
     {
-        Debug.Log(value);
-
-
+        Debug.Log(Response);
     }
 
 

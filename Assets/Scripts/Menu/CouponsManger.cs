@@ -29,36 +29,12 @@ public class CouponsManger : MonoBehaviour
     {   //Код ПОСТ, ГЕТ и прочих запросов и тд... и и нацализация SaveCoupon
         //Расщифровка принятого жысона
 
-        if (string.IsNullOrEmpty(JSONcoupon)) //Тут рекурсия, лучше не придумал
-        {
-            StartCoroutine("POST");
-        }
-        else
-        {
-            Debug.Log(JSONcoupon);
 
-            SaveCoupon(JsonUtility.FromJson<Сoupon>(JSONcoupon));
-            JSONcoupon = null;
-        }
+        TokenForm tokenForm = new TokenForm(GlobalDataBase.Token);
+        
+        var webRequest = UnityWebRequest.Post(URLStruct.GetCoin, tokenForm.Form);
     }
-    public IEnumerator POST()
-    {
-        var URL = "https://wingift.cf/api/promo/show";
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(URL, ""))
-        {
-            yield return webRequest.SendWebRequest();
 
-            if (webRequest.isNetworkError)
-            {
-                Debug.Log(webRequest.error);
-            }
-            else
-            {
-                JSONcoupon = webRequest.downloadHandler.text;
-                GetCouponFromServer();
-            }
-        }
-    }
     #endregion
 
     #region Save/Delete
