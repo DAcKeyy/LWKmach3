@@ -174,7 +174,7 @@ MonoBehaviour:
   obstaclesHeight: 1
   horizonHeight: 1
   boardUpHeight: 1
-  colorCount: 6
+  colorCount: 4
   cameraOffset: 1
   _diggerDeep: 0
   tileLight: {fileID: 4941282610097516225, guid: 2f3f4c674f2be3e43af2d00aba4cdec5,
@@ -189,9 +189,9 @@ MonoBehaviour:
     type: 3}
   piecePrefabs:
   - {fileID: 2330679820881723247, guid: 8e1e5b6530354ac448c31ac252937ec0, type: 3}
+  - {fileID: 5981484604139608967, guid: 8a5285a5e0a836040ac5dbbc95f4de50, type: 3}
   - {fileID: 8112250458827032103, guid: 4a5c2cfa9f55dc84ab6267142337df7b, type: 3}
   - {fileID: 5221372052674798096, guid: 3d9a626be591f5543a0cd68f6835549c, type: 3}
-  - {fileID: 5541202637174062735, guid: 19282b04e3c763d4f977ee6a9976f215, type: 3}
   - {fileID: 5981484604139608967, guid: 8a5285a5e0a836040ac5dbbc95f4de50, type: 3}
   - {fileID: 5981484604139608967, guid: ccb6e8bdcf0c80f48a5cd769c648a88e, type: 3}
 --- !u!4 &70460418
