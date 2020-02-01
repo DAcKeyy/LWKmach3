@@ -35,9 +35,8 @@ public class TaskManager : MonoBehaviour
     {
         if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
         {
-            GlobalDataBase.Gold += 1;
-
             Debug.Log("Task complete!");
+
             TaskComplete();
 
             UpdateTask();

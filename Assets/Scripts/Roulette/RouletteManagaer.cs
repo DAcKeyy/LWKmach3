@@ -10,6 +10,7 @@ public class RouletteManagaer : MonoBehaviour
 {
     [SerializeField] GameObject WinGiftPanel = null;
     [SerializeField] GameObject WeelPanel = null;
+    [SerializeField] GameObject PanelWithText = null;
 
     private int WinSector = 0;
     private Vector2 StartPosition;
@@ -64,6 +65,15 @@ public class RouletteManagaer : MonoBehaviour
     void Errors(string Response)
     {
         Debug.Log(Response);
+
+        Regex SpinsLocked = new Regex(@"You have already received a coupon today");
+        if (String.IsNullOrEmpty(Response) == false && SpinsLocked.IsMatch(Response))
+        {
+            PanelWithText.SetActive(true);
+            var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+            text.text = "You have reached your scroll limit for today.";
+        }
+
     }
 
 

@@ -5072,10 +5072,10 @@ RectTransform:
   m_Father: {fileID: 1893336766}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 502}
-  m_SizeDelta: {x: 658, y: 658}
+  m_AnchorMin: {x: -0.045972247, y: 0.54142785}
+  m_AnchorMax: {x: 1.0459722, y: 0.965086}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1057498714
 MonoBehaviour:
@@ -5095,7 +5095,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2ad4485686991974f8d8d1a565e15366, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e795a13a6322ee44f99c31f55fc9d3f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8440,7 +8440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8df5c40207f9d4f40a9303ba85aac4e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8dfe6b4437ece244397c12f7d663cc5b, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8472,13 +8472,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadIndicator: {fileID: 1779937799}
   Sprites:
-  - {fileID: 21300000, guid: 6a930514ef5f6bc489e525398f53a6bd, type: 3}
-  - {fileID: 21300000, guid: 99a205764706e7d47aa168abb5e209d6, type: 3}
-  - {fileID: 21300000, guid: d7406b26d16aa1748918837a0eb3a391, type: 3}
-  - {fileID: 21300000, guid: 8df5c40207f9d4f40a9303ba85aac4e3, type: 3}
-  - {fileID: 21300000, guid: 06d96eda965b7af44a966db21a26de67, type: 3}
-  - {fileID: 21300000, guid: 53c823d8402d0444db6aed0f3f0bb3ef, type: 3}
-  fillValue: 0.003
+  - {fileID: 21300000, guid: cde0bbc1d4ee5e74cba86fb03de3f3ff, type: 3}
+  - {fileID: 21300000, guid: 84a3c9f606f13ed49ba394b73cff875e, type: 3}
+  - {fileID: 21300000, guid: da3dc371c5a7fa64f8713c399d2e8413, type: 3}
+  - {fileID: 21300000, guid: 8dfe6b4437ece244397c12f7d663cc5b, type: 3}
+  fillValue: 0.0045
 --- !u!1 &1830082564
 GameObject:
   m_ObjectHideFlags: 0
