@@ -116,7 +116,11 @@ public class AuthorizationProcessing : MonoBehaviour
         PlayerPrefs.SetString("Password", GlobalDataBase.Password);
         PlayerPrefs.SetString("Email", GlobalDataBase.Email);
 
-        levelLoader.LoadLevel("Menu");
+        var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
+        StartCoroutine(Sender.SendWebRequest(webRequest, LoadLevel, Error));
+        StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
     }
 
     void Registration(string Response)
@@ -124,7 +128,17 @@ public class AuthorizationProcessing : MonoBehaviour
         Debug.Log(Response);
     }
 
+    void LoadLevel(string Response)
+    {
+        Debug.Log(Response);
 
+        levelLoader.LoadLevel("Menu");
+    }
+
+    void Error(string Response)
+    {
+        Debug.Log(Response);
+    }
 
     void ConectionError(string Response)
     {

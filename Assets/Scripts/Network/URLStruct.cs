@@ -6,7 +6,7 @@ public struct URLStruct
     public const string Registration = "https://wingift.cf/api/register";
     public const string Authorization = "https://wingift.cf/oauth/token";
     public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
-    public const string SendCoins = "http://wingift.cf/api/users/costs";        ///////
+    public const string SendCoins = "https://wingift.cf/api/users/costs";        ///////
     public const string GetCoin = "https://wingift.cf/api/users/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
 }
