@@ -43,6 +43,8 @@ public class RouletteManagaer : MonoBehaviour
 
     public void SendingRquest()
     {
+        WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = true;
+
         var webRequest = UnityWebRequest.Get(URLStruct.SpinWeel);
         webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
         webRequest.SetRequestHeader("Authorization", "Bearer "+ GlobalDataBase.Token);
@@ -120,6 +122,8 @@ public class RouletteManagaer : MonoBehaviour
 
     void Errors(string Response)
     {
+        WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = false;
+
         Debug.Log(Response);
 
         Regex SpinsLocked = new Regex(@"You have already received a coupon today");
@@ -145,6 +149,7 @@ public class RouletteManagaer : MonoBehaviour
 
     private void Moving(string type)
     {
+
         /*  needSector = 
          * 1 - 250 монет
          * 2 - Самый обсосный купон
@@ -161,7 +166,6 @@ public class RouletteManagaer : MonoBehaviour
         if (type == "Coupon rare") Weel.GetComponent<RouletteMover>().needSector = 6;
 
         Weel.GetComponent<RouletteMover>().Spin();
-        WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = true;
     }
 
     public void Disappear()
