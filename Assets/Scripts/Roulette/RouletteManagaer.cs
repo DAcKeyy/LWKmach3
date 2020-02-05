@@ -11,12 +11,16 @@ public class RouletteManagaer : MonoBehaviour
     [SerializeField] GameObject WinGiftPanel = null;
     [SerializeField] GameObject WeelPanel = null;
     [SerializeField] GameObject PanelWithText = null;
+    [SerializeField] GameObject CoinsPanel = null;
+    [SerializeField] GameObject Weel = null;
+    [SerializeField] GameObject CouponsManger_EventSystem = null;
+    
 
-    private int WinSector = 0;
+    private string Win;
     private Vector2 StartPosition;
 
     WebSender Sender = new WebSender();
-
+    Сoupon сoupon = new Сoupon();
     //public static Action ResetWeelSlider;
 
     private void Start() 
@@ -27,16 +31,12 @@ public class RouletteManagaer : MonoBehaviour
     private void OnEnable()
     {
         //WeelSlider.SendRequestForSpin += SendingRquest;
-
-        RouletteMover.StartRotate += Moving;
         RouletteMover.EndRotate += Disappear;
         RouletteMover.EndRotate += ActivateWinGift;
     }
     private void OnDisable()
     {
         //WeelSlider.SendRequestForSpin -= SendingRquest;
-
-        RouletteMover.StartRotate -= Moving;
         RouletteMover.EndRotate -= Disappear;
         RouletteMover.EndRotate -= ActivateWinGift;
     }
@@ -57,9 +57,65 @@ public class RouletteManagaer : MonoBehaviour
         Regex Coupon = new Regex(@"coupon");
 
         if (String.IsNullOrEmpty(value) == false && Money.IsMatch(value))
+        {
             Debug.Log("Dat's money");
+
+            var Obj = JsonUtility.FromJson<RoulleteResponse>(value);
+
+            char[] mas = Obj.meta.title.ToCharArray();
+            string NumberCoins = null;
+            foreach (char number in mas)
+            {
+                if (char.IsDigit(number) == true)
+                {
+                    NumberCoins += number;
+                }
+            }
+
+            Win = NumberCoins + " ";
+
+            WinGiftText(Win);
+
+
+            Moving("Coins " + NumberCoins);
+        }
+
         if (String.IsNullOrEmpty(value) == false && Coupon.IsMatch(value))
+        {
             Debug.Log("Dat's coupon");
+
+            var Obj = JsonUtility.FromJson<CouponResponse>(value);
+
+            сoupon.company_name = Obj.data.attributes.company;
+            сoupon.contact = Obj.data.attributes.contact;
+            сoupon.description = Obj.data.attributes.description;
+            сoupon.promo = Obj.data.attributes.coupon;
+            сoupon.expiration_date = Obj.data.attributes.expiration_date;
+
+            CouponsManger_EventSystem.GetComponent<CouponsManger>().SaveCoupon(сoupon);
+
+            Win = "Coupon\n" + сoupon.company_name + "\n" + сoupon.description;
+            WinGiftText(Win);
+
+            if(Convert.ToInt32(Obj.data.attributes.discount) < 5)
+                Moving("Coupon usual");
+            if (Convert.ToInt32(Obj.data.attributes.discount) > 5 && Convert.ToInt32(Obj.data.attributes.discount) < 15)
+                Moving("Coupon uncommon");
+            if (Convert.ToInt32(Obj.data.attributes.discount) > 15)
+                Moving("Coupon rare");
+        }
+    }
+
+    void ResponseToUpdateCoins(string Response)
+    {
+        var Obj = JsonUtility.FromJson<Me>(Response);
+        GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
+        CoinsPanel.GetComponent<CoinsPanel>().UpdateText();
+    }
+
+    void ErrorsFromUpdateCoins(string Response)
+    {
+        Debug.Log(Response);
     }
 
     void Errors(string Response)
@@ -73,41 +129,62 @@ public class RouletteManagaer : MonoBehaviour
             var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
             text.text = "You have reached your scroll limit for today.";
         }
-
     }
 
-
-    #region Whole Visual Process
-
+#region Whole Visual Process
     public void Appear()
     {
+        var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
+        StartCoroutine(Sender.SendWebRequest(webRequest, ResponseToUpdateCoins, ErrorsFromUpdateCoins));
+
         WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = false;
         WeelPanel.transform.DOMove(Vector2.zero, 0.25F);
     }
 
-    private void Moving()
+    private void Moving(string type)
     {
+        /*  needSector = 
+         * 1 - 250 монет
+         * 2 - Самый обсосный купон
+         * 3 - 750 монет
+         * 4 - Средненький купон
+         * 5 - 100 монет
+         * 6 - ЛЕГЕНДАРНЫЙ купон */
+
+        if (type == "Coins 100") Weel.GetComponent<RouletteMover>().needSector = 5;
+        if (type == "Coins 250") Weel.GetComponent<RouletteMover>().needSector = 1;
+        if (type == "Coins 750") Weel.GetComponent<RouletteMover>().needSector = 3;
+        if (type == "Coupon usual") Weel.GetComponent<RouletteMover>().needSector = 2;
+        if (type == "Coupon uncommon") Weel.GetComponent<RouletteMover>().needSector = 4;
+        if (type == "Coupon rare") Weel.GetComponent<RouletteMover>().needSector = 6;
+
+        Weel.GetComponent<RouletteMover>().Spin();
         WeelPanel.transform.Find("Panel").GetComponent<Image>().raycastTarget = true;
     }
 
-    public void Disappear(int Sector)
+    public void Disappear()
     {
-        WinSector = Sector;
         WeelPanel.transform.DOMove(StartPosition, 0.25F);
     }
 
-    private void ActivateWinGift(int Sector)
+    private void ActivateWinGift()
+    {
+        WinGiftPanel.transform.DOMove(Vector2.zero, 0.25F);
+    }
+
+    private void WinGiftText(string Description)
     {
         var Text = WinGiftPanel.transform.Find("Panel/Text").gameObject;
-        Text.GetComponent<TMP_Text>().text = "Your prise is\n" + WinSector;
-
-        WinGiftPanel.transform.DOMove(Vector2.zero, 0.25F);
+        Text.GetComponent<TMP_Text>().text = "Your prise is\n" + Description;
     }
 
     public void EndWinGift()
     {
+        Weel.GetComponent<RouletteMover>().SetToStartVector();
+
         WinGiftPanel.transform.DOMove(StartPosition, 0.25F);
     }
-
 #endregion
 }

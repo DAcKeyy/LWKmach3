@@ -10,8 +10,6 @@ public class WebSender
 
     public IEnumerator SendWebRequest(UnityWebRequest webRequest, Action<string> Response, Action<string> Error)
     {
-        Debug.Log(webRequest.method);
-
         yield return webRequest.SendWebRequest();
 
         if (webRequest.isNetworkError || webRequest.isHttpError)

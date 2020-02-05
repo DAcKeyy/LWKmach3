@@ -6,11 +6,11 @@ using System;
 
 public class RouletteMover : MonoBehaviour
 {
-    public static Action<int> EndRotate = delegate { };
+    public static Action EndRotate = delegate { };
     public static Action StartRotate = delegate { };
 
     [BoxGroup("Roulette")]
-    public int sectorCount = 8;
+    public int sectorCount = 6;
     [BoxGroup("Roulette")]
     public float spinTime = 2;
 
@@ -21,19 +21,24 @@ public class RouletteMover : MonoBehaviour
 
     private Roulette roulette;
     private Transform rouletteObject;
+    private Transform StartRouletteObjectPositon;
+
+    public void SetToStartVector()
+    {
+        rouletteObject.rotation = new Quaternion(0f , 0f, 0f, 1);
+    }
 
     public void Spin()
     {
         StartRotate();
         rouletteObject = this.transform;
         roulette = new Roulette(sectorCount);
-        needSector = UnityEngine.Random.Range(1, sectorCount);
         StartCoroutine(SpinRoutine());
     }
 
     private IEnumerator SpinRoutine()
     {
         yield return null; //For unity lag on start
-        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutCubic).OnComplete(() => EndRotate(needSector));
+        rouletteObject.DORotate(new Vector3(0f, 0f, roulette.Spin(needSector, true)), spinTime, RotateMode.WorldAxisAdd).SetEase(Ease.InOutCubic).OnComplete(() => EndRotate());
     }
 }

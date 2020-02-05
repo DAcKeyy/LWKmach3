@@ -34,10 +34,7 @@ public class CoinsCounter : MonoBehaviour
         GoldInRound += 1;
 
         textToGold.text = GoldInRound.ToString();
-
-        ToIncreaseForm IncreaseForm = new ToIncreaseForm("1");
-
-        byte[] bodyRaw = Encoding.UTF8.GetBytes("{\"increase\":\"1\"}");
+        byte[] bodyRaw = Encoding.UTF8.GetBytes("{\"increase\":\"" + GoldInRound + "\"}");
 
         var webRequest = new UnityWebRequest(URLStruct.SendCoins, "POST");
 

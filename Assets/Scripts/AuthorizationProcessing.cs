@@ -130,7 +130,8 @@ public class AuthorizationProcessing : MonoBehaviour
 
     void LoadLevel(string Response)
     {
-        Debug.Log(Response);
+        var Obj = JsonUtility.FromJson<Me>(Response);
+        GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
 
         levelLoader.LoadLevel("Menu");
     }

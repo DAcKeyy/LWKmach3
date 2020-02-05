@@ -38,7 +38,7 @@ public class CouponsManger : MonoBehaviour
     #endregion
 
     #region Save/Delete
-    private void SaveCoupon(Сoupon coupon)
+    public void SaveCoupon(Сoupon coupon)
     {
         DataSaver.saveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 public struct URLStruct
 {
     public const string Registration = "https://wingift.cf/api/register";
@@ -63,11 +64,45 @@ public class NetworkError
     public string Error;
 }
 
+#region Me
+[System.Serializable]
+public class Me
+{
+    public Data data;
+}
+
+[System.Serializable]
+public class Data
+{
+    public string type;
+    public string id;
+    public Attributes attributes;
+    public Links links;
+}
+
+[System.Serializable]
+public class Attributes
+{
+    public string email;
+    public string email_verified_at;
+    public string coin;
+    public string created_at;
+    public string updated_at;
+}
+
+[System.Serializable]
+public class Links
+{
+    public string self;
+}
+
+
+#endregion
 #region Roulette/Coins
 [System.Serializable]
 public class RoulleteResponse
 {
-    public List<metaData> meta;
+    public metaData meta;
 }
 
 [System.Serializable]
@@ -82,7 +117,7 @@ public class metaData
 [System.Serializable]
 public class CouponResponse
 {
-    public List<CouponData> data;
+    public CouponData data;
 }
 
 [System.Serializable]
@@ -90,7 +125,7 @@ public class CouponData
 {
     public string type;
     public uint id;
-    public List<CouponAttributes> attributes;
+    public CouponAttributes attributes;
 }
 
 [System.Serializable]
@@ -98,6 +133,7 @@ public class CouponAttributes
 {
     public string coupon;
     public string expiration_date;
+    public string discount;
     public string company;
     public string description;
     public string contact;
