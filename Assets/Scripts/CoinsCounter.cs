@@ -1,9 +1,17 @@
 ﻿using UnityEngine;
 using TMPro;
+using UnityEngine.Networking;
+using System.Text;
 
 public class CoinsCounter : MonoBehaviour
 {
-    [SerializeField] TMP_Text text = null;
+    [SerializeField] GameObject CanvasGameObject = null;
+    [SerializeField] GameObject ErrorPanel = null;
+    [SerializeField] TMP_Text textToGold = null;
+
+    private int GoldInRound;
+ 
+    WebSender Sender = new WebSender();
 
     private void OnEnable()
     {
@@ -15,9 +23,44 @@ public class CoinsCounter : MonoBehaviour
         TaskManager.TaskComplete -= SetText;
     }
 
+    private void Start()
+    {
+        textToGold.text = GlobalDataBase.Gold.ToString();
+        GoldInRound = GlobalDataBase.Gold;
+    }
+
     void SetText()
     {
+        GoldInRound += 1;
 
-        text.text = GlobalDataBase.Gold.ToString(); 
+        textToGold.text = GoldInRound.ToString();
+        byte[] bodyRaw = Encoding.UTF8.GetBytes("{\"increase\":\"" + GoldInRound + "\"}");
+
+        var webRequest = new UnityWebRequest(URLStruct.SendCoins, "POST");
+
+        webRequest.uploadHandler = (UploadHandler) new UploadHandlerRaw (bodyRaw);
+        webRequest.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Content-Type", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
+
+        StartCoroutine(Sender.SendWebRequest(webRequest, Response, Error));
+    }
+
+
+    void Response(string response)
+    {
+        Debug.Log("бабло доставлено");
+        GlobalDataBase.Gold = GoldInRound;
+    }
+
+    void Error(string response)
+    {
+        CanvasGameObject.SetActive(true);
+        ErrorPanel.SetActive(true);
+        var text = ErrorPanel.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+        text.text = response;
     }
 }
+

@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 public struct URLStruct
 {
     public const string Registration = "https://wingift.cf/api/register";
     public const string Authorization = "https://wingift.cf/oauth/token";
     public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
-    public const string SendCoins = "https://wingift.cf/api/users/costs";
+    public const string SendCoins = "https://wingift.cf/api/users/costs";        ///////
     public const string GetCoin = "https://wingift.cf/api/users/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
 }
@@ -33,7 +34,7 @@ public class AuthorizationForm
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "bBhNCjnWXtBBjR7URQpsdYN9s5RTMeB84blEmCqf");
+        Form.Add("client_secret", "c6BkvrlXqYbIT9eGzXoJhfHWZFfijRPSZXZ0yG66");
     }
 }
 
@@ -47,17 +48,59 @@ public class TokenForm
     }
 }
 
+public class ToIncreaseForm
+{
+    public Dictionary<string, string> Form = new Dictionary<string, string>();
+
+    public ToIncreaseForm(string value)
+    {
+        Form.Add("increase", value);
+    }
+}
+
 [System.Serializable]
 public class NetworkError
 {
     public string Error;
 }
 
+#region Me
+[System.Serializable]
+public class Me
+{
+    public Data data;
+}
+
+[System.Serializable]
+public class Data
+{
+    public string type;
+    public string id;
+    public Attributes attributes;
+    public Links links;
+}
+
+[System.Serializable]
+public class Attributes
+{
+    public string email;
+    public string email_verified_at;
+    public string coin;
+    public string created_at;
+    public string updated_at;
+}
+
+[System.Serializable]
+public class Links
+{
+    public string self;
+}
+#endregion
 #region Roulette/Coins
 [System.Serializable]
 public class RoulleteResponse
 {
-    public List<metaData> meta;
+    public metaData meta;
 }
 
 [System.Serializable]
@@ -72,7 +115,7 @@ public class metaData
 [System.Serializable]
 public class CouponResponse
 {
-    public List<CouponData> data;
+    public CouponData data;
 }
 
 [System.Serializable]
@@ -80,7 +123,7 @@ public class CouponData
 {
     public string type;
     public uint id;
-    public List<CouponAttributes> attributes;
+    public CouponAttributes attributes;
 }
 
 [System.Serializable]
@@ -88,6 +131,7 @@ public class CouponAttributes
 {
     public string coupon;
     public string expiration_date;
+    public string discount;
     public string company;
     public string description;
     public string contact;
