@@ -95,8 +95,6 @@ public class Links
 {
     public string self;
 }
-
-
 #endregion
 #region Roulette/Coins
 [System.Serializable]
