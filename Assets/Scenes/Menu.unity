@@ -282,7 +282,7 @@ RectTransform:
   m_Children:
   - {fileID: 401782250}
   m_Father: {fileID: 2008115318}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: -0.08578005, y: -0.051772173}
   m_AnchorMax: {x: 1.0857807, y: 1.0517721}
@@ -1044,7 +1044,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 1934103579}
+  blendMaterial: {fileID: 793763515}
   componentExtensionState:
     extendedComponent: {fileID: 108976606}
     shaderProperties:
@@ -1090,7 +1090,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1934103579}
+  - {fileID: 793763515}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1446,7 +1446,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 200
   m_TargetDisplay: 0
 --- !u!224 &152077195
 RectTransform:
@@ -1466,7 +1466,7 @@ RectTransform:
   - {fileID: 2009583203}
   - {fileID: 1604212700}
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.143}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2352,7 +2352,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 2061776625}
+  blendMaterial: {fileID: 1934185928}
   componentExtensionState:
     extendedComponent: {fileID: 271036885}
     shaderProperties:
@@ -2398,7 +2398,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2061776625}
+  - {fileID: 1934185928}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2437,12 +2437,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271036883}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.72, y: -1.52, z: 0}
-  m_LocalScale: {x: 0.10522436, y: 0.8992412, z: 0.70929}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.978575, y: -5.237264, z: 0}
+  m_LocalScale: {x: 0.20874538, y: 1.7839257, z: 1.4070982}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_Father: {fileID: 1160927984}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &287921902
 GameObject:
@@ -4362,7 +4362,7 @@ RectTransform:
   m_Children:
   - {fileID: 67208015}
   m_Father: {fileID: 1338461860}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4915,7 +4915,7 @@ Transform:
   m_LocalScale: {x: 0.2087809, y: 0.2087809, z: 0.2087809}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &514040603
 GameObject:
@@ -7268,13 +7268,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744231293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.05, y: -4.91, z: 0}
-  m_LocalScale: {x: 1.0520382, y: 1.0520382, z: 1.0520382}
+  m_LocalPosition: {x: -0.072101, y: 1.4312439, z: -17280}
+  m_LocalScale: {x: 101.14841, y: 101.14841, z: 101.14841}
   m_Children:
   - {fileID: 1349527701}
   - {fileID: 1590314983}
-  m_Father: {fileID: 1566073037}
-  m_RootOrder: 2
+  m_Father: {fileID: 2008115318}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &744231295
 SpriteRenderer:
@@ -7742,6 +7742,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 793416028}
   m_CullTransparentMesh: 0
+--- !u!21 &793763515
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 9
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/BlendModes/SpritesDefault/Grab
+  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
+  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &794808453
 GameObject:
   m_ObjectHideFlags: 0
@@ -9969,7 +10003,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -11115,9 +11149,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.31, y: 1.12, z: 0}
   m_LocalScale: {x: 0.50408, y: 0.50408, z: 0.50408}
-  m_Children: []
+  m_Children:
+  - {fileID: 271036886}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162011287
 GameObject:
@@ -12637,14 +12672,15 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1357095930}
   - {fileID: 466178458}
   m_Father: {fileID: 1039012598}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.14911328, y: 0.3646309}
-  m_AnchorMax: {x: 0.8527692, y: 0.47067955}
+  m_AnchorMin: {x: 0.18337356, y: 0.3705684}
+  m_AnchorMax: {x: 0.81851095, y: 0.48932537}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.0000038146973}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1338461861
 MonoBehaviour:
@@ -12890,10 +12926,10 @@ RectTransform:
   m_Father: {fileID: 1039012598}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.86527073, y: 0.9224922}
-  m_AnchorMax: {x: 0.97550064, y: 0.9862603}
+  m_AnchorMin: {x: 0.8318448, y: 0.905099}
+  m_AnchorMax: {x: 0.96770436, y: 0.98428893}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.000030517578, y: 0}
+  m_SizeDelta: {x: -0.0000076293945, y: 0.0000038146973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1347896689
 MonoBehaviour:
@@ -13211,13 +13247,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1357095929}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: -8.16, z: 0}
-  m_LocalScale: {x: 1.0520382, y: 1.0520382, z: 1.0520382}
+  m_LocalPosition: {x: 0.8965533, y: 0.8372345, z: -17280}
+  m_LocalScale: {x: 101.14841, y: 101.14841, z: 101.14841}
   m_Children:
   - {fileID: 1358134855}
   - {fileID: 249694289}
-  m_Father: {fileID: 1566073037}
-  m_RootOrder: 3
+  m_Father: {fileID: 1338461860}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1357095931
 SpriteRenderer:
@@ -16307,8 +16343,6 @@ Transform:
   m_Children:
   - {fileID: 1162011289}
   - {fileID: 355972220}
-  - {fileID: 744231294}
-  - {fileID: 1357095930}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19928,7 +19962,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1923032940}
   m_CullTransparentMesh: 0
---- !u!21 &1934103579
+--- !u!21 &1934185928
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 9
@@ -19937,7 +19971,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Hidden/BlendModes/SpritesDefault/Grab
   m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
+  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -20744,13 +20778,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 744231294}
   - {fileID: 16048303}
   m_Father: {fileID: 1039012598}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.23280172, y: 0.55839765}
-  m_AnchorMax: {x: 0.7671983, y: 0.6517856}
-  m_AnchoredPosition: {x: 713, y: 215}
+  m_AnchorMin: {x: 0.18338673, y: 0.532981}
+  m_AnchorMax: {x: 0.8185111, y: 0.6517856}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &2008115319
@@ -20942,7 +20977,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -20957,9 +20992,9 @@ MonoBehaviour:
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
+    m_NormalTrigger: 
+    m_HighlightedTrigger: 
+    m_PressedTrigger: 
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
@@ -22178,40 +22213,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050816461}
   m_CullTransparentMesh: 0
---- !u!21 &2061776625
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/SpritesDefault/Grab
-  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &2064319445
 GameObject:
   m_ObjectHideFlags: 0
@@ -22886,7 +22887,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -2020}
+  m_AnchoredPosition: {x: 0, y: -1940}
   m_SizeDelta: {x: 0, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097144953
