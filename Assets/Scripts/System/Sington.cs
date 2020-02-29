@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace LWR.System
+namespace LWT.System
 {
     /// <summary>
     /// Реализация паттерна синглтон
