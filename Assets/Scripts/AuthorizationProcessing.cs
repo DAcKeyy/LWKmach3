@@ -15,25 +15,31 @@ public enum ErrorType
     EmailIsExist,
 }
 
+public enum ResponseType
+{
+
+
+}
+
+
 
 public class AuthorizationProcessing : MonoBehaviour
 {
-    [SerializeField] GameObject UserPanel = null;
-    [SerializeField] GameObject CouponsPanel = null;
-    [SerializeField] GameObject AccountAcceptedPanel = null;
-    [SerializeField] GameObject AccountRequestPanel = null;
-    [SerializeField] GameObject PasswordErrorSign = null;
-    [SerializeField] GameObject EmailErrorSign = null;
-    [SerializeField] TMP_InputField EmailField = null;
-    [SerializeField] TMP_InputField PasswordField = null;
-    [SerializeField] TMP_Text TextUponFields = null;
-    [SerializeField] GameObject PanelWithText = null;
-    [SerializeField] LevelLoader levelLoader = null;
-    [SerializeField] ServerLoadingProcess LoadIndicator = null;
+    [SerializeField] GameObject UserPanel;
+    [SerializeField] private GameObject CouponsPanel = null;
+    [SerializeField] private GameObject AccountAcceptedPanel = null;
+    [SerializeField] private GameObject AccountRequestPanel = null;
+    [SerializeField] private GameObject PasswordErrorSign = null;
+    [SerializeField] private GameObject EmailErrorSign = null;
+    [SerializeField] private TMP_InputField EmailField = null;
+    [SerializeField] private TMP_InputField PasswordField = null;
+    [SerializeField] private TMP_Text TextUponFields = null;
+    [SerializeField] private GameObject PanelWithText = null;
+    [SerializeField] private LevelLoader levelLoader = null;
+    [SerializeField] private ServerLoadingProcess LoadIndicator = null;
 
 
     RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
-    ErrorTypeCheker errorTypeCheker = new ErrorTypeCheker();
     WebSender Sender = new WebSender();
 
 
@@ -67,9 +73,9 @@ public class AuthorizationProcessing : MonoBehaviour
 
     void StartRqesting(byte type)
     {
-        if (FieldsCheker.CheckFields(EmailField, PasswordField) == false)
+        if (!FieldsCheker.CheckFields(EmailField, PasswordField))
         {
-            Debug.Log("поля ввода проверь, сын бляди");
+            Debug.Log("ПРОВЕРЬ ПОЛЯ ВВОДА");
 
             return;
         }
@@ -106,9 +112,9 @@ public class AuthorizationProcessing : MonoBehaviour
         }
     }
 
-    void Authorization(string Response)
+    void Authorization(string response)
     {
-        var Objcet = JsonUtility.FromJson<GetToken>(Response);
+        var Objcet = JsonUtility.FromJson<GetToken>(response);
 
         GlobalDataBase.Token = Objcet.access_token;
 
@@ -117,53 +123,79 @@ public class AuthorizationProcessing : MonoBehaviour
         PlayerPrefs.SetString("Password", GlobalDataBase.Password);
         PlayerPrefs.SetString("Email", GlobalDataBase.Email);
 
+        var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
+        webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
+        StartCoroutine(Sender.SendWebRequest(webRequest, LoadLevel, Error));
+        StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+    }
+
+    void Registration(string response)
+    {
+        Debug.Log(response);
+    }
+
+    void LoadLevel(string response)
+    {
+        var Obj = JsonUtility.FromJson<Me>(response);
+        GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
+
         levelLoader.LoadLevel("Menu");
     }
 
-    void Registration(string Response)
+    void Error(string response)
     {
-        Debug.Log(Response);
+        Debug.Log(response);
     }
 
-
-
-    void ConectionError(string Response)
+    void ConectionError(string response)
     {
-        if (String.IsNullOrEmpty(Response))
+        if (String.IsNullOrEmpty(response))
         {
             CheckForFirstStartup();
         }
         else NoConection();
     }
 
-    void Errors(string Response)
+    void Errors(string response)
     {
-        Debug.Log(Response);
+        Debug.Log(response);
 
-        try
-        { 
-            var ErrorObjcet = JsonUtility.FromJson<ErrorResponse>(Response);
+        Regex emailIsExist = new Regex(@"The email has already been taken.");
+        Regex error500 = new Regex(@"Internal Server Error");
+        Regex verifyEmail = new Regex(@"Your email address is not verified");
+        Regex WrongFiledsData = new Regex(@"The provided authorization grant");
 
-            if (String.IsNullOrEmpty(ErrorObjcet.errors[0].detail))
-                TextUponFields.text = ErrorObjcet.errors[0].title;
-            else TextUponFields.text = ErrorObjcet.errors[0].detail;
-
-            if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.EmailIsExist)
-                EmailErrorSign.SetActive(true);
-
-            if (errorTypeCheker.CheckType(ErrorObjcet.errors[0].title, ErrorObjcet.errors[0].detail) == ErrorType.VerifyEmail)
-            {
-                PanelWithText.SetActive(true);
-                var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-                text.text = "Verify account on your email";
-            }
-        }
-
-        catch
+        if (String.IsNullOrEmpty(response) == false && emailIsExist.IsMatch(response))
         {
-            
+            EmailErrorSign.SetActive(true);
+            TextUponFields.text = "The email has already been taken";
         }
 
+        if (error500.IsMatch(response))
+        {
+            AccountAcceptedPanel.SetActive(false);
+            AccountRequestPanel.SetActive(false);
+            CouponsPanel.SetActive(false);
+
+            PanelWithText.SetActive(true);
+            var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+            text.text = "Server doesn't response";
+        }
+
+        if (String.IsNullOrEmpty(response) == false && verifyEmail.IsMatch(response))
+        {
+            PanelWithText.SetActive(true);
+            var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+            text.text = "Verify account on your email";
+        }
+
+        if(WrongFiledsData.IsMatch(response))
+        {
+            EmailErrorSign.SetActive(true);
+            PasswordErrorSign.SetActive(true);
+            TextUponFields.text = "Wrong email or password";
+        }
     }
 
     void CheckForFirstStartup()
@@ -199,29 +231,8 @@ public class AuthorizationProcessing : MonoBehaviour
         PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "No internet Conection";
     }
 
-    void IfNetworkOk(string Response)
+    void IfNetworkOk(string response)
     {
         CheckForFirstStartup();
-    }
-}
-
-public class ErrorTypeCheker
-{
-    public ErrorType CheckType(string title, string detail)
-    {
-        Regex emailIsExist = new Regex(@"The email has already been taken.");
-        Regex error500 = new Regex(@"Internal Server Error");
-        Regex verifyEmail = new Regex(@"Your email address is not verified.");
-
-        if (String.IsNullOrEmpty(detail) == false && emailIsExist.IsMatch(detail))
-            return ErrorType.EmailIsExist;
-
-        if (error500.IsMatch(detail))
-            return ErrorType.Error500;
-
-        if (String.IsNullOrEmpty(detail) == false && verifyEmail.IsMatch(detail))
-            return ErrorType.VerifyEmail;
-
-        return ErrorType.None;
     }
 }

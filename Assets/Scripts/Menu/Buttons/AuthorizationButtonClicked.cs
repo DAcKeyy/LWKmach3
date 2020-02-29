@@ -18,6 +18,7 @@ public class AuthorizationButtonClicked : MonoBehaviour, IPointerClickHandler
         Facebook = 2,
         VK = 0
     };
+
     [SerializeField] TypeOfButton TypeOfAutorisation = 0;
     #endregion
 

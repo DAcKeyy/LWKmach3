@@ -38,23 +38,23 @@ public class CouponsManger : MonoBehaviour
     #endregion
 
     #region Save/Delete
-    private void SaveCoupon(Сoupon coupon)
+    public void SaveCoupon(Сoupon coupon)
     {
-        DataSaver.saveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
+        DataSaver.SaveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
 
         InstantiateCoupon();
     }
 
     public void DeleteInMenu(CurrentCoupon obj)
     {
-        DataSaver.deleteData(obj._сoupon.company_name + "_" + obj._сoupon.promo + "_Coupon");
+        DataSaver.DeleteData(obj._сoupon.company_name + "_" + obj._сoupon.promo + "_Coupon");
 
         InstantiateCoupon();
     }
 
     public void DeleteCoupon(Сoupon obj)
     {
-        DataSaver.deleteData(obj.company_name + "_" + obj.promo + "_Coupon");
+        DataSaver.DeleteData(obj.company_name + "_" + obj.promo + "_Coupon");
 
         InstantiateCoupon();
     }

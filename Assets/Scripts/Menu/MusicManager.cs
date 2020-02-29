@@ -12,6 +12,8 @@ public class MusicManager : MonoBehaviour
 
     private void Start()
     {
+        SliderObject.onValueChanged.AddListener(MusicValueChanged.Invoke);
+
         GlobalDataBase.MusicValue = prefs.GetMusicValue();
         MusicValueChanged(GlobalDataBase.MusicValue);
         SliderObject.value = GlobalDataBase.MusicValue;
@@ -32,7 +34,7 @@ public class MusicManager : MonoBehaviour
         MusicSource.volume = Value;
     }
 
-    public void Set(Slider slider)
+    public void FloatValue(Slider slider)
     {
         GlobalDataBase.MusicValue = slider.value;
         MusicValueChanged(GlobalDataBase.MusicValue);

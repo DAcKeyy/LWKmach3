@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class DataSaver
 {
     //Save Data
-    public static void saveData<T>(T dataToSave, string dataFileName)
+    public static void SaveData<T>(T dataToSave, string dataFileName)
     {
         string tempPath = Path.Combine(Application.persistentDataPath, "data");
         tempPath = Path.Combine(tempPath, dataFileName + ".json");
@@ -64,14 +64,14 @@ public class DataSaver
             {
                 string fileFullName = file.FullName;
                 //Debug.Log(fileFullName);
-                Coupons.Add(loadData<Сoupon>(fileFullName));
+                Coupons.Add(LoadData<Сoupon>(fileFullName));
             }
         }
         return Coupons;
     }
 
     //Load Data
-    public static T loadData<T>(string fileFullName)
+    public static T LoadData<T>(string fileFullName)
     {
 
         byte[] jsonByte = null;
@@ -94,7 +94,7 @@ public class DataSaver
         return (T)Convert.ChangeType(resultValue, typeof(T));
     }
 
-    public static bool deleteData(string dataFileName)
+    public static bool DeleteData(string dataFileName)
     {
         bool success = false;
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(RectTransform))]
 public class AutoScale : MonoBehaviour
 {
     private void Start()
