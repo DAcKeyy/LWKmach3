@@ -5,7 +5,7 @@ using TMPro;
 using System;
 using System.Collections;
 using System.Text.RegularExpressions;
-
+using LWT.System;
 
 public enum ErrorType
 {
@@ -140,7 +140,7 @@ public class AuthorizationProcessing : MonoBehaviour
         var Obj = JsonUtility.FromJson<Me>(response);
         GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
 
-        levelLoader.LoadLevel("Menu");
+        levelLoader.LoadScene("Menu");
     }
 
     void Error(string response)

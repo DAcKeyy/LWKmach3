@@ -14,6 +14,7 @@ namespace LWT.System
     {
         public event Action StartGameClick;
         public event Action CouponClick;
+        public event Action SettingClick;
 
         private readonly UIElements elements;
 
@@ -26,6 +27,7 @@ namespace LWT.System
         {
             elements.StartGame.onClick.AddListener(() => StartGameClick?.Invoke());
             elements.Coupon.onClick.AddListener(() => CouponClick?.Invoke());
+            elements.Setting.onClick.AddListener(() => SettingClick?.Invoke());
         }
 
         [Serializable]
@@ -33,6 +35,7 @@ namespace LWT.System
         {
             public Button StartGame;
             public Button Coupon;
+            public Button Setting;
         }
     }
 }
