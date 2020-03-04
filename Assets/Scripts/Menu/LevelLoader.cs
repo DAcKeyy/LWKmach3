@@ -1,4 +1,5 @@
 ﻿using LWT.System;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,17 +19,23 @@ namespace LWT.System
         [Inject]
         private InputHandles inputHandles;
 
-        private void Start()
-        {
-            inputHandles.StartGameClick += () =>
-            {               
-                StartCoroutine(LoadAsynchronously("Game"));
-            };
-        }
+        private Action loadScene;
 
         public void LoadScene(string name)
         {
             StartCoroutine(LoadAsynchronously(name));
+        }
+
+        private void Start()
+        {
+            loadScene = () => LoadScene("Game");
+
+            inputHandles.StartGameClick += loadScene;     
+        }
+
+        private void OnDisable()
+        {
+            inputHandles.StartGameClick -= loadScene;
         }
 
         private IEnumerator LoadAsynchronously(string Scene)
