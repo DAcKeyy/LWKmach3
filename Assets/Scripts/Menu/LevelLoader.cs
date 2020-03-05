@@ -1,31 +1,57 @@
-﻿using System.Collections;
+﻿using LWT.System;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Zenject;
 
-public class LevelLoader : MonoBehaviour
+namespace LWT.System
 {
-    [SerializeField] GameObject loadingPanel = null;
-    [SerializeField] Image LoadIndicator = null;
-
-    public void LoadLevel(string Scene)
+    public class LevelLoader : MonoBehaviour
     {
-        StartCoroutine(LoadAsynchronously(Scene));
-    }
+        [SerializeField]
+        private GameObject loadingPanel;
 
-    IEnumerator LoadAsynchronously (string Scene)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(Scene);
+        [SerializeField]
+        private Image loadIndicator;
 
-        loadingPanel.SetActive(true);
+        [Inject]
+        private InputHandles inputHandles;
 
-        while (!operation.isDone)
+        private Action loadScene;
+
+        public void LoadScene(string name)
         {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
+            StartCoroutine(LoadAsynchronously(name));
+        }
 
-            LoadIndicator.fillAmount = progress;
+        private void Start()
+        {
+            loadScene = () => LoadScene("Game");
 
-            yield return null;
+            inputHandles.StartGameClick += loadScene;     
+        }
+
+        private void OnDisable()
+        {
+            inputHandles.StartGameClick -= loadScene;
+        }
+
+        private IEnumerator LoadAsynchronously(string Scene)
+        {
+            AsyncOperation operation = SceneManager.LoadSceneAsync(Scene);
+
+            loadingPanel.SetActive(true);
+
+            while (!operation.isDone)
+            {
+                float progress = Mathf.Clamp01(operation.progress / .9f);
+
+                loadIndicator.fillAmount = progress;
+
+                yield return null;
+            }
         }
     }
 }
