@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LWT.System
 {
-    public class MessageBusManager : Sington<MessageBusManager>, IPublisher, ISubscriber
+    public class MessageBusManager : IPublisher, ISubscriber
     {
         private Dictionary<Type, Action<object>> subscriders = new Dictionary<Type, Action<object>>();
 
