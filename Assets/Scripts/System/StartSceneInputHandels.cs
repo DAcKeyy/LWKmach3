@@ -4,15 +4,8 @@ using Zenject;
 
 namespace LWT.System
 {
-    /// <summary>
-    /// Обработчик UI элементов
-    /// </summary>
-    public class InputHandles : IInitializable
+    public class StartSceneInputHandels : IInitializable
     {
-        public event Action StartGameClick;
-        public event Action CouponClick;
-        public event Action SettingClick;
-
         public event Action LoginClick;
         public event Action ShowRegistrationClick;
         public event Action RegistrationBackClick;
@@ -22,21 +15,15 @@ namespace LWT.System
         public event Action RegistrationClick;
         public event Action RestorePasswordClick;
 
-        private readonly MenuUIElements menuElements;
         private readonly StartUIElements startElements;
-
-        public InputHandles(MenuUIElements menuElements, StartUIElements startElements)
+        public StartSceneInputHandels(StartUIElements startElements)
         {
-            this.menuElements = menuElements;
             this.startElements = startElements;
         }
 
+
         public void Initialize()
         {
-            menuElements.StartGame.onClick.AddListener(() => StartGameClick?.Invoke());
-            menuElements.Coupon.onClick.AddListener(() => CouponClick?.Invoke());
-            menuElements.Setting.onClick.AddListener(() => SettingClick?.Invoke());
-
             startElements.Login.onClick.AddListener(() => LoginClick?.Invoke());
             startElements.ShowRegistration.onClick.AddListener(() => ShowRegistrationClick?.Invoke());
             startElements.RegistrationBack.onClick.AddListener(() => RegistrationBackClick?.Invoke());
@@ -45,14 +32,6 @@ namespace LWT.System
             startElements.ShowPassword.onClick.AddListener(() => ShowPasswordClick?.Invoke());
             startElements.Registration.onClick.AddListener(() => RegistrationClick?.Invoke());
             startElements.RestorePassword.onClick.AddListener(() => RestorePasswordClick?.Invoke());
-        }
-
-        [Serializable]
-        public class MenuUIElements
-        {
-            public Button StartGame;
-            public Button Coupon;
-            public Button Setting;
         }
 
         [Serializable]

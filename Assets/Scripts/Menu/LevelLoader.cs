@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
+#pragma warning disable 0649
+
 namespace LWT.System
 {
     public class LevelLoader : MonoBehaviour
@@ -16,8 +18,8 @@ namespace LWT.System
         [SerializeField]
         private Image loadIndicator;
 
-        [Inject]
-        private InputHandles inputHandles;
+        //[Inject]
+        //private StartSceneInputHandels inputHandles;
 
         private Action loadScene;
 
@@ -27,15 +29,15 @@ namespace LWT.System
         }
 
         private void Start()
-        {
+        {      
             loadScene = () => LoadScene("Game");
 
-            inputHandles.StartGameClick += loadScene;     
+            //inputHandles.StartGameClick += loadScene;     
         }
 
         private void OnDisable()
         {
-            inputHandles.StartGameClick -= loadScene;
+            //inputHandles.StartGameClick -= loadScene;
         }
 
         private IEnumerator LoadAsynchronously(string Scene)

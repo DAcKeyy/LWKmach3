@@ -10,6 +10,7 @@ public struct URLStruct
     public const string SendCoins = "https://wingift.cf/api/users/costs";
     public const string GetCoin = "https://wingift.cf/api/users/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
+    public const string ResetPassword = "https://wingift.cf/api/password/email";
 }
 
 public class RegistartionForm
