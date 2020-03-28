@@ -22,7 +22,7 @@ namespace LWT.UI.StartScene
 
         private void Start()
         {
-            inputHandles.RegistrationClick += Show;
+            inputHandles.ShowRegistrationClick += Show;
             inputHandles.RegistrationBackClick += Hide;
         }
     }
