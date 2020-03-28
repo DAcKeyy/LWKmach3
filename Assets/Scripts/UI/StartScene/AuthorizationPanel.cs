@@ -22,8 +22,8 @@ namespace LWT.UI.StartScene
         {            
             inputHandles.RegistrationBackClick += Show;
             inputHandles.RestorePasswordBackClick += Show;
-            inputHandles.RegistrationClick += Hide;
-            inputHandles.RestorePasswordClick += Hide;
+            inputHandles.ShowRegistrationClick += Hide;
+            inputHandles.ShowRestorePasswordClick += Hide;
         }
     }
 }

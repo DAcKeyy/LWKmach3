@@ -89,7 +89,6 @@ namespace LWT.Networking
                 }
             }
 
-
             AuthorizationForm AuthForm = new AuthorizationForm(GlobalDataBase.Email, GlobalDataBase.Password);
             var webRequest = UnityWebRequest.Post(URLStruct.Authorization, AuthForm.Form);
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
