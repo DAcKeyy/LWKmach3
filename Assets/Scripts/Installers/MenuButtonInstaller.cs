@@ -4,15 +4,15 @@ using Zenject;
 
 namespace LWT.Installers
 {
-    public class MenuInstaller : MonoInstaller
+    public class MenuButtonInstaller : MonoInstaller
     {
         [SerializeField]
-        private MenuInputHandels.MenuUIElements uIElements = null;
+        private MenuInputHandels.MenuUIElements uIButtonElements = null;
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<MenuInputHandels>().AsSingle();
-            Container.BindInstance(uIElements);
+            Container.BindInstance(uIButtonElements);
         }
     }
 }

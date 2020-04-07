@@ -79,7 +79,7 @@ public class CouponsManger : MonoBehaviour
 
         ClearCoupon();
 
-        if (currentScene.name == "Menu")//проверка - В меню ли я?
+        if (currentScene.name == "Menu" || currentScene.name == "Start")
         {
             List<Сoupon> сoupons_to_delete = new List<Сoupon>();//это женерик нужен для хранения купонов, подлежащих 
 
