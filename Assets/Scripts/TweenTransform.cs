@@ -7,6 +7,7 @@ public class TweenTransform : MonoBehaviour
 {
     //private Transform ObjectTransform;
     //public Action OnTweenScaleComplete;
+    bool isDisbled;
 
     [SerializeField]
     private float Scale = 10f;
@@ -19,19 +20,14 @@ public class TweenTransform : MonoBehaviour
 
     private void OnEnable()
     {
-        
+        isDisbled = false;
+        AnimationONE();
     }
 
     private void OnDisable()
     {
-        
-    }
-
-    private void Start()
-    {
-        //ObjectTransform = this.gameObject.GetComponent<Transform>();
-        AnimationONE();
-
+        isDisbled = true;
+        Debug.Log("ffdsa");
     }
 
     //!не смог в зынжект
@@ -55,11 +51,17 @@ public class TweenTransform : MonoBehaviour
 
     private IEnumerator DoScale(float value, float time, Ease ease, Action EndScale)
     {
-        yield return null;
-
         transform.DOScale(new Vector3(transform.localScale.x + value,
                                     transform.localScale.y + value,
                                     transform.localScale.z), time)
-                                            .SetEase(ease).OnComplete(() => EndScale());
+                                    .SetEase(ease).OnComplete(() => EndScale());
+
+        if (isDisbled == true)
+        {
+            DOTween.Kill(this);
+            yield break;
+        }
+
+        else yield return null;//я хз как ошибку убрать
     }
-}
+} 
