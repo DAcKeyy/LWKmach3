@@ -12,7 +12,8 @@
     public static string Password = null;
     public static string TypeOfToken = null;
     public static int Gold;
-    public static int IdInMedia = 0;
+    public static uint UserID = 0;
+    public static uint MachThreeSessions;
 }
 
 [System.Serializable]

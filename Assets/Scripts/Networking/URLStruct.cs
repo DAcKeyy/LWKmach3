@@ -25,6 +25,29 @@ public class RegistartionForm
     }
 }
 
+#region SendJsonGame
+[System.Serializable]
+public class GameSessionMessage
+{
+    public GameSessionData data;
+}
+
+[System.Serializable]
+public class GameSessionData
+{
+    public string type = "games";
+    public AttributesGameSession attributes;
+}
+
+[System.Serializable]
+public class AttributesGameSession
+{
+    public uint game_id = 1;
+    public uint user_id = 1;
+    public string session_date = "null";
+}
+#endregion
+
 public class AuthorizationForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
