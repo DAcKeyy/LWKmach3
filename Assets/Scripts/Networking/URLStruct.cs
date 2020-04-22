@@ -11,6 +11,7 @@ public struct URLStruct
     public const string GetCoin = "https://wingift.cf/api/users/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
+    public const string GameSessionMessage = "https://wingift.cf/api/password/email";
 }
 
 public class RegistartionForm
