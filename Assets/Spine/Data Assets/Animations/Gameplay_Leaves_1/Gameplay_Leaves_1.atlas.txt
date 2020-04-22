@@ -1,0 +1,41 @@
+
+Gameplay_Leaves_1.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leaves_1
+  rotate: true
+  xy: 2, 27
+  size: 240, 355
+  orig: 240, 355
+  offset: 0, 0
+  index: -1
+leaves_1_shadow
+  rotate: true
+  xy: 458, 262
+  size: 164, 326
+  orig: 164, 326
+  offset: 0, 0
+  index: -1
+leaves_2
+  rotate: true
+  xy: 2, 312
+  size: 114, 220
+  orig: 114, 220
+  offset: 0, 0
+  index: -1
+leaves_3
+  rotate: false
+  xy: 224, 269
+  size: 232, 157
+  orig: 232, 157
+  offset: 0, 0
+  index: -1
+leaves_4
+  rotate: true
+  xy: 359, 2
+  size: 258, 446
+  orig: 258, 446
+  offset: 0, 0
+  index: -1

@@ -1,10 +1,8 @@
-﻿using LWT.System;
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Zenject;
 
 #pragma warning disable 0649
 
@@ -18,26 +16,10 @@ namespace LWT.System
         [SerializeField]
         private Image loadIndicator;
 
-        //[Inject]
-        //private StartSceneInputHandels inputHandles;
-
-        private Action loadScene;
 
         public void LoadScene(string name)
         {
             StartCoroutine(LoadAsynchronously(name));
-        }
-
-        private void Start()
-        {      
-            loadScene = () => LoadScene("Game");
-
-            //inputHandles.StartGameClick += loadScene;     
-        }
-
-        private void OnDisable()
-        {
-            //inputHandles.StartGameClick -= loadScene;
         }
 
         private IEnumerator LoadAsynchronously(string Scene)

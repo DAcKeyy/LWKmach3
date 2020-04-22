@@ -11,6 +11,7 @@ public struct URLStruct
     public const string GetCoin = "https://wingift.cf/api/users/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
+    public const string GameSessionMessage = "https://wingift.cf/api/password/email";
 }
 
 public class RegistartionForm
@@ -24,6 +25,29 @@ public class RegistartionForm
         Form.Add("password_confirmation", password);
     }
 }
+
+#region SendJsonGame
+[System.Serializable]
+public class GameSessionMessage
+{
+    public GameSessionData data;
+}
+
+[System.Serializable]
+public class GameSessionData
+{
+    public string type = "games";
+    public AttributesGameSession attributes;
+}
+
+[System.Serializable]
+public class AttributesGameSession
+{
+    public uint game_id = 1;
+    public uint user_id = 1;
+    public string session_date = "null";
+}
+#endregion
 
 public class AuthorizationForm
 {

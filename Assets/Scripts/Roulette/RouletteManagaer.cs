@@ -118,6 +118,8 @@ public class RouletteManagaer : MonoBehaviour
     {
         var Obj = JsonUtility.FromJson<Me>(Response);
         GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
+        GlobalDataBase.UserID = Convert.ToUInt32(Obj.data.id);
+
         CoinsPanel.GetComponent<CoinsPanel>().UpdateText();
     }
 

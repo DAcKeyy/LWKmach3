@@ -23,8 +23,14 @@ namespace LWT.UI.StartScene
 
         private void Start()
         {
-            inputHandles.RestorePasswordClick += Show;
+            inputHandles.ShowRestorePasswordClick += Show;
             inputHandles.RestorePasswordBackClick += Hide;
+        }
+
+        private void OnDisable()
+        {
+            inputHandles.ShowRestorePasswordClick -= Show;
+            inputHandles.RestorePasswordBackClick -= Hide;
         }
     }
 }
