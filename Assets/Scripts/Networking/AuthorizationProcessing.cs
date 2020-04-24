@@ -64,7 +64,7 @@ namespace LWT.Networking
 
         void CheckInternerConection()
         {
-            var webRequest = UnityWebRequest.Get("http://google.com");
+            var webRequest = UnityWebRequest.Get("https://yandex.ru");
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
