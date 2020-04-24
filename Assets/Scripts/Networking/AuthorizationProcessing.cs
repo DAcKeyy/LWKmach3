@@ -33,8 +33,10 @@ namespace LWT.Networking
         [SerializeField] private GameObject AccountRequestPanel = null;
         [SerializeField] private GameObject PasswordErrorSign = null;
         [SerializeField] private GameObject EmailErrorSign = null;
-        [SerializeField] private TMP_InputField EmailField = null;
-        [SerializeField] private TMP_InputField PasswordField = null;
+        [SerializeField] private TMP_InputField AuthEmailField = null;
+        [SerializeField] private TMP_InputField AuthPasswordField = null;
+        [SerializeField] private TMP_InputField RegistEmailField = null;
+        [SerializeField] private TMP_InputField RegistPasswordField = null;
         [SerializeField] private TMP_Text TextUponFields = null;
         [SerializeField] private GameObject PanelWithText = null;
         [SerializeField] private LevelLoader levelLoader = null;
@@ -75,7 +77,7 @@ namespace LWT.Networking
         {
             if(!PlayerPrefs.HasKey("Token"))
             {
-                if (!FieldsCheker.CheckFields(EmailField, PasswordField))
+                if (!FieldsCheker.CheckFields(AuthEmailField, AuthPasswordField))
                 {
                     Debug.Log("ПРОВЕРЬ ПОЛЯ ВВОДА");
 
@@ -84,8 +86,8 @@ namespace LWT.Networking
 
                 else
                 {
-                    GlobalDataBase.Email = EmailField.text;
-                    GlobalDataBase.Password = PasswordField.text;
+                    GlobalDataBase.Email = AuthEmailField.text;
+                    GlobalDataBase.Password = AuthPasswordField.text;
                 }
             }
 
@@ -110,7 +112,7 @@ namespace LWT.Networking
         }
         void Registration()
         {
-            if (!FieldsCheker.CheckFields(EmailField, PasswordField))
+            if (!FieldsCheker.CheckFields(RegistEmailField, RegistPasswordField))
             {
                 Debug.Log("ПРОВЕРЬ ПОЛЯ ВВОДА");
 
@@ -119,8 +121,8 @@ namespace LWT.Networking
 
             else
             {
-                GlobalDataBase.Email = EmailField.text;
-                GlobalDataBase.Password = PasswordField.text;
+                GlobalDataBase.Email = RegistEmailField.text;
+                GlobalDataBase.Password = RegistPasswordField.text;
             }
 
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
