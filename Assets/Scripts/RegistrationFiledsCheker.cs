@@ -7,6 +7,8 @@ public class RegistrationFiledsCheker
     public GameObject ErrorSignEmail;
     public GameObject ErrorSignPassword;
     public TMP_Text DescriptionText;
+    
+
 
     public bool CheckFields(TMP_InputField EmailField, TMP_InputField PasswordField)
     {
@@ -24,8 +26,14 @@ public class RegistrationFiledsCheker
             return false;
         }
         return true;
+
+
     }
 
     private bool IsValidPassword(TMP_InputField Password) => Password.text.Length >= 8;
     private bool IsValidEmail(TMP_InputField Email) => Regex.IsMatch(Email.text, @"(@)(.+)$", RegexOptions.IgnoreCase);
+
+
+
+
 }
