@@ -155,7 +155,8 @@ namespace LWT.Networking
         }
 
         void GetGold()
-        {
+        {           
+
             var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
@@ -166,7 +167,10 @@ namespace LWT.Networking
         void LoadLevel(string response)
         {
             var Obj = JsonUtility.FromJson<Me>(response);
-            GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
+            URLStruct.GamesLink = Obj.data.relationships.games.links.self;
+            URLStruct.CouponsLink = Obj.data.relationships.coupons.links.self;
+
+            Debug.Log(GlobalDataBase.Token);
 
             levelLoader.LoadScene("Menu");
         }
@@ -194,6 +198,7 @@ namespace LWT.Networking
             Regex verifyEmail = new Regex(@"Your email address is not verified");
             Regex WrongFiledsData = new Regex(@"The provided authorization grant");
             Regex ResetPass = new Regex(@"Не удалось найти пользователя с указанным электронным адресом");
+            Regex FailedAuthentication = new Regex(@"Client authentication failed");
 
             if (String.IsNullOrEmpty(response) == false && emailIsExist.IsMatch(response))
             {
@@ -231,6 +236,13 @@ namespace LWT.Networking
                 PanelWithText.SetActive(true);
                 var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
                 text.text = "A password reset request has been sent to your mail";
+            }
+
+            if(FailedAuthentication.IsMatch(response))
+            {
+                PanelWithText.SetActive(true);
+                var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+                text.text = "Client authentication failed";
             }
         }
 

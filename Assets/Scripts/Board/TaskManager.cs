@@ -6,7 +6,6 @@ using System;
 public class TaskManager : MonoBehaviour
 {
     public static Action TaskComplete;
-
     public Board board;
     public float taskScale = 1f;
 

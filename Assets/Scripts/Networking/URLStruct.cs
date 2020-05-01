@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 
 public struct URLStruct
 {
@@ -12,6 +10,9 @@ public struct URLStruct
     public const string DaylyCoupon = "https://wingift.cf/api/random";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
     public const string GameSessionMessage = "https://wingift.cf/api/password/email";
+    public const string LootBox = "https://wingift.cf/api/coupons/lootbox";
+    public static string CouponsLink;
+    public static string GamesLink;
 }
 
 public class RegistartionForm
@@ -48,7 +49,7 @@ public class AttributesGameSession
     public string session_date = "null";
 }
 #endregion
-
+#region Forms
 public class AuthorizationForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
@@ -59,7 +60,7 @@ public class AuthorizationForm
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "c6BkvrlXqYbIT9eGzXoJhfHWZFfijRPSZXZ0yG66");
+        Form.Add("client_secret", "MHP8zDjL8MiJY4oRZookK2E5vCQUWXCrtLpkjI7k");
     }
 }
 
@@ -82,6 +83,7 @@ public class ToIncreaseForm
         Form.Add("increase", value);
     }
 }
+#endregion
 
 [System.Serializable]
 public class NetworkError
@@ -100,9 +102,10 @@ public class Me
 public class Data
 {
     public string type;
-    public string id;
+    public uint id;
     public Attributes attributes;
-    public Links links;
+    public Relationships relationships;
+    public LinksSelf links;
 }
 
 [System.Serializable]
@@ -116,9 +119,35 @@ public class Attributes
 }
 
 [System.Serializable]
-public class Links
+public class Relationships
+{
+    public Coupons coupons;
+    public Games games;
+}
+
+[System.Serializable]
+public class Coupons
+{
+    public LinksRelated links;
+}
+
+[System.Serializable]
+public class Games
+{
+    public LinksRelated links;
+}
+
+[System.Serializable]
+public class LinksSelf
 {
     public string self;
+}
+
+[System.Serializable]
+public class LinksRelated
+{
+    public string self;
+    public string related;
 }
 #endregion
 #region Roulette/Coins
