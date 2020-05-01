@@ -206,6 +206,34 @@ public class ErrorData
     public string detail;
 }
 #endregion
+#region LootBox
+[System.Serializable]
+public class LootBox
+{
+    public DataLootBox data;
+}
+
+[System.Serializable]
+public class DataLootBox
+{
+    public string type;
+    public uint id;
+    public AttributesLootBox attributes;
+    public LinksSelf links;
+}
+[System.Serializable]
+public class AttributesLootBox
+{
+    public string buff_name;
+    public string coupon;
+    public string expiration_date;
+    public string discount;
+    public string company;
+    public string description;
+    public string contact;
+}
+
+#endregion
 
 [System.Serializable]
 public class GetToken

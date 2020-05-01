@@ -473,6 +473,40 @@ Transform:
   m_Father: {fileID: 926160444}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!21 &81315967
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 9
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/BlendModes/SpritesDefault/Grab
+  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
+  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &87876274
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +779,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 765686738}
+  blendMaterial: {fileID: 1997620339}
   componentExtensionState:
     extendedComponent: {fileID: 108976606}
     shaderProperties:
@@ -791,7 +825,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 765686738}
+  - {fileID: 1997620339}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1524,7 +1558,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 1701900997}
+  blendMaterial: {fileID: 81315967}
   componentExtensionState:
     extendedComponent: {fileID: 271036885}
     shaderProperties:
@@ -1570,7 +1604,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1701900997}
+  - {fileID: 81315967}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2385,8 +2419,8 @@ MonoBehaviour:
   - {fileID: 1867068615}
   - {fileID: 553182618}
   m_Bounds:
-    m_Center: {x: 0.338305, y: 0.15259218, z: 0.0000019073486}
-    m_Extent: {x: 3.0623078, y: 2.2693987, z: 1.1368684e-13}
+    m_Center: {x: 0.33830523, y: 0.15259147, z: 0.0000019073486}
+    m_Extent: {x: 3.0623071, y: 2.2693987, z: 1.1368684e-13}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &493759422
@@ -3292,8 +3326,8 @@ MonoBehaviour:
   - {fileID: 1283918052}
   - {fileID: 874994187}
   m_Bounds:
-    m_Center: {x: 0.33830547, y: 0.15259385, z: 0}
-    m_Extent: {x: 3.0623083, y: 2.2693996, z: 0}
+    m_Center: {x: 0.338305, y: 0.15259337, z: 0.0000009536743}
+    m_Extent: {x: 3.0623083, y: 2.2694, z: 5.684342e-14}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &670840317
@@ -3877,40 +3911,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!21 &765686738
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/SpritesDefault/Grab
-  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &793416028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4794,8 +4794,8 @@ MonoBehaviour:
   - {fileID: 1207426034}
   - {fileID: 860936516}
   m_Bounds:
-    m_Center: {x: -0.037501812, y: 0.016412258, z: 0.0000019073486}
-    m_Extent: {x: 3.3625576, y: 2.0435338, z: 1.1368684e-13}
+    m_Center: {x: -0.03750205, y: 0.016412258, z: 0.0000019073486}
+    m_Extent: {x: 3.3625574, y: 2.0435338, z: 1.1368684e-13}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &953923689
@@ -5265,8 +5265,8 @@ MonoBehaviour:
   - {fileID: 1755860982}
   - {fileID: 1972796157}
   m_Bounds:
-    m_Center: {x: -0.010561228, y: 0.0048422813, z: 0}
-    m_Extent: {x: 3.3894567, y: 2.0551424, z: 0}
+    m_Center: {x: -0.010561466, y: 0.004841566, z: 0.0000009536743}
+    m_Extent: {x: 3.389457, y: 2.055142, z: 5.684342e-14}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &1114562302
@@ -5350,11 +5350,11 @@ GameObject:
   - component: {fileID: 1119575762}
   - component: {fileID: 1119575766}
   - component: {fileID: 1119575767}
-  - component: {fileID: 1119575772}
   - component: {fileID: 1119575768}
   - component: {fileID: 1119575776}
   - component: {fileID: 1119575775}
   - component: {fileID: 1119575777}
+  - component: {fileID: 1119575770}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -5560,7 +5560,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1119575772
+--- !u!114 &1119575770
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5569,10 +5569,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1119575761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362aea32d5b32bc4d9c7f4be2f7deb91, type: 3}
+  m_Script: {fileID: 11500000, guid: 362820a1039caef4cadc6170b363eb2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NotificationsManager: {fileID: 1119575777}
 --- !u!114 &1119575775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10171,40 +10170,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680286842}
   m_CullTransparentMesh: 0
---- !u!21 &1701900997
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/SpritesDefault/Grab
-  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1743569552
 GameObject:
   m_ObjectHideFlags: 0
@@ -12472,6 +12437,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1997065990}
   m_CullTransparentMesh: 0
+--- !u!21 &1997620339
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 9
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/BlendModes/SpritesDefault/Grab
+  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
+  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1999241452
 GameObject:
   m_ObjectHideFlags: 0
