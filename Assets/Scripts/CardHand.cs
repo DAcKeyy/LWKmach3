@@ -8,21 +8,21 @@ using DG.Tweening;
 //нужен для отоброжения тикетов в игру (как карты в руке:)
 public class CardHand : MonoBehaviour 
 {
-    public GameObject Example;
-    [SerializeField] private Ease MoveEase;
+    public GameObject CardPrefab;
+    [SerializeField] private Ease moveEase;
     [SerializeField] private List<GameObject> Cards;
     [SerializeField] private Transform StartPos;
-    [SerializeField] private Transform HandDeck; //Parrent
+    [SerializeField] private Transform HandDeck; //Parent
     [SerializeField, Slider(5f, 60f)] private float MaxAngle;
     [SerializeField, Slider(10f, 300f)] private float Gap; //Between cards
 
-    void Start()//для примера(потом удалить)
+    private void Start()//для примера(потом удалить)
     {
-        AddCard(Example);//1
-        AddCard(Example);//2
-        AddCard(Example);//3
+        AddCard(CardPrefab);//1
+        AddCard(CardPrefab);//2
+        AddCard(CardPrefab);//3
 
-        RemoveCard(0);//2
+        RemoveCardByIndex(0);//2
     }
 
     public void AddCard(GameObject gameObject)
@@ -31,7 +31,7 @@ public class CardHand : MonoBehaviour
         FitCards();
     }
 
-    public void RemoveCard(int index)
+    public void RemoveCardByIndex(int index)
     {
         if (Cards.Count == 0) return;
 
