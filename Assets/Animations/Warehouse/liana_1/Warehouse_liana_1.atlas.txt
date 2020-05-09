@@ -1,0 +1,13 @@
+
+Warehouse_liana_1.png
+size: 64,786
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+liana
+  rotate: false
+  xy: 2, 2
+  size: 60, 782
+  orig: 60, 782
+  offset: 0, 0
+  index: -1

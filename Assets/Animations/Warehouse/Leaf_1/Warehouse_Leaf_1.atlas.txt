@@ -1,0 +1,20 @@
+
+Warehouse_Leaf_1.png
+size: 355,220
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leaf_1
+  rotate: true
+  xy: 2, 2
+  size: 216, 252
+  orig: 216, 252
+  offset: 0, 0
+  index: -1
+leaf_2
+  rotate: false
+  xy: 256, 93
+  size: 97, 125
+  orig: 97, 125
+  offset: 0, 0
+  index: -1

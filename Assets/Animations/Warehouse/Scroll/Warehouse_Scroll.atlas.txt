@@ -1,0 +1,27 @@
+
+Warehouse_Scroll.png
+size: 432,253
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+paper
+  rotate: false
+  xy: 259, 45
+  size: 171, 206
+  orig: 171, 206
+  offset: 0, 0
+  index: -1
+roll_down
+  rotate: true
+  xy: 2, 2
+  size: 249, 83
+  orig: 249, 83
+  offset: 0, 0
+  index: -1
+roll_top
+  rotate: true
+  xy: 87, 7
+  size: 244, 170
+  orig: 244, 170
+  offset: 0, 0
+  index: -1

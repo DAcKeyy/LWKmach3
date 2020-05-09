@@ -1,0 +1,27 @@
+
+Warehouse_Lights.png
+size: 698,456
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bliq3
+  rotate: false
+  xy: 591, 298
+  size: 50, 49
+  orig: 50, 49
+  offset: 0, 0
+  index: -1
+bliq4
+  rotate: false
+  xy: 591, 349
+  size: 105, 105
+  orig: 105, 105
+  offset: 0, 0
+  index: -1
+waterwell_light
+  rotate: false
+  xy: 2, 2
+  size: 587, 452
+  orig: 608, 485
+  offset: 10, 23
+  index: -1
