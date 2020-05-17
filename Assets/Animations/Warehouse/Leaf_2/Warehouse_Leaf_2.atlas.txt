@@ -1,0 +1,27 @@
+
+Warehouse_Leaf_2.png
+size: 128,176
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+grass1
+  rotate: true
+  xy: 2, 2
+  size: 67, 72
+  orig: 67, 72
+  offset: 0, 0
+  index: -1
+grass2
+  rotate: false
+  xy: 2, 71
+  size: 105, 103
+  orig: 105, 103
+  offset: 0, 0
+  index: -1
+grass4
+  rotate: false
+  xy: 76, 12
+  size: 50, 57
+  orig: 50, 57
+  offset: 0, 0
+  index: -1

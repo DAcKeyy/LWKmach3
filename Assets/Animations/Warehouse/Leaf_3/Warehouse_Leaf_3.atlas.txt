@@ -1,0 +1,13 @@
+
+Warehouse_Leaf_3.png
+size: 93,86
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+grass3
+  rotate: false
+  xy: 2, 2
+  size: 89, 82
+  orig: 89, 82
+  offset: 0, 0
+  index: -1

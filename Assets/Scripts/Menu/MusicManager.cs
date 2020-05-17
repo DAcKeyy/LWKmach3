@@ -18,6 +18,7 @@ namespace LWT.System.Music
         private void Start()
         { 
             GlobalDataBase.MusicValue = prefs.GetMusicValue();
+            //inputHandles.MusicSliderChanged += SetMusicVolume;
         }
 
         private void SetMusicVolume(float volume)

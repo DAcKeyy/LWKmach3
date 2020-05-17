@@ -22,7 +22,6 @@ public enum ResponseType
 
 namespace LWT.Networking
 {
-
     public class AuthorizationProcessing : MonoBehaviour
     {
         [Inject]
@@ -34,30 +33,17 @@ namespace LWT.Networking
         [SerializeField] private GameObject AccountRequestPanel = null;
         [SerializeField] private GameObject PasswordErrorSign = null;
         [SerializeField] private GameObject EmailErrorSign = null;
-        [SerializeField] private TMP_InputField AuthEmailField = null;
-        [SerializeField] private TMP_InputField AuthPasswordField = null;
-        [SerializeField] private TMP_InputField RegistEmailField = null;
-        [SerializeField] private TMP_InputField RegistPasswordField = null;
+        [SerializeField] private TMP_InputField EmailField = null;
+        [SerializeField] private TMP_InputField PasswordField = null;
         [SerializeField] private TMP_Text TextUponFields = null;
         [SerializeField] private GameObject PanelWithText = null;
         [SerializeField] private LevelLoader levelLoader = null;
         [SerializeField] private ServerLoadingProcess LoadIndicator = null;
 
+
         RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
         WebSender Sender = new WebSender();
 
-        public void ShowPasswordRulers()
-        {
-
-            TextUponFields.text = "The password must be longer then 8 letters and consist the special symbols";
-
-        }
-        public void ShowEmailRulers()
-        {
-
-            TextUponFields.text = "The email adress consist the special symbols";
-
-        }
         private void Start()
         {
             UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
@@ -78,8 +64,7 @@ namespace LWT.Networking
 
         void CheckInternerConection()
         {
-            var webRequest = UnityWebRequest.Get("https://yandex.ru");
-
+            var webRequest = UnityWebRequest.Get("http://google.com");
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
@@ -90,7 +75,7 @@ namespace LWT.Networking
         {
             if(!PlayerPrefs.HasKey("Token"))
             {
-                if (!FieldsCheker.CheckFields(AuthEmailField, AuthPasswordField))
+                if (!FieldsCheker.CheckFields(EmailField, PasswordField))
                 {
                     Debug.Log("ПРОВЕРЬ ПОЛЯ ВВОДА");
 
@@ -99,8 +84,8 @@ namespace LWT.Networking
 
                 else
                 {
-                    GlobalDataBase.Email = AuthEmailField.text;
-                    GlobalDataBase.Password = AuthPasswordField.text;
+                    GlobalDataBase.Email = EmailField.text;
+                    GlobalDataBase.Password = PasswordField.text;
                 }
             }
 
@@ -125,7 +110,7 @@ namespace LWT.Networking
         }
         void Registration()
         {
-            if (!FieldsCheker.CheckFields(RegistEmailField, RegistPasswordField))
+            if (!FieldsCheker.CheckFields(EmailField, PasswordField))
             {
                 Debug.Log("ПРОВЕРЬ ПОЛЯ ВВОДА");
 
@@ -134,8 +119,8 @@ namespace LWT.Networking
 
             else
             {
-                GlobalDataBase.Email = RegistEmailField.text;
-                GlobalDataBase.Password = RegistPasswordField.text;
+                GlobalDataBase.Email = EmailField.text;
+                GlobalDataBase.Password = PasswordField.text;
             }
 
             RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
@@ -168,9 +153,8 @@ namespace LWT.Networking
         }
 
         void GetGold()
-        {           
-
-            var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
+        {            
+            var webRequest = UnityWebRequest.Get(URLStruct.GetAccountInfo);
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
             StartCoroutine(Sender.SendWebRequest(webRequest, LoadLevel, Error));
@@ -180,10 +164,7 @@ namespace LWT.Networking
         void LoadLevel(string response)
         {
             var Obj = JsonUtility.FromJson<Me>(response);
-            URLStruct.GamesLink = Obj.data.relationships.games.links.self;
-            URLStruct.CouponsLink = Obj.data.relationships.coupons.links.self;
-
-            Debug.Log(GlobalDataBase.Token);
+            GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
 
             levelLoader.LoadScene("Menu");
         }
@@ -211,7 +192,6 @@ namespace LWT.Networking
             Regex verifyEmail = new Regex(@"Your email address is not verified");
             Regex WrongFiledsData = new Regex(@"The provided authorization grant");
             Regex ResetPass = new Regex(@"Не удалось найти пользователя с указанным электронным адресом");
-            Regex FailedAuthentication = new Regex(@"Client authentication failed");
 
             if (String.IsNullOrEmpty(response) == false && emailIsExist.IsMatch(response))
             {
@@ -250,13 +230,6 @@ namespace LWT.Networking
                 var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
                 text.text = "A password reset request has been sent to your mail";
             }
-
-            if(FailedAuthentication.IsMatch(response))
-            {
-                PanelWithText.SetActive(true);
-                var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
-                text.text = "Client authentication failed";
-            }
         }
 
         void CheckForFirstStartup()
@@ -291,10 +264,5 @@ namespace LWT.Networking
         {
             CheckForFirstStartup();
         }
-
-
-
     }
-
-
 }

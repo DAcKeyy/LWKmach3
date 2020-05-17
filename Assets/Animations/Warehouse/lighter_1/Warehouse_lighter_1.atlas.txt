@@ -1,0 +1,20 @@
+
+Warehouse_lighter_1.png
+size: 724,183
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lamp
+  rotate: true
+  xy: 2, 99
+  size: 82, 538
+  orig: 82, 538
+  offset: 0, 0
+  index: -1
+light
+  rotate: true
+  xy: 542, 2
+  size: 179, 180
+  orig: 213, 212
+  offset: 17, 16
+  index: -1

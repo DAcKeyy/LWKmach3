@@ -1,0 +1,134 @@
+{
+"skeleton": {
+	"hash": "Q0ZAUzIPcuXnGbnMCNQ1dXEVgRc",
+	"spine": "3.8.95",
+	"x": -88.5,
+	"y": -13.5,
+	"width": 215.5,
+	"height": 103,
+	"images": "",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" }
+],
+"slots": [
+	{ "name": "grass1", "bone": "root", "attachment": "grass1" },
+	{ "name": "grass2", "bone": "root", "attachment": "grass2" },
+	{ "name": "grass4", "bone": "root", "attachment": "grass4" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"grass1": {
+				"grass1": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ -21.5, -3, -88.5, -3, -88.5, 69, -21.5, 69 ],
+					"hull": 4,
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 67,
+					"height": 72
+				}
+			},
+			"grass2": {
+				"grass2": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 75.5, -13.5, -29.5, -13.5, -29.5, 89.5, 75.5, 89.5 ],
+					"hull": 4,
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 105,
+					"height": 103
+				}
+			},
+			"grass4": {
+				"grass4": {
+					"type": "mesh",
+					"uvs": [ 1, 1, 0, 1, 0, 0, 1, 0 ],
+					"triangles": [ 1, 2, 3, 1, 3, 0 ],
+					"vertices": [ 127, -7.5, 77, -7.5, 77, 49.5, 127, 49.5 ],
+					"hull": 4,
+					"edges": [ 0, 2, 2, 4, 4, 6, 0, 6 ],
+					"width": 50,
+					"height": 57
+				}
+			}
+		}
+	}
+],
+"animations": {
+	"Idle": {
+		"deform": {
+			"default": {
+				"grass1": {
+					"grass1": [
+						{ "curve": 0.25, "c3": 0.75 },
+						{
+							"time": 1.1667,
+							"offset": 5,
+							"vertices": [ -6.87399, 0, -6.87399 ],
+							"curve": 0.25,
+							"c3": 0.75
+						},
+						{ "time": 2.3333 }
+					]
+				},
+				"grass2": {
+					"grass2": [
+						{
+							"offset": 5,
+							"vertices": [ -4.58058, 0, -4.58058 ],
+							"curve": 0.38,
+							"c2": 0.53,
+							"c3": 0.745
+						},
+						{ "time": 0.5, "curve": 0.25, "c3": 0.75 },
+						{
+							"time": 1.6667,
+							"offset": 5,
+							"vertices": [ -11.293, 0, -11.293 ],
+							"curve": 0.246,
+							"c3": 0.633,
+							"c4": 0.54
+						},
+						{
+							"time": 2.3333,
+							"offset": 5,
+							"vertices": [ -4.58058, 0, -4.58058 ]
+						}
+					]
+				},
+				"grass4": {
+					"grass4": [
+						{
+							"offset": 5,
+							"vertices": [ -0.04311, 0, -0.04311 ],
+							"curve": 0.342,
+							"c2": 0.66,
+							"c3": 0.676
+						},
+						{ "time": 0.0333, "curve": 0.25, "c3": 0.75 },
+						{
+							"time": 1.2,
+							"offset": 5,
+							"vertices": [ -4.41898, 0, -4.41898 ],
+							"curve": 0.248,
+							"c3": 0.738,
+							"c4": 0.95
+						},
+						{
+							"time": 2.3333,
+							"offset": 5,
+							"vertices": [ -0.04311, 0, -0.04311 ]
+						}
+					]
+				}
+			}
+		}
+	}
+}
+}
