@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 
 public struct URLStruct
 {
@@ -20,7 +18,9 @@ public struct URLStruct
     public const string ResetPassword = "https://wingift.cf/api/password/email";
     public const string GameSessionMessage = "https://wingift.cf/api/password/email";
     public const string LogOut = "https://wingift.cf/api/logout";
-
+    public const string LootBox = "https://wingift.cf/api/coupons/lootbox";
+    public static string CouponsLink;
+    public static string GamesLink;
 }
 
 public class RegistartionForm
@@ -57,7 +57,7 @@ public class AttributesGameSession
     public string session_date = "null";
 }
 #endregion
-
+#region Forms
 public class AuthorizationForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
@@ -88,6 +88,7 @@ public class ToIncreaseForm
         Form.Add("increase", value);
     }
 }
+#endregion
 
 [System.Serializable]
 public class NetworkError
@@ -106,9 +107,10 @@ public class Me
 public class Data
 {
     public string type;
-    public string id;
+    public uint id;
     public Attributes attributes;
-    public Links links;
+    public Relationships relationships;
+    public LinksSelf links;
 }
 
 [System.Serializable]
@@ -122,9 +124,35 @@ public class Attributes
 }
 
 [System.Serializable]
-public class Links
+public class Relationships
+{
+    public Coupons coupons;
+    public Games games;
+}
+
+[System.Serializable]
+public class Coupons
+{
+    public LinksRelated links;
+}
+
+[System.Serializable]
+public class Games
+{
+    public LinksRelated links;
+}
+
+[System.Serializable]
+public class LinksSelf
 {
     public string self;
+}
+
+[System.Serializable]
+public class LinksRelated
+{
+    public string self;
+    public string related;
 }
 #endregion
 #region Roulette/Coins
@@ -182,6 +210,34 @@ public class ErrorData
     public string title;
     public string detail;
 }
+#endregion
+#region LootBox
+[System.Serializable]
+public class LootBox
+{
+    public DataLootBox data;
+}
+
+[System.Serializable]
+public class DataLootBox
+{
+    public string type;
+    public uint id;
+    public AttributesLootBox attributes;
+    public LinksSelf links;
+}
+[System.Serializable]
+public class AttributesLootBox
+{
+    public string buff_name;
+    public string coupon;
+    public string expiration_date;
+    public string discount;
+    public string company;
+    public string description;
+    public string contact;
+}
+
 #endregion
 
 [System.Serializable]

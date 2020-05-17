@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine.UI;
 using Zenject;
+using TMPro;
 
 namespace LWT.System
 {
@@ -11,7 +12,6 @@ namespace LWT.System
         public event Action RegistrationBackClick;
         public event Action ShowRestorePasswordClick;
         public event Action RestorePasswordBackClick;
-        public event Action ShowPasswordClick;
         public event Action RegistrationClick;
         public event Action RestorePasswordClick;
 
@@ -21,7 +21,6 @@ namespace LWT.System
             this.startElements = startElements;
         }
 
-
         public void Initialize()
         {
             startElements.Login.onClick.AddListener(() => LoginClick?.Invoke());
@@ -29,7 +28,6 @@ namespace LWT.System
             startElements.RegistrationBack.onClick.AddListener(() => RegistrationBackClick?.Invoke());
             startElements.ShowRestorePassword.onClick.AddListener(() => ShowRestorePasswordClick?.Invoke());
             startElements.RestorePasswordBack.onClick.AddListener(() => RestorePasswordBackClick?.Invoke());
-            startElements.ShowPassword.onClick.AddListener(() => ShowPasswordClick?.Invoke());
             startElements.Registration.onClick.AddListener(() => RegistrationClick?.Invoke());
             startElements.RestorePassword.onClick.AddListener(() => RestorePasswordClick?.Invoke());
         }
@@ -42,9 +40,12 @@ namespace LWT.System
             public Button ShowRestorePassword;
             public Button RegistrationBack;
             public Button RestorePasswordBack;
-            public Button ShowPassword;
             public Button Registration;
             public Button RestorePassword;
+
+
         }
     }
+
+
 }

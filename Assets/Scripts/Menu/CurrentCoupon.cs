@@ -15,7 +15,7 @@ public class CurrentCoupon : MonoBehaviour
             this.transform.Find("Text").gameObject.GetComponent<TMP_Text>().text = _сoupon.company_name + "\n " + _сoupon.promo;
         }
 
-        CheckPanel = GameObject.Find("Main Canvas/Coupons Panel/Check Panel").gameObject;
+        CheckPanel = GameObject.Find("Coupons Canvas/Coupons Panel/Check Panel").gameObject;
     }
 
     public void Delete()
