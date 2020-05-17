@@ -153,8 +153,8 @@ namespace LWT.Networking
         }
 
         void GetGold()
-        {
-            var webRequest = UnityWebRequest.Get(URLStruct.GetCoin);
+        {            
+            var webRequest = UnityWebRequest.Get(URLStruct.GetAccountInfo);
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
             StartCoroutine(Sender.SendWebRequest(webRequest, LoadLevel, Error));

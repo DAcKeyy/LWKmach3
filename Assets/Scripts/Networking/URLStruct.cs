@@ -4,14 +4,23 @@ using System.Collections.Generic;
 
 public struct URLStruct
 {
+    //public const string Registration = "https://wingift.cf/api/register";
+    //public const string Authorization = "https://wingift.cf/oauth/token";
+    //public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
+    //public const string SendCoins = "https://wingift.cf/api/users/costs";
+    //public const string GetCoin = "https://wingift.cf/api/users/me";
+    //public const string DaylyCoupon = "https://wingift.cf/api/random";
+    //public const string ResetPassword = "https://wingift.cf/api/password/email";
+    //public const string GameSessionMessage = "https://wingift.cf/api/password/email";
+
     public const string Registration = "https://wingift.cf/api/register";
-    public const string Authorization = "https://wingift.cf/oauth/token";
-    public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
-    public const string SendCoins = "https://wingift.cf/api/users/costs";
-    public const string GetCoin = "https://wingift.cf/api/users/me";
-    public const string DaylyCoupon = "https://wingift.cf/api/random";
+    public const string Authorization = "https://wingift.cf/api/login";
+    public const string GetAccountInfo = "https://wingift.cf/api/users/me";
+    public const string DailyCoupon = "https://wingift.cf/api/random";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
     public const string GameSessionMessage = "https://wingift.cf/api/password/email";
+    public const string LogOut = "https://wingift.cf/api/logout";
+
 }
 
 public class RegistartionForm
@@ -55,11 +64,8 @@ public class AuthorizationForm
 
     public AuthorizationForm(string email, string password)
     {
-        Form.Add("username", email);
+        Form.Add("email", email);
         Form.Add("password", password);
-        Form.Add("grant_type", "password");
-        Form.Add("client_id", "2");
-        Form.Add("client_secret", "c6BkvrlXqYbIT9eGzXoJhfHWZFfijRPSZXZ0yG66");
     }
 }
 
