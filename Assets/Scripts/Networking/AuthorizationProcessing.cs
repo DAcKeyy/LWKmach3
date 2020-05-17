@@ -22,6 +22,7 @@ public enum ResponseType
 
 namespace LWT.Networking
 {
+
     public class AuthorizationProcessing : MonoBehaviour
     {
         [Inject]
@@ -42,10 +43,21 @@ namespace LWT.Networking
         [SerializeField] private LevelLoader levelLoader = null;
         [SerializeField] private ServerLoadingProcess LoadIndicator = null;
 
-
         RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
         WebSender Sender = new WebSender();
 
+        public void ShowPasswordRulers()
+        {
+
+            TextUponFields.text = "The password must be longer then 8 letters and consist the special symbols";
+
+        }
+        public void ShowEmailRulers()
+        {
+
+            TextUponFields.text = "The email adress consist the special symbols";
+
+        }
         private void Start()
         {
             UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
@@ -67,6 +79,7 @@ namespace LWT.Networking
         void CheckInternerConection()
         {
             var webRequest = UnityWebRequest.Get("https://yandex.ru");
+
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
@@ -278,5 +291,10 @@ namespace LWT.Networking
         {
             CheckForFirstStartup();
         }
+
+
+
     }
+
+
 }

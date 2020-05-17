@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine.UI;
 using Zenject;
+using TMPro;
 
 namespace LWT.System
 {
@@ -41,6 +42,10 @@ namespace LWT.System
             public Button RestorePasswordBack;
             public Button Registration;
             public Button RestorePassword;
+
+
         }
     }
+
+
 }
