@@ -2,12 +2,13 @@
 using TMPro;
 using LWT.System;
 using Zenject;
+
 public class ShowPassword : MonoBehaviour
 {
     [SerializeField] 
     TMP_InputField InputField = null;
-    [Inject]
-    private StartSceneInputHandels inputHandles = null;
+    //[Inject]
+    //private StartSceneInputHandels inputHandles = null;
 
     public void Show()
     {
@@ -19,8 +20,8 @@ public class ShowPassword : MonoBehaviour
         InputField.enabled = true;
     }
 
-    private void Start()
-    {
-        inputHandles.ShowPasswordClick += Show;
-    }
+    //private void Start()
+    //{
+    //    inputHandles.ShowPasswordClick += Show;
+    //}
 }

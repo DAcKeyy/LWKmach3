@@ -12,8 +12,25 @@
     public static string Password = null;
     public static string TypeOfToken = null;
     public static int Gold;
-    public static int IdInMedia = 0;
+    public static uint UserID = 0;
+    public static uint MachThreeSessions;
+
+    public static class ChestJSONs
+    {
+        public static System.Collections.Generic.List<string> JSONs;
+
+        static ChestJSONs()
+        {
+            JSONs = new System.Collections.Generic.List<string>();
+        }
+
+        public static void Add(string value)
+        {
+            JSONs.Add(value);
+        }
+    }
 }
+
 
 [System.Serializable]
 public class Сoupon

@@ -1,54 +1,41 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using Zenject;
 
-public class MusicManager : MonoBehaviour
+namespace LWT.System.Music
 {
-    public static Action<float> MusicValueChanged;
-    readonly PlayerPreffsManager prefs = new PlayerPreffsManager();
-
-    [SerializeField] Slider SliderObject = null;
-    [SerializeField] AudioSource MusicSource = null;
-
-    private void Start()
+    public class MusicManager : MonoBehaviour
     {
-        SliderObject.onValueChanged.AddListener(MusicValueChanged.Invoke);
+        [SerializeField]
+        private AudioSource musicSource;
 
-        GlobalDataBase.MusicValue = prefs.GetMusicValue();
-        MusicValueChanged(GlobalDataBase.MusicValue);
-        SliderObject.value = GlobalDataBase.MusicValue;
-    }
+        [Inject]
+        private InputHandles inputHandles;
 
-    private void OnEnable()
-    {
-        MusicManager.MusicValueChanged += SetValue;
-    }
+        private readonly PlayerPreffsManager prefs = new PlayerPreffsManager();
 
-    private void OnDisable()
-    {
-        MusicManager.MusicValueChanged -= SetValue;
-    }
+        private void Start()
+        { 
+            GlobalDataBase.MusicValue = prefs.GetMusicValue();
+        }
 
-    private void SetValue(float Value)
-    {
-        MusicSource.volume = Value;
-    }
+        private void SetMusicVolume(float volume)
+        {
+            musicSource.volume = volume;
+            GlobalDataBase.MusicValue = volume;
+        }
 
-    public void FloatValue(Slider slider)
-    {
-        GlobalDataBase.MusicValue = slider.value;
-        MusicValueChanged(GlobalDataBase.MusicValue);
-    }
+        #region Saving value to prefs
+        private void OnApplicationPause(bool pause)
+        {
+            if (pause) prefs.SetMusicValue(GlobalDataBase.MusicValue);
+        }
 
-    #region Saving value to prefs
-    private void OnApplicationPause(bool pause)
-    {
-        if (pause) prefs.SetMusicValue(GlobalDataBase.MusicValue);
+        private void OnApplicationQuit()
+        {
+            prefs.SetMusicValue(GlobalDataBase.MusicValue);
+        }
+        #endregion
     }
-
-    private void OnApplicationQuit()
-    {
-        prefs.SetMusicValue(GlobalDataBase.MusicValue);
-    }
-    #endregion
 }
