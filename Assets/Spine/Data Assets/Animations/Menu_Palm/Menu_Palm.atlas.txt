@@ -1,0 +1,41 @@
+
+Menu_Palm.png
+size: 1534,641
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Leaf_1
+  rotate: true
+  xy: 2, 66
+  size: 343, 500
+  orig: 343, 500
+  offset: 0, 0
+  index: -1
+Leaf_1_shadow
+  rotate: false
+  xy: 1201, 125
+  size: 331, 514
+  orig: 331, 514
+  offset: 0, 0
+  index: -1
+Leaf_2
+  rotate: false
+  xy: 504, 2
+  size: 397, 407
+  orig: 397, 407
+  offset: 0, 0
+  index: -1
+Leaf_3
+  rotate: true
+  xy: 903, 20
+  size: 389, 293
+  orig: 389, 293
+  offset: 0, 0
+  index: -1
+Palm_1
+  rotate: true
+  xy: 2, 411
+  size: 228, 1197
+  orig: 228, 1197
+  offset: 0, 0
+  index: -1
