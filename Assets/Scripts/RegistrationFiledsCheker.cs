@@ -9,7 +9,6 @@ public class RegistrationFiledsCheker
     public TMP_Text DescriptionText;
     
 
-
     public bool CheckFields(TMP_InputField EmailField, TMP_InputField PasswordField)
     {
         if (!IsValidEmail(EmailField))
@@ -32,8 +31,4 @@ public class RegistrationFiledsCheker
 
     private bool IsValidPassword(TMP_InputField Password) => Password.text.Length >= 8;
     private bool IsValidEmail(TMP_InputField Email) => Regex.IsMatch(Email.text, @"(@)(.+)$", RegexOptions.IgnoreCase);
-
-
-
-
 }

@@ -13,11 +13,10 @@ public struct URLStruct
 
     public const string Registration = "https://wingift.cf/api/register";
     public const string Authorization = "https://wingift.cf/api/login";
-    public const string GetAccountInfo = "https://wingift.cf/api/users/me";
-    public const string DailyCoupon = "https://wingift.cf/api/random";
+    public const string GetAccountInfo = "https://wingift.cf/api/v1/user/me";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
-    public const string GameSessionMessage = "https://wingift.cf/api/password/email";
-    public const string LogOut = "https://wingift.cf/api/logout";
+    public const string GameSessionMessage = "https://wingift.cf/api/v1/user/setSessionGame";
+    public const string Logout = "https://wingift.cf/api/logout";
     public const string LootBox = "https://wingift.cf/api/coupons/lootbox";
     public static string CouponsLink;
     public static string GamesLink;

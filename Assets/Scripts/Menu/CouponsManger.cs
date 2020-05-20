@@ -18,6 +18,10 @@ public class CouponsManger : MonoBehaviour
 
     private void Awake()
     {
+        Сoupon сoupon = new Сoupon();
+
+        Debug.Log( JsonUtility.ToJson(сoupon));
+
         currentScene = SceneManager.GetActiveScene();
 
         //GetCouponFromServer();
@@ -27,12 +31,12 @@ public class CouponsManger : MonoBehaviour
     #region GetCouponFromServer
     public void GetCouponFromServer()
     {   //Код ПОСТ, ГЕТ и прочих запросов и тд... и и нацализация SaveCoupon
-        //Расщифровка принятого жысона
+        //Расшифровка принятого жысона
 
 
         TokenForm tokenForm = new TokenForm(GlobalDataBase.Token);
         
-        var webRequest = UnityWebRequest.Post(URLStruct.GetCoin, tokenForm.Form);
+        var webRequest = UnityWebRequest.Post(URLStruct.GetAccountInfo, tokenForm.Form);
     }
 
     #endregion
