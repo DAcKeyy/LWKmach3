@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 06a953e115771e949b346fa5a556f8a2
+=======
+guid: b1a7ee9eb96286541ac0dd97cbbafd3e
+>>>>>>> feature/Spine_Animation
 TextScriptImporter:
   externalObjects: {}
   userData: 

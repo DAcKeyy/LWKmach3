@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 67f5b05dea89e58478bcf46353dfb27b
+=======
+guid: ed4492e5d2a543b47a516f7b5f624ce4
+>>>>>>> feature/Spine_Animation
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

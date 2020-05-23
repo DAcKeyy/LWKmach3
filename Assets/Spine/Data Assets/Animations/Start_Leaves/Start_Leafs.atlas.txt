@@ -1,0 +1,125 @@
+
+Start_Leafs.png
+size: 1725,1790
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leaf1
+  rotate: false
+  xy: 1222, 422
+  size: 277, 452
+  orig: 277, 452
+  offset: 0, 0
+  index: -1
+leaf11
+  rotate: false
+  xy: 2, 843
+  size: 601, 524
+  orig: 602, 524
+  offset: 1, 0
+  index: -1
+leaf12
+  rotate: true
+  xy: 945, 22
+  size: 362, 286
+  orig: 362, 286
+  offset: 0, 0
+  index: -1
+leaf14
+  rotate: false
+  xy: 532, 57
+  size: 411, 295
+  orig: 411, 295
+  offset: 0, 0
+  index: -1
+leaf15
+  rotate: true
+  xy: 605, 740
+  size: 627, 275
+  orig: 627, 275
+  offset: 0, 0
+  index: -1
+leaf16
+  rotate: false
+  xy: 1233, 96
+  size: 291, 324
+  orig: 292, 324
+  offset: 1, 0
+  index: -1
+leaf17
+  rotate: false
+  xy: 2, 318
+  size: 528, 523
+  orig: 531, 525
+  offset: 3, 2
+  index: -1
+leaf18
+  rotate: false
+  xy: 1253, 876
+  size: 458, 453
+  orig: 458, 453
+  offset: 0, 0
+  index: -1
+leaf19
+  rotate: false
+  xy: 1526, 362
+  size: 154, 151
+  orig: 154, 151
+  offset: 0, 0
+  index: -1
+leaf2
+  rotate: false
+  xy: 913, 386
+  size: 307, 493
+  orig: 307, 493
+  offset: 0, 0
+  index: -1
+leaf3
+  rotate: false
+  xy: 1501, 515
+  size: 222, 359
+  orig: 223, 359
+  offset: 1, 0
+  index: -1
+leaf4
+  rotate: true
+  xy: 882, 881
+  size: 498, 369
+  orig: 498, 369
+  offset: 0, 0
+  index: -1
+leaf5
+  rotate: false
+  xy: 2, 2
+  size: 501, 314
+  orig: 502, 314
+  offset: 1, 0
+  index: -1
+leaf6
+  rotate: true
+  xy: 1290, 1331
+  size: 457, 393
+  orig: 457, 394
+  offset: 0, 1
+  index: -1
+leaf7
+  rotate: false
+  xy: 716, 1381
+  size: 572, 407
+  orig: 572, 407
+  offset: 0, 0
+  index: -1
+leaf8
+  rotate: true
+  xy: 532, 354
+  size: 384, 379
+  orig: 384, 381
+  offset: 0, 2
+  index: -1
+leaf9
+  rotate: false
+  xy: 2, 1369
+  size: 712, 419
+  orig: 712, 419
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,55 @@
+
+Chest.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bliq
+  rotate: false
+  xy: 2, 711
+  size: 811, 309
+  orig: 811, 309
+  offset: 0, 0
+  index: -1
+chain_01
+  rotate: false
+  xy: 2, 350
+  size: 294, 359
+  orig: 294, 359
+  offset: 0, 0
+  index: -1
+chain_02
+  rotate: false
+  xy: 298, 395
+  size: 322, 314
+  orig: 322, 314
+  offset: 0, 0
+  index: -1
+down
+  rotate: true
+  xy: 304, 3
+  size: 390, 238
+  orig: 390, 238
+  offset: 0, 0
+  index: -1
+shadow_chain_01
+  rotate: false
+  xy: 544, 2
+  size: 268, 308
+  orig: 268, 308
+  offset: 0, 0
+  index: -1
+shadow_chain_02
+  rotate: false
+  xy: 2, 47
+  size: 300, 301
+  orig: 300, 301
+  offset: 0, 0
+  index: -1
+up
+  rotate: true
+  xy: 622, 312
+  size: 397, 211
+  orig: 397, 211
+  offset: 0, 0
+  index: -1
