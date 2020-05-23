@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Menu_Palm_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
+<<<<<<< HEAD
   - {fileID: 11400000, guid: 51b45c70a452d094e8ffb655eebc22df, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: b2939a2de3786904f921bc09a292fabb, type: 3}
+=======
+  - {fileID: 11400000, guid: 0d73c09635f56fa49baeda6ed67c3616, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: 390581379d018ec4aa40e98532a39b52, type: 3}
+>>>>>>> feature/Spine_Animation
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 
 m_EditorVersion: 2019.3.11f1
 m_EditorVersionWithRevision: 2019.3.11f1 (ceef2d848e70)
 
+=======
+m_EditorVersion: 2019.3.11f1
+m_EditorVersionWithRevision: 2019.3.11f1 (ceef2d848e70)
+>>>>>>> feature/Spine_Animation
