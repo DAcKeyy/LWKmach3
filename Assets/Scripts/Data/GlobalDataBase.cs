@@ -14,6 +14,8 @@
     public static int Gold;
     public static uint UserID = 0;
     public static uint MachThreeSessions;
+    public static int Tickets = 0;
+
 }
 
 [System.Serializable]
