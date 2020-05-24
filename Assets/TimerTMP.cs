@@ -7,16 +7,17 @@ public class TimerTMP : MonoBehaviour
     [SerializeField] TMP_Text TMP_text;
     public static Action TimeOver;
 
-    private int days;
-    private int hours;
-    private int mins;
-    private int seconds;
+    public int days;
+    public int hours;
+    public int mins;
+    public int seconds;
 
 
     private void Start()
     {
-        
+        InvokeRepeating("TimeDown", 1f, 1f);
     }
+
 
     void TimeDown()
     {
@@ -33,24 +34,36 @@ public class TimerTMP : MonoBehaviour
 
             if (mins == -1)
             {
-                
-                
+                hours--;
+                mins = 59;
 
-                if(hours == -1)
+                if (hours == -1)
                 {
+                    days--;
                     hours = 23;
-                    if(days != 0)days--;
-                   // else
                 }
             }
         }
 
-        if(days != 0)
+        if(days == 0)
         {
-            SetTimeOnText(days + ":" + hours + ":" + mins + ":" + seconds);
+            if(hours == 0)
+            {
+                if(mins == 0)
+                {
+                    SetTimeOnText(seconds.ToString("0"));
+                    return;
+                }
+
+                SetTimeOnText(mins.ToString("00") + ":" + seconds.ToString("00"));
+                return;
+            }
+
+            SetTimeOnText(hours.ToString("00") + ":" + mins.ToString("00") + ":" + seconds.ToString("00"));
+            return;          
         }
 
-        SetTimeOnText(hours + ":" + mins + ":" + seconds);
+        SetTimeOnText(days.ToString("00") + ":" + hours.ToString("00") + ":" + mins.ToString("00") + ":" + seconds.ToString("00"));
     }
 
     void SetTimeOnText(string time)
