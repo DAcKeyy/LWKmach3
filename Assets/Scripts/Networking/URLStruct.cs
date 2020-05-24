@@ -1,23 +1,23 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 
 public struct URLStruct
 {
     public const string Registration = "https://wingift.cf/api/register";
-    public const string Authorization = "https://wingift.cf/oauth/token";
+    public const string Authorization = "https://wingift.cf/api/login";
     public const string SpinWeel = "https://wingift.cf/api/coupons/roulette";
     public const string SendCoins = "https://wingift.cf/api/users/costs";
-    public const string GetCoin = "https://wingift.cf/api/users/me";
+    public const string GetCoin = "https://wingift.cf/api/v1/user/me";
     public const string DaylyCoupon = "https://wingift.cf/api/random";
     public const string ResetPassword = "https://wingift.cf/api/password/email";
     public const string GameSessionMessage = "https://wingift.cf/api/password/email";
+    public const string LootBox = "https://wingift.cf/api/v1/user/lootbox";
+    public const string Logout = "https://wingift.cf/api/logout";
+    public static string CouponsLink;
+    public static string GamesLink;
 }
-
 public class RegistartionForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
-
     public RegistartionForm(string email, string password)
     {
         Form.Add("email", email);
@@ -25,21 +25,18 @@ public class RegistartionForm
         Form.Add("password_confirmation", password);
     }
 }
-
 #region SendJsonGame
 [System.Serializable]
 public class GameSessionMessage
 {
     public GameSessionData data;
 }
-
 [System.Serializable]
 public class GameSessionData
 {
     public string type = "games";
     public AttributesGameSession attributes;
 }
-
 [System.Serializable]
 public class AttributesGameSession
 {
@@ -48,63 +45,56 @@ public class AttributesGameSession
     public string session_date = "null";
 }
 #endregion
-
+#region Forms
 public class AuthorizationForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
-
     public AuthorizationForm(string email, string password)
     {
         Form.Add("username", email);
         Form.Add("password", password);
         Form.Add("grant_type", "password");
         Form.Add("client_id", "2");
-        Form.Add("client_secret", "c6BkvrlXqYbIT9eGzXoJhfHWZFfijRPSZXZ0yG66");
+        Form.Add("client_secret", "MHP8zDjL8MiJY4oRZookK2E5vCQUWXCrtLpkjI7k");
     }
 }
-
 public class TokenForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
-
     public TokenForm(string Token)
     {
         Form.Add("Bearer Token", Token);
     }
 }
-
 public class ToIncreaseForm
 {
     public Dictionary<string, string> Form = new Dictionary<string, string>();
-
     public ToIncreaseForm(string value)
     {
         Form.Add("increase", value);
     }
 }
-
+#endregion
 [System.Serializable]
 public class NetworkError
 {
     public string Error;
 }
-
 #region Me
 [System.Serializable]
 public class Me
 {
     public Data data;
 }
-
 [System.Serializable]
 public class Data
 {
     public string type;
-    public string id;
+    public uint id;
     public Attributes attributes;
-    public Links links;
+    public Relationships relationships;
+    public LinksSelf links;
 }
-
 [System.Serializable]
 public class Attributes
 {
@@ -114,11 +104,32 @@ public class Attributes
     public string created_at;
     public string updated_at;
 }
-
 [System.Serializable]
-public class Links
+public class Relationships
+{
+    public Coupons coupons;
+    public Games games;
+}
+[System.Serializable]
+public class Coupons
+{
+    public LinksRelated links;
+}
+[System.Serializable]
+public class Games
+{
+    public LinksRelated links;
+}
+[System.Serializable]
+public class LinksSelf
 {
     public string self;
+}
+[System.Serializable]
+public class LinksRelated
+{
+    public string self;
+    public string related;
 }
 #endregion
 #region Roulette/Coins
@@ -127,7 +138,6 @@ public class RoulleteResponse
 {
     public metaData meta;
 }
-
 [System.Serializable]
 public class metaData
 {
@@ -142,7 +152,6 @@ public class CouponResponse
 {
     public CouponData data;
 }
-
 [System.Serializable]
 public class CouponData
 {
@@ -150,7 +159,6 @@ public class CouponData
     public uint id;
     public CouponAttributes attributes;
 }
-
 [System.Serializable]
 public class CouponAttributes
 {
@@ -168,7 +176,6 @@ public class ErrorResponse
 {
     public List<ErrorData> errors;
 }
-
 [System.Serializable]
 public class ErrorData
 {
@@ -176,6 +183,34 @@ public class ErrorData
     public string title;
     public string detail;
 }
+#endregion
+#region LootBox
+[System.Serializable]
+public class LootBox
+{
+    public DataLootBox data;
+}
+
+[System.Serializable]
+public class DataLootBox
+{
+    public string type;
+    public uint id;
+    public AttributesLootBox attributes;
+    public LinksSelf links;
+}
+[System.Serializable]
+public class AttributesLootBox
+{
+    public string buff_name;
+    public string coupon;
+    public string expiration_date;
+    public string discount;
+    public string company;
+    public string description;
+    public string contact;
+}
+
 #endregion
 
 [System.Serializable]

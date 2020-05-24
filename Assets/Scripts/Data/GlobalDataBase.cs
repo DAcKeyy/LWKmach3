@@ -16,6 +16,21 @@
     public static uint MachThreeSessions;
     public static int Tickets = 0;
 
+    public static class ChestJSONs
+    {
+        public static System.Collections.Generic.List<string> JSONs;
+
+        static ChestJSONs()
+        {
+            JSONs = new System.Collections.Generic.List<string>();
+        }
+
+        public static void Add(string value)
+        {
+            JSONs.Add(value);
+        }
+    }
+
 }
 
 [System.Serializable]
