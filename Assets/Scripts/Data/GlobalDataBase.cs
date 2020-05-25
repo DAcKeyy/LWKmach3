@@ -14,6 +14,7 @@
     public static int Gold;
     public static uint UserID = 0;
     public static uint MachThreeSessions;
+    public static int Tickets = 0;
 
     public static class ChestJSONs
     {
@@ -29,8 +30,8 @@
             JSONs.Add(value);
         }
     }
-}
 
+}
 
 [System.Serializable]
 public class Сoupon

@@ -36,7 +36,7 @@ public class TaskManager : MonoBehaviour
         {
             Debug.Log("Task complete!");
 
-            TaskComplete();
+            TaskComplete?.Invoke();
 
             UpdateTask();
         }
