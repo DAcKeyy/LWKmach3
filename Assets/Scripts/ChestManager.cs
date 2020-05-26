@@ -2,11 +2,11 @@
 
 public class ChestManager : MonoBehaviour
 {
-    CouponsManger couponsManger = new CouponsManger();
+    CouponsManager couponsManger = new CouponsManager();
 
     void Start()
     {
-        couponsManger = GameObject.Find("EventSystem").GetComponent<CouponsManger>();
+        couponsManger = GameObject.Find("EventSystem").GetComponent<CouponsManager>();
 
         if (GlobalDataBase.ChestJSONs.JSONs.Count != 0)
         {
