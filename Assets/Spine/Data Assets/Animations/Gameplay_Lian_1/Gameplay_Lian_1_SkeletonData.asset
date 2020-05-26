@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: Gameplay_Lian_1_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-<<<<<<< HEAD
   - {fileID: 11400000, guid: f73f81d3861809b41bf5dc6926495f6d, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: 23fa470375c0017418c112960b038174, type: 3}
-=======
-  - {fileID: 11400000, guid: c0b850db14dc02441bb56c4e544f2433, type: 2}
-  scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 7f88f84f95ae32b45acddc3dc1c7a0d1, type: 3}
->>>>>>> feature/Spine_Animation
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

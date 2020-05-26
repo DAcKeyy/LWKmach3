@@ -13,15 +13,9 @@ MonoBehaviour:
   m_Name: Gameplay_Leaves_3_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-<<<<<<< HEAD
   - {fileID: 11400000, guid: 2e326717de0b76149b17764859d7d113, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: 7207278f6010ef340b5b4f98f1f68e14, type: 3}
-=======
-  - {fileID: 11400000, guid: 6c172252bf94a2a4cbf8dc1bc3617fb8, type: 2}
-  scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: c88f543436a962845a88039d623bd677, type: 3}
->>>>>>> feature/Spine_Animation
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

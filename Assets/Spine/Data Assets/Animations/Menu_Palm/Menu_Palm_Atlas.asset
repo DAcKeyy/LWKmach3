@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Menu_Palm_Atlas
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   atlasFile: {fileID: 4900000, guid: 367f2630af9ba064092d53f062106481, type: 3}
   materials:
   - {fileID: 2100000, guid: b86874acfaaf8ad4ab02b3cf3bc355cd, type: 2}
-=======
-  atlasFile: {fileID: 4900000, guid: 0bee1c31b927f764caea65895cccd045, type: 3}
-  materials:
-  - {fileID: 2100000, guid: 822ade2a7dc09f64a8c318a89d68e7b7, type: 2}
->>>>>>> feature/Spine_Animation

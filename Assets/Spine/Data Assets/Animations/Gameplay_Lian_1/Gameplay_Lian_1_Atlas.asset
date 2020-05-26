@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Gameplay_Lian_1_Atlas
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   atlasFile: {fileID: 4900000, guid: 86c0a7369da923f4f9367c7b05584f43, type: 3}
   materials:
   - {fileID: 2100000, guid: 5d26a9095a7a10144bda1b7efa159708, type: 2}
-=======
-  atlasFile: {fileID: 4900000, guid: c0d48dd06d7b3194da4db8c4bb21789c, type: 3}
-  materials:
-  - {fileID: 2100000, guid: a36d3f936e7901247bce15c2d26dd7c8, type: 2}
->>>>>>> feature/Spine_Animation

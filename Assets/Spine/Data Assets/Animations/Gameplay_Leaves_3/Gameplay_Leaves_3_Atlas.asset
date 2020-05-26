@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
   m_Name: Gameplay_Leaves_3_Atlas
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
   atlasFile: {fileID: 4900000, guid: 29c94b60faca5e047b95e23ac853fd5c, type: 3}
   materials:
   - {fileID: 2100000, guid: 4e503d8b44343834aa4d0552ef7d1c97, type: 2}
-=======
-  atlasFile: {fileID: 4900000, guid: 74e858afff469bf4d90faa68ecc2d328, type: 3}
-  materials:
-  - {fileID: 2100000, guid: fe1c3c89b5f10a24eb6c75161a84dcd6, type: 2}
->>>>>>> feature/Spine_Animation

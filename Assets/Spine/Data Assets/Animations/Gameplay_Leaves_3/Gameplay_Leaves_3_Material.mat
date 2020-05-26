@@ -20,11 +20,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-<<<<<<< HEAD
-        m_Texture: {fileID: 2800000, guid: 2d23aab5245047a4a927793b768eaf81, type: 3}
-=======
-        m_Texture: {fileID: 2800000, guid: 223e975d39bfa5f45b9b8cab0f726abd, type: 3}
->>>>>>> feature/Spine_Animation
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
