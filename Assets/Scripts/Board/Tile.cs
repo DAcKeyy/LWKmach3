@@ -22,6 +22,17 @@ public class Tile : MonoBehaviour
     public int health;
     public List<MovePoint> futurePositions;
     public int tileColor;
+    private bool canTouch = true;
+
+    private void OnEnable()
+    {
+        UpTimer.GameIsOver += StopTouch;
+    }
+
+    private void OnDisable()
+    {
+        UpTimer.GameIsOver -= StopTouch;
+    }
 
     public void Init(int x, int y, BoardManager board, int width, int height)
     {
@@ -36,6 +47,11 @@ public class Tile : MonoBehaviour
             srenderer.sprite = obstacleTiles[obstacleTiles.Count - 1];
             health = obstacleTiles.Count;
         }
+    }
+
+    private void StopTouch()
+    {
+        canTouch = false;
     }
 
     public void SetCoords(int x, int y)
@@ -84,25 +100,35 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_board != null)
+        if (canTouch)
         {
-            _board.ClickTile(this);
+            if (_board != null)
+            {
+                OnSelected(this);
+                _board.ClickTile(this);
+            }
         }
     }
 
     private void OnMouseEnter()
     {
-        if (_board != null)
+        if (canTouch)
         {
-            _board.DragToTile(this);
+            if (_board != null)
+            {
+                _board.DragToTile(this);
+            }
         }
     }
 
     private void OnMouseUp()
     {
-        if (_board != null)
+        if (canTouch)
         {
-            _board.RealiseTile();
+            if (_board != null)
+            {
+                _board.RealiseTile();
+            }
         }
     }
 }

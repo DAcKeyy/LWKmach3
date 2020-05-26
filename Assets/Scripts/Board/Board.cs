@@ -67,8 +67,9 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesSwitched += PiecesSwitched;
         PieceAnimator.PiecesMoved += PiecesMoved;
         PieceAnimator.PiecesDeleted += PiecesDeleted;
+        Tile.OnSelected += BombExplosion;
         //PieceAnimator.BoardMovedUp += BoardMovedUp;
-        
+
         //Board.BoardUp += AddLvl;
     }
 
@@ -77,8 +78,10 @@ public class Board : MonoBehaviour
         PieceAnimator.PiecesSwitched -= PiecesSwitched;
         PieceAnimator.PiecesMoved -= PiecesMoved;
         PieceAnimator.PiecesDeleted -= PiecesDeleted;
+        Tile.OnSelected -= BombExplosion;
+
         //PieceAnimator.BoardMovedUp -= BoardMovedUp;
-        
+
         //Board.BoardUp += AddLvl;
     }
 
@@ -207,6 +210,30 @@ public class Board : MonoBehaviour
             }
         }
     }
+
+    ////////////////////////BOMB///////////////////////////
+
+    public void ActivateBomb()
+    {
+        _boardManager.ActiveteBomb(true);
+    }
+
+    private void BombExplosion(Tile tile)
+    {
+        if (_boardManager._canTouch)
+        {
+            if (_boardManager.BombIsActive())
+            {
+                List<Piece> piecestodel = _boardManager.BombExplosion(tile);
+                List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
+                _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
+                _boardManager.ActiveteBomb(false);
+            }
+        }
+    }
+
+
+    ////////////////////////BOMB///////////////////////////
 
     private IEnumerator ShuffleRoutine()
     {

@@ -35,6 +35,7 @@ public class BoardManager
     private Tile _clickedTile;
     private Tile _targetTile;
     private Piece _clickedPiece;
+    private bool bombActive = false;
 
     public bool _canTouch = true;
 
@@ -406,7 +407,7 @@ public class BoardManager
     {
         _tiles = new Tile[_width, _height];
 
-                        //Использовать для заполнения нижнего ряда обстаклами
+        //Использовать для заполнения нижнего ряда обстаклами
         //if (_obstaclesHeight > 0)
         //{
         //    for (int i = 0; i < _width; i++)
@@ -509,35 +510,136 @@ public class BoardManager
         return null;
     }
 
+    //BOMB
 
+    public void ActiveteBomb(bool enabled)
+    {
+        bombActive = enabled;
+    }
+
+    public bool BombIsActive()
+    {
+        return bombActive;
+    }
+
+    private List<Piece> RoundBomb(Tile tile)
+    {
+        int x = tile.xIndex;
+        int y = tile.yIndex;
+
+        List<Piece> piecesToDelete = new List<Piece>();
+
+        for (int i = x - 1; i <= x + 1; i++)
+        {
+            for (int j = y - 1; j <= y + 1; j++)
+            {
+                if (IsWithinBounds(i, j))
+                {
+                    if (_pieces[i, j] != null)
+                    {
+                        piecesToDelete.Add(_pieces[i, j]);
+                    }
+                }
+            }
+        }
+        return piecesToDelete;
+    }
+
+    private List<Piece> CrossBomb(Tile tile)
+    {
+        int x = tile.xIndex;
+        int y = tile.yIndex;
+
+        List<Piece> piecesToDelete = new List<Piece>();
+
+        for (int i = 0; i < _width; i++)
+        {
+            if (_pieces[i, y] != null)
+            {
+                piecesToDelete.Add(_pieces[i, y]);
+            }
+        }
+
+        for (int j = 0; j < _height; j++)
+        {
+            if (_pieces[x, j] != null)
+            {
+                piecesToDelete.Add(_pieces[x, j]);
+            }
+        }
+
+        return piecesToDelete;
+    }
+
+    public List<Piece> BombExplosion(Tile tile)
+    {
+        List<Piece> piecesToDelete = new List<Piece>();
+
+        if (_canTouch)
+        {
+            _canTouch = false;
+
+            int rnd = UnityEngine.Random.Range(0, 2);
+
+            if (rnd == 0)
+            {
+                piecesToDelete.AddRange(CrossBomb(tile));
+            }
+            else
+            {
+                piecesToDelete.AddRange(RoundBomb(tile));
+            }
+
+            return piecesToDelete;
+        }
+
+        return null;
+    }
 
     //Touch callbacks
 
     public void ClickTile(Tile tile)
     {
-        if (_clickedTile == null)
+        if (_canTouch)
         {
-            _clickedTile = tile;
+            if (_clickedTile == null)
+            {
+                if (bombActive)
+                {
+                    BombExplosion(_clickedTile);
+                }
+                else
+                {
+                    _clickedTile = tile;
+                }
+            }
         }
     }
 
+
     public void DragToTile(Tile tile)
     {
-        if (_clickedTile != null && IsNextTo(tile, _clickedTile))
+        if (_canTouch)
         {
-            _targetTile = tile;
+            if (_clickedTile != null && IsNextTo(tile, _clickedTile))
+            {
+                _targetTile = tile;
+            }
         }
     }
 
     public void RealiseTile()
     {
-        if (_clickedTile != null && _targetTile != null)
+        if (_canTouch)
         {
-            SwitchTiles(_clickedTile, _targetTile);
-        }
+            if (_clickedTile != null && _targetTile != null)
+            {
+                SwitchTiles(_clickedTile, _targetTile);
+            }
 
-        _clickedTile = null;
-        _targetTile = null;
+            _clickedTile = null;
+            _targetTile = null;
+        }
     }
 
     public List<Piece> EndSwitchPieces(Tile clickedTile, Tile targetTile, bool back)
