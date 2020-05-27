@@ -6,6 +6,7 @@ using System;
 
 public class UpTimer : MonoBehaviour
 {
+    public static Action GameIsOver = delegate { };
     [BoxGroup("Time settings")]
     [Slider(5, 120)]
     public float roundTime = 30f;
@@ -48,10 +49,11 @@ public class UpTimer : MonoBehaviour
 
             if (roundTime <= 0f)
             {
-                canProcess = false;
+                   canProcess = false;
                 roundTime = 0f;
                 Debug.Log("Time is over");
                 EndPanel.SetActive(true);
+                GameIsOver();
             }
         }
     }
