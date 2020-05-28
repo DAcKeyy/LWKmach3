@@ -43,7 +43,6 @@ namespace LWT.Networking
         [SerializeField] private LevelLoader levelLoader = null;
         [SerializeField] private ServerLoadingProcess LoadIndicator = null;
 
-
         RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
         WebSender Sender = new WebSender();
 
@@ -122,15 +121,12 @@ namespace LWT.Networking
 
             else
             {
-                GlobalDataBase.Email = RegistEmailField.text;
-                GlobalDataBase.Password = RegistPasswordField.text;
+                RegistartionForm RegForm = new RegistartionForm(RegistEmailField.text, RegistPasswordField.text);
+                var webRequest = UnityWebRequest.Post(URLStruct.Registration, RegForm.Form);
+                webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+                StartCoroutine(Sender.SendWebRequest(webRequest, RegistrationResponse, Errors));
+                StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
             }
-
-            RegistartionForm RegForm = new RegistartionForm(GlobalDataBase.Email, GlobalDataBase.Password);
-            var webRequest = UnityWebRequest.Post(URLStruct.Registration, RegForm.Form);
-            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
-            StartCoroutine(Sender.SendWebRequest(webRequest, RegistrationResponse, Errors));
-            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
         }
 
         void RegistrationResponse(string response)
