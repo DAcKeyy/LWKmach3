@@ -31,8 +31,10 @@ namespace LWT.Networking
         [SerializeField] private GameObject CouponsPanel = null;
         [SerializeField] private GameObject AccountAcceptedPanel = null;
         [SerializeField] private GameObject AccountRequestPanel = null;
-        [SerializeField] private GameObject PasswordErrorSign = null;
-        [SerializeField] private GameObject EmailErrorSign = null;
+        [SerializeField] private GameObject AuthPasswordErrorSign = null;
+        [SerializeField] private GameObject AuthEmailErrorSign = null;
+        [SerializeField] private GameObject RegistPasswordErrorSign = null;
+        [SerializeField] private GameObject RegistEmailErrorSign = null;
         [SerializeField] private TMP_InputField AuthEmailField = null;
         [SerializeField] private TMP_InputField AuthPasswordField = null;
         [SerializeField] private TMP_InputField RegistEmailField = null;
@@ -57,10 +59,11 @@ namespace LWT.Networking
 
             inputHandles.LoginClick += Authorization;
             inputHandles.RegistrationClick += Registration;
-            inputHandles.RestorePasswordClick += ResetPassword;   
+            inputHandles.RestorePasswordClick += ResetPassword;
+            inputHandles.ResendEmailClick += ResendEmail;
 
-            FieldsCheker.ErrorSignEmail = EmailErrorSign;
-            FieldsCheker.ErrorSignPassword = PasswordErrorSign;
+            FieldsCheker.ErrorSignEmail = AuthPasswordErrorSign;
+            FieldsCheker.ErrorSignPassword = AuthEmailErrorSign;
             FieldsCheker.DescriptionText = TextUponFields;
         }
 
@@ -131,12 +134,12 @@ namespace LWT.Networking
 
         void RegistrationResponse(string response)
         {
-            Debug.Log(response);
+            PanelWithText.SetActive(true);
+            PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "Verify account on your email";
         }
 
         void ResetPassword()
         {
-            Debug.Log(GlobalDataBase.Email);
             var webRequest = UnityWebRequest.Post(URLStruct.ResetPassword + "?email=" + RestorePassEmailField.text, "");
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             webRequest.SetRequestHeader("Content-Type", "application/vnd.api+json");
@@ -151,6 +154,19 @@ namespace LWT.Networking
             text.text = "A password reset request has been sent to your mail";
         }
 
+        void ResendEmail()
+        {
+            var webRequest = UnityWebRequest.Post(URLStruct.ResendEmail + "?email=" + RegistEmailField.text, "");
+            StartCoroutine(Sender.SendWebRequest(webRequest, ResendEmailResponse, Errors));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+        }
+
+        void ResendEmailResponse(string response)
+        {
+            PanelWithText.SetActive(true);
+            PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "Check your email";
+        }
+
         void GetAccountInfo()
         {            
             var webRequest = UnityWebRequest.Get(URLStruct.GetAccountInfo);
@@ -162,8 +178,7 @@ namespace LWT.Networking
 
         void LoadLevel(string response)
         {
-            var Obj = JsonUtility.FromJson<Me>(response);
-            GlobalDataBase.Gold = Convert.ToInt32(Obj.data.attributes.coin);
+            var Obj = JsonUtility.FromJson<Me>(response);           
 
             levelLoader.LoadScene("Menu");
         }
@@ -186,7 +201,7 @@ namespace LWT.Networking
         {
             Debug.Log(response);
 
-            Regex emailIsExist = new Regex(@"The email has already been taken.");
+            Regex emailIsExist = new Regex(@"The email has already been taken");
             Regex error500 = new Regex(@"Internal Server Error");
             Regex verifyEmail = new Regex(@"Your email address is not verified");
             Regex WrongFiledsData = new Regex(@"The provided authorization grant");
@@ -194,8 +209,10 @@ namespace LWT.Networking
 
             if (String.IsNullOrEmpty(response) == false && emailIsExist.IsMatch(response))
             {
-                EmailErrorSign.SetActive(true);
-                TextUponFields.text = "The email has already been taken";
+                PanelWithText.SetActive(true);
+                var text = PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>();
+                text.text = "The email has already been taken";
+                RegistEmailErrorSign.SetActive(true);
             }
 
             if (error500.IsMatch(response))
@@ -218,8 +235,8 @@ namespace LWT.Networking
 
             if (WrongFiledsData.IsMatch(response))
             {
-                EmailErrorSign.SetActive(true);
-                PasswordErrorSign.SetActive(true);
+                AuthEmailErrorSign.SetActive(true);
+                AuthPasswordErrorSign.SetActive(true);
                 TextUponFields.text = "Wrong email or password";
             }
 
