@@ -15,7 +15,7 @@ public class UpTimer : MonoBehaviour
     public float timeToAdd = 10f;
     public Slider timeSlider;
     [BoxGroup("ThenTheTimeEnds")]
-    [SerializeField] GameObject EndPanel = null;
+    [SerializeField] GameObject EndCanvas = null;
 
     private bool canProcess = true;
     private float initialTime;
@@ -52,7 +52,7 @@ public class UpTimer : MonoBehaviour
                    canProcess = false;
                 roundTime = 0f;
                 Debug.Log("Time is over");
-                EndPanel.SetActive(true);
+                EndCanvas.SetActive(true);
                 GameIsOver();
             }
         }

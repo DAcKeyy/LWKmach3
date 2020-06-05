@@ -15,6 +15,7 @@
     public static uint UserID = 0;
     public static uint MachThreeSessions;
     public static int Tickets = 0;
+    public static string PrevScene = "Start";
 
     public static class ChestJSONs
     {

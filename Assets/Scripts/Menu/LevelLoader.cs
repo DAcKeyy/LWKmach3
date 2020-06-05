@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,30 +12,43 @@ namespace LWT.System
     public class LevelLoader : MonoBehaviour
     {
         [SerializeField]
-        private GameObject loadingPanel;
-
+        private Animation AnimationComponent;
         [SerializeField]
-        private Image loadIndicator;
-
+        private AnimationClip LeavesClose;
+        [SerializeField]
+        private AnimationClip LeavesOpen;
 
         public void LoadScene(string name)
         {
+            GlobalDataBase.PrevScene = SceneManager.GetActiveScene().name;
+
             StartCoroutine(LoadAsynchronously(name));
         }
 
         private IEnumerator LoadAsynchronously(string Scene)
         {
-            AsyncOperation operation = SceneManager.LoadSceneAsync(Scene);
+            yield return StartCoroutine(LeavesAnimation());
 
-            loadingPanel.SetActive(true);
+            AsyncOperation operation = SceneManager.LoadSceneAsync(Scene);
 
             while (!operation.isDone)
             {
-                float progress = Mathf.Clamp01(operation.progress / .9f);
-
-                loadIndicator.fillAmount = progress;
-
                 yield return null;
+            }
+        }
+
+        private IEnumerator LeavesAnimation()
+        {
+            if (AnimationComponent != null)
+            {
+                AnimationComponent.gameObject.SetActive(true);
+
+                AnimationComponent.Play(LeavesClose.name);
+
+                while (AnimationComponent.IsPlaying(LeavesClose.name))
+                {
+                    yield return null;
+                }
             }
         }
     }
