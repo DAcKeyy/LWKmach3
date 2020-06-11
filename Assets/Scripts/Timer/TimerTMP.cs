@@ -4,7 +4,7 @@ using System;
 
 public class TimerTMP : MonoBehaviour
 {
-    [SerializeField] TMP_Text TMP_text;
+    [SerializeField] TMP_Text TMP_text = null;
     public static Action TimeOver;
 
     public int days;

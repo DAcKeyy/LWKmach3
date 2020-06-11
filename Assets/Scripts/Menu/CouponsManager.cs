@@ -34,6 +34,7 @@ public class CouponsManager : MonoBehaviour
         //Расшифровка принятого жысона
 
 
+
         TokenForm tokenForm = new TokenForm(GlobalDataBase.Token);
         
         var webRequest = UnityWebRequest.Post(URLStruct.GetAccountInfo, tokenForm.Form);

@@ -178,7 +178,9 @@ namespace LWT.Networking
 
         void LoadLevel(string response)
         {
-            var Obj = JsonUtility.FromJson<Me>(response);           
+            var Obj = JsonUtility.FromJson<Me>(response);
+
+            URLStruct.CouponsLink = Obj.data.links.self;
 
             levelLoader.LoadScene("Menu");
         }

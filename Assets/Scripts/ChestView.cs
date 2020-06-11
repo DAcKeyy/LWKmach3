@@ -11,7 +11,7 @@ namespace LWT.View
     {
         [BoxGroup("Default value")]
         [SerializeField]
-        private GameObject chestPrefabs;
+        private GameObject chestPrefabs = null;
 
         [BoxGroup("Default value")]
         [SerializeField]
@@ -23,7 +23,7 @@ namespace LWT.View
 
         [BoxGroup("Default value")]
         [SerializeField]
-        private AnimationReferenceAsset openAnimation;
+        private AnimationReferenceAsset openAnimation = null;
 
         [SerializeField]
         [BoxGroup("Scale Tween")]
@@ -38,7 +38,7 @@ namespace LWT.View
         private Vector3 strength = new Vector3(0f, 100f, 0f);
 
         [SerializeField]
-        private Transform parent;
+        private Transform parent = null;
 
         private GameObject chest;
 

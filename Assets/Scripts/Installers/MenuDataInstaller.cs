@@ -6,7 +6,7 @@ using Zenject;
 public class MenuDataInstaller : ScriptableObjectInstaller<MenuDataInstaller>
 {
     [SerializeField]
-    private MusicLibriary musicLibriary;
+    private MusicLibriary musicLibriary = null;
 
     public override void InstallBindings()
     {

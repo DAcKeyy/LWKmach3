@@ -20,48 +20,38 @@ public class TweenTransform : MonoBehaviour
 
     private void OnEnable()
     {
-        isDisbled = false;
-        AnimationONE();
+        StartAnimation();
     }
 
     private void OnDisable()
     {
-        isDisbled = true;
-        Debug.Log("ffdsa");
+        DOTween.Kill(this);
+
+        StopCoroutine(Animation());
+        StopCoroutine("DoScale");
     }
 
-    //!не смог в зынжект
-    private void AnimationONE()
+    private void StartAnimation()
     {
-        StartCoroutine(DoScale(0.1F, Delay, ScaleEase, AnimationTWO));
+        StartCoroutine(Animation());
     }
-    private void AnimationTWO()
+
+    private IEnumerator Animation()
     {
-        StartCoroutine(DoScale(Scale, Time, ScaleEase, AnimationTHREE));
+        yield return StartCoroutine(DoScale(0.1F, Delay, ScaleEase, null));
+        yield return StartCoroutine(DoScale(Scale, Time, ScaleEase, null));
+        yield return StartCoroutine(DoScale(-Scale, Time, ScaleEase, null));
+        yield return StartCoroutine(DoScale(-0.1F, Delay, ScaleEase, StartAnimation));
+        yield break;
     }
-    private void AnimationTHREE()
-    {
-        StartCoroutine(DoScale(-Scale, Time, ScaleEase, AnimationFORE));
-    }
-    private void AnimationFORE()
-    {
-        StartCoroutine(DoScale(-0.1F, Delay, ScaleEase, AnimationONE));
-    }
-    //
 
     private IEnumerator DoScale(float value, float time, Ease ease, Action EndScale)
     {
         transform.DOScale(new Vector3(transform.localScale.x + value,
                                     transform.localScale.y + value,
                                     transform.localScale.z), time)
-                                    .SetEase(ease).OnComplete(() => EndScale());
+                                    .SetEase(ease).OnComplete(() => EndScale?.Invoke());
 
-        if (isDisbled == true)
-        {
-            DOTween.Kill(this);
-            yield break;
-        }
-
-        else yield return null;//я хз как ошибку убрать
+        yield return null;
     }
 } 

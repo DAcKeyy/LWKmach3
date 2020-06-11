@@ -2,8 +2,8 @@
 
 public class LoadLeavesManager : MonoBehaviour
 {
-    [SerializeField]private GameObject StartLeaves;
-    [SerializeField] private GameObject GameLeaves;
+    [SerializeField]private GameObject StartLeaves = null;
+    [SerializeField] private GameObject GameLeaves = null;
 
     void Start()
     {

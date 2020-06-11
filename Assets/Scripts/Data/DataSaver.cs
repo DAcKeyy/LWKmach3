@@ -58,7 +58,9 @@ public class DataSaver
             Debug.Log(e.Message);
         }
 
-        if (files.Length != 0)
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (files != null)
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             foreach (FileInfo file in files)
             {

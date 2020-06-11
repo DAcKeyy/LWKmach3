@@ -3,8 +3,8 @@ using TMPro;
 
 public class TicketManager : MonoBehaviour
 {
-    [SerializeField] GameObject DailyTimePanel;
-    [SerializeField] GameObject TicketPanel;
+    [SerializeField] GameObject DailyTimePanel = null;
+    [SerializeField] GameObject TicketPanel = null;
     private GameObject ticetsNumber;
 
     void Start()

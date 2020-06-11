@@ -8,10 +8,10 @@ namespace LWT.System.Music
     public class MusicManager : MonoBehaviour
     {
         [SerializeField]
-        private AudioSource musicSource;
+        private AudioSource musicSource = null;
 
-        [Inject]
-        private InputHandles inputHandles;
+        //[Inject]
+        //private InputHandles inputHandles = null;
 
         private readonly PlayerPreffsManager prefs = new PlayerPreffsManager();
 
