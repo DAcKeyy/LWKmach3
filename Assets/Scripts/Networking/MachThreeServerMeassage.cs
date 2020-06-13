@@ -24,19 +24,21 @@ public class MachThreeServerMeassage : MonoBehaviour
 
     void GetChest()
     {
-        GetChestIncremention++;
+        //GetChestIncremention++;
 
-        Debug.Log("GetChestIncremention: " + GetChestIncremention);
-        if(GetChestIncremention == 3)
-        {
-            var webRequest = UnityWebRequest.Get(URLStruct.LootBox);
-            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
-            webRequest.SetRequestHeader("Content-Type", "application/vnd.api+json");
-            webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
-            StartCoroutine(Sender.SendWebRequest(webRequest, ChestResponse, Errors));
+        //Debug.Log("GetChestIncremention: " + GetChestIncremention);
+        //if(GetChestIncremention == 3)
+        //{
+        //    var webRequest = UnityWebRequest.Get(URLStruct.LootBox);
+        //    webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+        //    webRequest.SetRequestHeader("Content-Type", "application/vnd.api+json");
+        //    webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
+        //    StartCoroutine(Sender.SendWebRequest(webRequest, ChestResponse, Errors));
 
-            GetChestIncremention = 0;
-        }
+        //    GetChestIncremention = 0;
+        //}
+
+
     }
 
     void ChestResponse(string response)

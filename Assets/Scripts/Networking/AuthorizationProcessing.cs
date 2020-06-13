@@ -50,26 +50,28 @@ namespace LWT.Networking
 
         private void Start()
         {
-            UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
-            AccountAcceptedPanel.SetActive(false);
-            AccountRequestPanel.SetActive(false);
-            CouponsPanel.SetActive(false);
+            LoadLevel(null);
 
-            CheckInternerConection();
+            //UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
+            //AccountAcceptedPanel.SetActive(false);
+            //AccountRequestPanel.SetActive(false);
+            //CouponsPanel.SetActive(false);
 
-            inputHandles.LoginClick += Authorization;
-            inputHandles.RegistrationClick += Registration;
-            inputHandles.RestorePasswordClick += ResetPassword;
-            inputHandles.ResendEmailClick += ResendEmail;
+            //CheckInternerConection();
 
-            FieldsCheker.ErrorSignEmail = AuthPasswordErrorSign;
-            FieldsCheker.ErrorSignPassword = AuthEmailErrorSign;
-            FieldsCheker.DescriptionText = TextUponFields;
+            //inputHandles.LoginClick += Authorization;
+            //inputHandles.RegistrationClick += Registration;
+            //inputHandles.RestorePasswordClick += ResetPassword;
+            //inputHandles.ResendEmailClick += ResendEmail;
+
+            //FieldsCheker.ErrorSignEmail = AuthPasswordErrorSign;
+            //FieldsCheker.ErrorSignPassword = AuthEmailErrorSign;
+            //FieldsCheker.DescriptionText = TextUponFields;
         }
 
         void CheckInternerConection()
         {
-            var webRequest = UnityWebRequest.Get("http://google.com");
+            var webRequest = UnityWebRequest.Get("https://api.wingift.cf");
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
@@ -178,9 +180,9 @@ namespace LWT.Networking
 
         void LoadLevel(string response)
         {
-            var Obj = JsonUtility.FromJson<Me>(response);
+            //var Obj = JsonUtility.FromJson<Me>(response);
 
-            URLStruct.CouponsLink = Obj.data.links.self;
+            //URLStruct.CouponsLink = Obj.data.links.self;
 
             levelLoader.LoadScene("Menu");
         }
@@ -206,8 +208,9 @@ namespace LWT.Networking
             Regex emailIsExist = new Regex(@"The email has already been taken");
             Regex error500 = new Regex(@"Internal Server Error");
             Regex verifyEmail = new Regex(@"Your email address is not verified");
-            Regex WrongFiledsData = new Regex(@"The provided authorization grant");
+            Regex WrongFiledsData = new Regex(@"Incorrect username or password");
             Regex ResetPass = new Regex(@"Не удалось найти пользователя с указанным электронным адресом");
+
 
             if (String.IsNullOrEmpty(response) == false && emailIsExist.IsMatch(response))
             {
@@ -275,7 +278,7 @@ namespace LWT.Networking
             UserPanel.SetActive(true);
             PanelWithText.SetActive(true);
             CouponsPanel.SetActive(true);
-            PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "No internet Conection";
+            PanelWithText.transform.Find("Text (TMP)").gameObject.GetComponent<TMP_Text>().text = "No internet Connection";
         }
 
         void CheckInternerConectionResponse(string response)
