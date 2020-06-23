@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e28948b14e7a141a141748f041d0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 10
+  roundTime: 30
   timeToAdd: 30
   timeSlider: {fileID: 1865658222}
   EndCanvas: {fileID: 966080788}
@@ -425,8 +425,6 @@ MonoBehaviour:
   AnimationComponent: {fileID: 1931215503}
   LeavesClose: {fileID: 7400000, guid: f71e76b823604bc46b065deaf2d9ed99, type: 2}
   LeavesOpen: {fileID: 7400000, guid: 6b16ba5e83ab9b14d83c09b1e5052b29, type: 2}
-  loadingPanel: {fileID: 1881989622}
-  loadIndicator: {fileID: 182536151}
 --- !u!114 &152479803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4171,6 +4169,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.52
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100383, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
