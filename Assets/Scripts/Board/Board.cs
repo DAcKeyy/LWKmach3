@@ -170,7 +170,7 @@ public class Board : MonoBehaviour
 
         if (piecesToDelete.Count > 0)
         {
-            taskManager.CheckTask(piecesToDelete[0]);
+            taskManager.CheckTask(piecesToDelete);
             List<Piece> pieces = _boardManager.ClearBoard(piecesToDelete);
             _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
         }
