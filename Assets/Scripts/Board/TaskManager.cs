@@ -30,16 +30,19 @@ public class TaskManager : MonoBehaviour
         AnimateTasks();
     }
 
-    public void CheckTask(Piece piece)
+    public void CheckTask(List<Piece> pieces)
     {
-        if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
+        foreach(Piece piece in pieces)
         {
-            Debug.Log("Task complete!");
-
-            TaskComplete?.Invoke();
-
-            UpdateTask();
+           if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
+           {
+               Debug.Log("Task complete!");
+               TaskComplete?.Invoke();
+               UpdateTask();
+               break;
+           }  
         }
+        
     }
 
     private void UpdateTask()
