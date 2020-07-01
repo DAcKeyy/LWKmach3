@@ -44,3 +44,9 @@ TagManager:
   - name: UI
     uniqueID: 108711865
     locked: 0
+  - name: Loading Leaves
+    uniqueID: 745180343
+    locked: 0
+  - name: Graphics
+    uniqueID: 567910823
+    locked: 0
