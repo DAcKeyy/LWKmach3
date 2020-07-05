@@ -20,7 +20,7 @@ public class CouponsManager : MonoBehaviour
     {
         Сoupon сoupon = new Сoupon();
 
-        Debug.Log( JsonUtility.ToJson(сoupon));
+        Debug.Log(JsonUtility.ToJson(сoupon));
 
         currentScene = SceneManager.GetActiveScene();
 

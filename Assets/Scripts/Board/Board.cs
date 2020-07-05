@@ -147,8 +147,11 @@ public class Board : MonoBehaviour
         }
     }
 
+
     private void Start()
     {
+        Application.targetFrameRate = 60;
+
         StartGame();
         //AddLvl();
     }

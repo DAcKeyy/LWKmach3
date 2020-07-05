@@ -2,15 +2,15 @@
 
 public struct URLStruct
 {
-    public const string Registration = "https://sarond.cf/api/register";
-    public const string Authorization = "https://sarond.cf/api/login";
-    public const string GetAccountInfo = "https://sarond.cf/api/v1/user/me";
-    public const string DaylyCoupon = "https://sarond.cf/api/random";
-    public const string ResetPassword = "https://sarond.cf/api/password/email";
-    public const string GameSessionMessage = "https://sarond.cf/api/password/email";
-    public const string LootBox = "https://sarond.cf/api/v1/user/lootbox";
-    public const string Logout = "https://sarond.cf/api/logout";
-    public const string ResendEmail = "https://sarond.cf/api/verify/resend";
+    public const string Registration = "https://api.wingift.cf/register";
+    public const string Authorization = "https://api.wingift.cf/login";
+    public const string GetAccountInfo = "https://api.wingift.cf/v1/user/me";
+    public const string DaylyCoupon = "https://api.wingift.cf/random";
+    public const string ResetPassword = "https://api.wingift.cf/password/email";
+    public const string GameSessionMessage = "https://api.wingift.cf/password/email";
+    public const string LootBox = "https://api.wingift.cf/v1/user/lootbox";
+    public const string Logout = "https://api.wingift.cf/logout";
+    public const string ResendEmail = "https://api.wingift.cf/verify/resend";
     public static string CouponsLink;
     public static string GamesLink;
 }
