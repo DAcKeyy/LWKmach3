@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e28948b14e7a141a141748f041d0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roundTime: 30
+  roundTime: 120
   timeToAdd: 30
   timeSlider: {fileID: 1865658222}
   EndCanvas: {fileID: 966080788}
