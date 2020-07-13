@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: Gameplay_Leaves_3_SkeletonData
+  m_Name: Chest_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 2e326717de0b76149b17764859d7d113, type: 2}
+  - {fileID: 11400000, guid: cdf44f2151d67ca4baec5cf4a3829436, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 7207278f6010ef340b5b4f98f1f68e14, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 8cd43831d0c5b914ba35028094b07a68, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

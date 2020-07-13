@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<< HEAD
-guid: 53c737ac96ea62849bfda4e8605c8485
-=======
-guid: 3eac49b49bd4f27408761a561d6e4dfc
->>>>>>> feature/Spine_Animation
+guid: c381cc3ee8449024aac4a91e3ead4b72
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0

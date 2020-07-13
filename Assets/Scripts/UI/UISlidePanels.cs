@@ -35,10 +35,6 @@ public class UISlidePanels : MonoBehaviour
 
         TargetPosition = GetTargetPosition(MovingVector, PanelTransform);
 
-        Debug.Log("PanelTransform: " + PanelTransform.localPosition.x + "/// " + PanelTransform.localPosition.y);
-        Debug.Log("PP: " + PanelTransform.sizeDelta.x + "  " + PanelTransform.sizeDelta.y);
-        Debug.Log("GetTargetPosition:" + GetTargetPosition(MovingVector, PanelTransform));
-
     }
 
     private Vector2 GetTargetPosition(Vector movingVector, RectTransform objectTransform )

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6b194f808b1af6499c93410e504af42, type: 3}
-  m_Name: Gameplay_Leaves_3_Atlas
+  m_Name: Chest_Atlas
   m_EditorClassIdentifier: 
-  atlasFile: {fileID: 4900000, guid: 29c94b60faca5e047b95e23ac853fd5c, type: 3}
+  atlasFile: {fileID: 4900000, guid: bf2b161251abded41ac135320ca7fdbe, type: 3}
   materials:
-  - {fileID: 2100000, guid: 4e503d8b44343834aa4d0552ef7d1c97, type: 2}
+  - {fileID: 2100000, guid: 90d6d000de907b44480c1a0308f68598, type: 2}

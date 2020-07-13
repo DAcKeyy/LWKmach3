@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using System;
 
 public class TaskManager : MonoBehaviour
@@ -12,8 +13,10 @@ public class TaskManager : MonoBehaviour
     private List<GameObject> pieces;
     private List<GameObject> tasks;
 
+
     public void Init()
     {
+
         pieces = new List<GameObject>();
         tasks = new List<GameObject>();
 
@@ -36,7 +39,6 @@ public class TaskManager : MonoBehaviour
         {
            if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
            {
-               //Debug.Log("Task complete!");
                TaskComplete?.Invoke();
                UpdateTask();
                break;
@@ -62,7 +64,7 @@ public class TaskManager : MonoBehaviour
 
     private void MoveTaskToEnd(Transform task)//вернуть превую фишку задания в конец таска на место 2го таска
     {
-        GameObject taskObject = Instantiate(pieces[UnityEngine.Random.Range(0, board.colorCount - 1)]);
+        GameObject taskObject = Instantiate(pieces[UnityEngine.Random.Range(0, board.colorCount)]);
         taskObject.transform.SetParent(task);
         taskObject.transform.localScale = new Vector2(taskScale, taskScale);
         taskObject.GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;

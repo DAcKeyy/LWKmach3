@@ -31,6 +31,14 @@ public class TweenTransform : MonoBehaviour
         StopCoroutine("DoScale");
     }
 
+    private void OnApplicationPause(bool pause)
+    {
+        DOTween.Kill(this);
+
+        StopCoroutine(Animation());
+        StopCoroutine("DoScale");
+    }
+
     private void StartAnimation()
     {
         StartCoroutine(Animation());
@@ -54,4 +62,4 @@ public class TweenTransform : MonoBehaviour
 
         yield return null;
     }
-} 
+}
