@@ -227,7 +227,9 @@ public class Board : MonoBehaviour
         {
             if (_boardManager.BombIsActive())
             {
+
                 List<Piece> piecestodel = _boardManager.BombExplosion(tile);
+                taskManager.CheckTask(piecestodel);
                 List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
                 _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
                 _boardManager.ActiveteBomb(false);
