@@ -4,47 +4,34 @@ using System;
 
 public class MachThreeServerMeassage : MonoBehaviour
 {
-    private int GetChestIncremention;
-
     WebSender Sender = new WebSender();
 
     private void Start()
     {
-        TaskManager.TaskComplete += GetChest;
+        ChestAnimationController.ChestCompleted += GetChest;
 
-        GlobalDataBase.MachThreeSessions++;
+    }
 
-        string Json = "{ \"data\": {\"type\": \"games\",\"attributes\": {\"game_id\":\"" + GlobalDataBase.MachThreeSessions
-            + "\",\"user_id\": \"" + GlobalDataBase.UserID
-            + "\",\"session_date\": \"" + DateTime.Now 
-            + "\"}}}";
-
-        Debug.Log(Json);
+    private void OnDisable()
+    {
+        ChestAnimationController.ChestCompleted -= GetChest;
     }
 
     void GetChest()
     {
-        //GetChestIncremention++;
-
-        //Debug.Log("GetChestIncremention: " + GetChestIncremention);
-        //if(GetChestIncremention == 3)
-        //{
-        //    var webRequest = UnityWebRequest.Get(URLStruct.LootBox);
-        //    webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
-        //    webRequest.SetRequestHeader("Content-Type", "application/vnd.api+json");
-        //    webRequest.SetRequestHeader("Authorization", "Bearer " + GlobalDataBase.Token);
-        //    StartCoroutine(Sender.SendWebRequest(webRequest, ChestResponse, Errors));
-
-        //    GetChestIncremention = 0;
-        //}
-
-
+        var webRequest = UnityWebRequest.Get(URLStruct.LootBox);
+        StartCoroutine(Sender.SendWebRequest(webRequest, ChestResponse, Errors));
     }
 
     void ChestResponse(string response)
     {
-        Debug.Log("Response: " + response);
-        GlobalDataBase.ChestJSONs.Add(response);
+        GlobalDataBase.LootChests.Chest chest = new GlobalDataBase.LootChests.Chest();
+        chest.json = response;
+        chest.isOpend = false;
+
+        GlobalDataBase.LootChests.ChestsList.Add(chest);
+        foreach (var i in GlobalDataBase.LootChests.ChestsList)
+            Debug.Log(i.json);
     }
 
     void Errors(string response)

@@ -33,23 +33,43 @@ public class TaskManager : MonoBehaviour
         AnimateTasks();
     }
 
-    public void CheckTask(List<Piece> pieces)
+    public void CheckTask(List<Piece> pieces, bool isBomb)
     {
-        foreach(Piece piece in pieces)
+        int matchCounter = 0;
+
+        foreach (Piece piece in pieces)
         {
-           if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
-           {
-               TaskComplete?.Invoke();
-               UpdateTask();
-               break;
-           }  
+            if (piece.matchValue == tasks[0].transform.GetChild(0).GetComponent<Piece>().matchValue)
+            {
+                if (isBomb)
+                {
+                    matchCounter++;
+
+                    if (matchCounter == 3)
+                    {
+                        CompleteTask();
+                        break;
+                    }
+                }
+                else
+                {
+                    CompleteTask();
+                    break;
+                }
+            }
         }
-        
+    }
+
+    void CompleteTask()
+    {
+        TaskComplete?.Invoke();
+        UpdateTask();
+       
     }
 
     private void UpdateTask()
     {
-        
+
         Transform task0 = tasks[0].transform.GetChild(0).transform;
         tasks[0].transform.GetChild(0).SetParent(null);//Удалить дитё задания
         task0.DOPunchScale(new Vector3(2f, 2f, 0f), 1f, 1, 1f);
@@ -77,7 +97,6 @@ public class TaskManager : MonoBehaviour
     private void SpawnTask(Transform parent)
     {
         GameObject taskObject = Instantiate(pieces[UnityEngine.Random.Range(0, board.colorCount - 1)]);
-        //Debug.Log("Random:" + UnityEngine.Random.Range(0, board.colorCount - 1));
         taskObject.transform.SetParent(parent);
         taskObject.transform.localScale = new Vector2(taskScale, taskScale);
         taskObject.transform.localPosition = parent.localPosition;

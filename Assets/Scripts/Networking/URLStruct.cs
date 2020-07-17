@@ -8,7 +8,7 @@ public struct URLStruct
     public const string DaylyCoupon = "https://api.wingift.cf/random";
     public const string ResetPassword = "https://api.wingift.cf/password/email";
     public const string GameSessionMessage = "https://api.wingift.cf/password/email";
-    public const string LootBox = "https://api.wingift.cf/v1/user/lootbox";
+    public const string LootBox = "https://api.sarond.cf/lootbox";
     public const string Logout = "https://api.wingift.cf/logout";
     public const string ResendEmail = "https://api.wingift.cf/verify/resend";
     public static string CouponsLink;

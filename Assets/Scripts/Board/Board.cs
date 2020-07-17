@@ -173,7 +173,7 @@ public class Board : MonoBehaviour
 
         if (piecesToDelete.Count > 0)
         {
-            taskManager.CheckTask(piecesToDelete);
+            taskManager.CheckTask(piecesToDelete, false);
             List<Piece> pieces = _boardManager.ClearBoard(piecesToDelete);
             _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
         }
@@ -229,7 +229,7 @@ public class Board : MonoBehaviour
             {
 
                 List<Piece> piecestodel = _boardManager.BombExplosion(tile);
-                taskManager.CheckTask(piecestodel);
+                taskManager.CheckTask(piecestodel, true);
                 List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
                 _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
                 _boardManager.ActiveteBomb(false);

@@ -17,21 +17,26 @@
     public static int Tickets = 0;
     public static string PrevScene = "Start";
 
-    public static class ChestJSONs
+    public static class LootChests
     {
-        public static System.Collections.Generic.List<string> JSONs;
-
-        static ChestJSONs()
+        public class Chest
         {
-            JSONs = new System.Collections.Generic.List<string>();
+            public string json = "{\"type\":\"null\"}";
+            public bool isOpend = false;
         }
 
-        public static void Add(string value)
+        static LootChests()
         {
-            JSONs.Add(value);
+            ChestsList = new System.Collections.Generic.List<Chest>();
+        }
+
+        public static System.Collections.Generic.List<Chest> ChestsList;
+
+        public static void Add(Chest chest)
+        {
+            ChestsList.Add(chest);
         }
     }
-
 }
 
 [System.Serializable]
@@ -42,5 +47,6 @@ public class Сoupon
     public string expiration_date = System.DateTime.Today.ToString("d");
     public string description = "Something goes wrong to this coupon";
     public string contact = "Contact \n twirlgamesteam@gmail.com";
+    public string isChecked = "False";
 }
 

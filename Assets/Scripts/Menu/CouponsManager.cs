@@ -18,9 +18,7 @@ public class CouponsManager : MonoBehaviour
 
     private void Awake()
     {
-        Сoupon сoupon = new Сoupon();
-
-        Debug.Log(JsonUtility.ToJson(сoupon));
+        //Сoupon сoupon = new Сoupon();
 
         currentScene = SceneManager.GetActiveScene();
 
