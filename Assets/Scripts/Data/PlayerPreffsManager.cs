@@ -56,4 +56,7 @@ public class PlayerPreffsManager
         }
     }
     #endregion
+    #region ForChest
+    //public void GetChest
+    #endregion
 }

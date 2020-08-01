@@ -2,10 +2,17 @@
 using UnityEngine;
 using System;
 
+public enum ServerErrors
+{
+    Unknown,
+    EndedCoupons
+}
+
 public class MachThreeServerMeassage : MonoBehaviour
 {
-    WebSender Sender = new WebSender();
 
+    WebSender Sender = new WebSender();
+    public static Action<ServerErrors> ServerError;
     private void Start()
     {
         ChestAnimationController.ChestCompleted += GetChest;
@@ -25,7 +32,7 @@ public class MachThreeServerMeassage : MonoBehaviour
 
     void ChestResponse(string response)
     {
-        GlobalDataBase.LootChests.Chest chest = new GlobalDataBase.LootChests.Chest();
+        Chest chest = new Chest();
         chest.json = response;
         chest.isOpend = false;
 
@@ -37,5 +44,18 @@ public class MachThreeServerMeassage : MonoBehaviour
     void Errors(string response)
     {
         Debug.Log("Error: " + response);
+        ServerError(ResolveError(response));
+    }
+
+    ServerErrors ResolveError(string json)
+    {
+        System.Text.RegularExpressions.Regex endedCoupons = new System.Text.RegularExpressions.Regex(@"Coupon not found");
+
+        if(endedCoupons.IsMatch(json))
+        {
+            return ServerErrors.EndedCoupons;
+        }
+
+        return ServerErrors.Unknown;
     }
 }

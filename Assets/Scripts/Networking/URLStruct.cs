@@ -218,3 +218,9 @@ public class GetToken
     public string access_token;
     public string refresh_token;
 }
+
+[System.Serializable]
+public class Avability
+{
+    public string availability;
+}

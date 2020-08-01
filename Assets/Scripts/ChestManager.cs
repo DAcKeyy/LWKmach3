@@ -1,6 +1,10 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections;
+using LWT.View;
+using UnityEngine.UI;
+using DG.Tweening;
+using ModestTree;
 
 public enum ChestDrop
 {
@@ -10,55 +14,92 @@ public enum ChestDrop
 
 public class ChestManager : MonoBehaviour
 {
+    public static Action<ChestDrop, string, string> ChestOpening;
+    public static Action UnknownChest;
 
-    CouponsManager couponsManger = new CouponsManager();
-    //public static Action<ChestDrop> ChestOpening;
-    
+    [SerializeField] CouponsManager couponsManger = null;
+    [SerializeField] float FadeDuration = 1;
+    [SerializeField] GameObject MainPanel = null;
+
+    private bool isOpend;
+
     void Start()
     {
-        couponsManger = GameObject.Find("EventSystem").GetComponent<CouponsManager>();
-
         if (GlobalDataBase.LootChests.ChestsList.Count != 0)
         {
-            OpenChest();
+            gameObject.GetComponent<Image>().raycastTarget = true;
+            MainPanel.GetComponent<Image>().DOFade(0.6f, FadeDuration).OnComplete(() => StartCoroutine(OpenChests()));
         }
     }
 
-    void OpenChest()
+
+    private void OnEnable()
+    {
+        ChestView.AnimationEnded += ChestOpend;
+    }
+
+    private void OnDisable()
+    {
+        ChestView.AnimationEnded -= ChestOpend;
+    }
+    void ChestOpend()
+    {
+        isOpend = true;
+    }
+
+    IEnumerator WaitForAnimation(int ID)
+    {
+        yield return new WaitUntil(() => isOpend == true);
+        //chest.isOpend = true;
+        Debug.Log("Removed: " + GlobalDataBase.LootChests.ChestsList[ID].json);
+        GlobalDataBase.LootChests.ChestsList.RemoveAt(ID);
+        isOpend = false;
+    }
+
+    IEnumerator OpenChests()
     {
         Сoupon coupon = new Сoupon();
 
-        GlobalDataBase.LootChests.ChestsList.ForEach(Chest =>
+        for (int i = GlobalDataBase.LootChests.ChestsList.Count - 1; i >= 0; i--)
         {
-            LootBox Obj = JsonUtility.FromJson<LootBox>(Chest.json);
+
+            var chest = GlobalDataBase.LootChests.ChestsList[i];
+
+            if (chest == null) continue;
+            if (chest.json.IsEmpty()) continue;
+
+            Debug.Log(chest.json);
+
+            LootBox Obj = JsonUtility.FromJson<LootBox>(chest.json);
 
             switch (Obj.data.type)
             {
                 case "coupons":
+                    coupon.id = (++Prefs.CoponsAddedTotal).ToString();
                     coupon.company_name = Obj.data.attributes.company;
                     coupon.contact = Obj.data.attributes.contact;
                     coupon.description = Obj.data.attributes.description;
                     coupon.expiration_date = Obj.data.attributes.expiration_date;
                     coupon.promo = Obj.data.attributes.coupon;
-                    coupon.isChecked = "False";
+                    coupon.isChecked = GlobalDataBase.FalseString;
 
                     couponsManger.SaveCoupon(coupon);
                     Debug.Log("Saved promo:" + coupon.promo);
 
-                    StartCoroutine(WaitForAnimation(Chest));
-                    //ChestOpening(ChestDrop.Coupon);    
+                    ChestOpening(ChestDrop.Coupon, coupon.promo, coupon.company_name);
+                    yield return StartCoroutine(WaitForAnimation(i));                 
                     break;
                 case "buff":
-                    //ChestOpening(ChestDrop.buff);
+                    ChestOpening(ChestDrop.buff, Obj.data.attributes.buff_name , null);
+                    yield return StartCoroutine(WaitForAnimation(i));
                     break;
-            }
-        });
-    }
+                default:
+                    UnknownChest();
+                    break;
+            }  
+        }
 
-    IEnumerator WaitForAnimation(GlobalDataBase.LootChests.Chest chest)
-    {
-        yield return null;
-        //chest.isOpend = true;
-        GlobalDataBase.LootChests.ChestsList.Remove(chest);
+        couponsManger.CheckCoupons();
+        MainPanel.GetComponent<Image>().DOFade(0, FadeDuration / 3).OnComplete(() => gameObject.GetComponent<Image>().raycastTarget = false);
     }
 }

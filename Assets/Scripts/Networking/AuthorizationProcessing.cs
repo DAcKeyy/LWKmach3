@@ -5,6 +5,7 @@ using System;
 using System.Text.RegularExpressions;
 using LWT.System;
 using Zenject;
+using ModestTree;
 
 public enum ErrorType
 {
@@ -22,11 +23,12 @@ public enum ResponseType
 
 namespace LWT.Networking
 {
-    public class AuthorizationProcessing : MonoBehaviour
+    public class AuthorizationProcessing : MonoBehaviour//жутко перегруженный класс, да простят меня боги ооп
     {
         [Inject]
         private StartSceneInputHandels inputHandles = null;
 
+        [SerializeField] private GameObject ErrorPanel = null;
         [SerializeField] private GameObject UserPanel = null;
         [SerializeField] private GameObject CouponsPanel = null;
         [SerializeField] private GameObject AccountAcceptedPanel = null;
@@ -50,7 +52,13 @@ namespace LWT.Networking
 
         private void Start()
         {
-            LoadLevel(null);
+            CheckInternerConection();
+
+            CheckForServerErrors();
+
+
+
+
 
             //UserPanel.SetActive(false);                 //чтобы не заморачиваться с выключением панелей в едиторе
             //AccountAcceptedPanel.SetActive(false);
@@ -69,13 +77,50 @@ namespace LWT.Networking
             //FieldsCheker.DescriptionText = TextUponFields;
         }
 
+
         void CheckInternerConection()
         {
-            var webRequest = UnityWebRequest.Get("https://api.wingift.cf");
-            webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
+            var webRequest = UnityWebRequest.Get("https://www.google.com/");
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+        }
+
+        void CheckForCoupons()
+        {
+            var webRequest = UnityWebRequest.Get("https://api.sarond.cf/availability");
+
+            StartCoroutine(Sender.SendWebRequest(webRequest, CheckForCouponsResponse, ConectionError));
+            StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
+        }
+
+        void CheckForCouponsResponse(string json)
+        {
+            var response = JsonUtility.FromJson<Avability>(json);
+            if (response.availability == GlobalDataBase.TrueString)
+            {
+                if (String.IsNullOrEmpty(GlobalDataBase.Error))
+                    LoadLevel(null);
+            }
+            else BlockPanel("The game has closed due to the lack of coupons in the system");
+
+
+        }
+
+        void CheckForServerErrors()
+        {
+            if(!String.IsNullOrEmpty(GlobalDataBase.Error))
+            {
+                BlockPanel(GlobalDataBase.Error);
+
+
+            }
+        }
+
+        void BlockPanel(string text)
+        {
+            ErrorPanel.SetActive(true);
+            ErrorPanel.GetComponentInChildren<TMP_Text>().text = text;
         }
 
         void Authorization()
@@ -283,7 +328,7 @@ namespace LWT.Networking
 
         void CheckInternerConectionResponse(string response)
         {
-            CheckForFirstStartup();
+            CheckForCoupons();
         }
     }
 }

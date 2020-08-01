@@ -15,6 +15,8 @@ public class CouponsManager : MonoBehaviour
     [SerializeField] private Transform Prefab = null;
     [SerializeField] private Transform Parent = null;
     [SerializeField] private GameObject Text = null;
+    [SerializeField] private GameObject NotificationCounter = null;
+    [SerializeField] private Counter NotificationCounterScript = null;
 
     private void Awake()
     {
@@ -24,6 +26,24 @@ public class CouponsManager : MonoBehaviour
 
         //GetCouponFromServer();
         InstantiateCoupon();
+    }
+    private void OnEnable()
+    {
+        CheckCoupons();
+        CouponsPanelControler.Check_for_notifications_to_show += ShowNotificationPanel;
+        CurrentCoupon.Checked += UpdateCoupon;
+    }
+    private void OnDisable()
+    {
+        CouponsPanelControler.Check_for_notifications_to_show -= ShowNotificationPanel;
+        CurrentCoupon.Checked -= UpdateCoupon;
+    }
+
+    private void ShowNotificationPanel(CouponsPanelControler obj)
+    {
+        obj.ToDeleted = Prefs.CoponsDeleted;
+        obj.Show();
+        Prefs.CoponsDeleted = 0;
     }
 
     #region GetCouponFromServer
@@ -44,6 +64,8 @@ public class CouponsManager : MonoBehaviour
     public void SaveCoupon(Сoupon coupon)
     {
         DataSaver.SaveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
+        if (Prefs.CoponsAdded == Int32.MaxValue - 1) Prefs.CoponsAdded = 0;
+        else Prefs.CoponsAdded++;
 
         InstantiateCoupon();
     }
@@ -58,19 +80,62 @@ public class CouponsManager : MonoBehaviour
     public void DeleteCoupon(Сoupon obj)
     {
         DataSaver.DeleteData(obj.company_name + "_" + obj.promo + "_Coupon");
-
+        Prefs.CoponsDeleted++;
         InstantiateCoupon();
     }
     #endregion
 
+    private void UpdateCoupon(CurrentCoupon obj)
+    {
+        Coupons = DataSaver.FindData<Сoupon>();
+        foreach(var coupon in Coupons)
+        {
+            if(coupon.id == obj._сoupon.id)
+            {
+                DataSaver.DeleteData(coupon.company_name + "_" + coupon.promo + "_Coupon");
+                coupon.isChecked = obj._сoupon.isChecked;
+                DataSaver.SaveData(coupon, coupon.company_name + "_" + coupon.promo + "_Coupon");
+            }
+        }
+        CheckCoupons();
+    }
+
+    public void CheckCoupons()
+    {
+        Coupons = DataSaver.FindData<Сoupon>();
+
+        if (Coupons.Count != 0)
+        {
+            int counter = 0;
+            foreach (Сoupon coupon in Coupons)
+            {
+                Debug.Log(coupon.isChecked);
+
+                if (coupon.isChecked == GlobalDataBase.FalseString)
+                {
+                    counter++;
+                }
+            }
+            Prefs.CoponsAdded = counter;
+        }
+        else Prefs.CoponsAdded = 0;
+        SetNotificationText();
+    }
+
+    private void SetNotificationText()//реализовал тут, в падлу придумывать классы ради классов
+    {
+        if (Prefs.CoponsAdded != 0 || Prefs.CoponsDeleted != 0)
+        {
+            NotificationCounterScript.SetText((Prefs.CoponsAdded + Prefs.CoponsDeleted).ToString());
+        }
+        else NotificationCounter.SetActive(false);
+    }
+
     private void ClearCoupon()
     {
-        if (currentScene.name == "Menu")//проверка - В меню ли я?
+        foreach (Transform child in Parent)
         {
-            foreach (Transform child in Parent)
-            {
-                Destroy(child.gameObject);
-            }
+            Destroy(child.gameObject);
         }
     }
 
@@ -84,7 +149,7 @@ public class CouponsManager : MonoBehaviour
 
         if (currentScene.name == "Menu" || currentScene.name == "Start")
         {
-            List<Сoupon> сoupons_to_delete = new List<Сoupon>();//это женерик нужен для хранения купонов, подлежащих 
+            List<Сoupon> сoupons_to_delete = new List<Сoupon>();
 
             Coupons = DataSaver.FindData<Сoupon>();
 
@@ -111,6 +176,10 @@ public class CouponsManager : MonoBehaviour
                     CouponObj.name = coupon.company_name + "_" + coupon.promo + "_Coupon";
 
                     CouponObj.gameObject.GetComponent<CurrentCoupon>()._сoupon = coupon;
+
+                    if(coupon.isChecked == GlobalDataBase.FalseString)             
+                        for(int i = 0; i < CouponObj.childCount; i++)
+                            CouponObj.GetChild(i).gameObject.SetActive(true);                  
                 }
 
                 foreach (Сoupon coupon in сoupons_to_delete)

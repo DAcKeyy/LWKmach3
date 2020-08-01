@@ -25,7 +25,7 @@ public class UISlidePanels : MonoBehaviour
     private RectTransform PanelTransform;
     private Vector2 TargetPosition;
     private Vector2 StartPosition;
-    private bool isMooving = false;
+    //private bool isMooving = false;
     private bool isClosed = false;
 
     private void Start()
@@ -69,7 +69,7 @@ public class UISlidePanels : MonoBehaviour
 
     public void Move()
     {
-        isMooving = true;
+        //isMooving = true;
         isClosed = !isClosed;
 
         StartCoroutine(Tweening());

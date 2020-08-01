@@ -7,6 +7,8 @@ public class CurrentCoupon : MonoBehaviour
     public Сoupon _сoupon;
     private GameObject CheckPanel;
     public Action<CurrentCoupon> ToDelete;
+    public static Action<CurrentCoupon> Checked;
+    public GameObject NotificationMark;
 
     private void Start()
     {
@@ -17,7 +19,7 @@ public class CurrentCoupon : MonoBehaviour
 
         CheckPanel = GameObject.Find("Coupons Canvas/Coupons Panel/Check Panel").gameObject;
     }
-
+    
     public void Delete()
     {
         ToDelete(this);
@@ -35,6 +37,15 @@ public class CurrentCoupon : MonoBehaviour
         Panel.transform.Find("Description Text").gameObject.GetComponent<TMP_Text>().text = _сoupon.description;
         Panel.transform.Find("Contact Text").gameObject.GetComponent<TMP_Text>().text = _сoupon.contact;
         Panel.transform.Find("LifeSpain Text").gameObject.GetComponent<TMP_Text>().text = _сoupon.expiration_date;
+
+        CheckCoupon();
+    }
+
+    private void CheckCoupon()
+    {
+        _сoupon.isChecked = GlobalDataBase.TrueString;
+        Debug.Log(_сoupon.id + " " + _сoupon.isChecked);
+        NotificationMark.SetActive(false);
+        Checked(this);
     }
 }
-

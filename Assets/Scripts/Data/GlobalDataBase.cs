@@ -1,5 +1,8 @@
 ﻿public static class GlobalDataBase
 {
+    public static string Error;
+    public static readonly string TrueString = "true";
+    public static readonly string FalseString = "false";
     public static int NumberOfWeel;
     public static float SoundValue;
     public static float MusicValue;
@@ -17,14 +20,9 @@
     public static int Tickets = 0;
     public static string PrevScene = "Start";
 
+    [System.Serializable]
     public static class LootChests
     {
-        public class Chest
-        {
-            public string json = "{\"type\":\"null\"}";
-            public bool isOpend = false;
-        }
-
         static LootChests()
         {
             ChestsList = new System.Collections.Generic.List<Chest>();
@@ -40,8 +38,16 @@
 }
 
 [System.Serializable]
+public class Chest
+{
+    public string json = "{\"type\":\"null\"}";
+    public bool isOpend = false;
+}
+
+[System.Serializable]
 public class Сoupon
 {
+    public string id = "0";
     public string company_name = "TWIRL Games";
     public string promo = "NONE";
     public string expiration_date = System.DateTime.Today.ToString("d");

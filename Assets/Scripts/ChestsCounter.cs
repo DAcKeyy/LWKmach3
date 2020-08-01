@@ -3,7 +3,7 @@ using TMPro;
 
 public class ChestsCounter : MonoBehaviour
 {
-    [SerializeField] TMP_Text CountText;
+    [SerializeField] TMP_Text CountText = null;
     private int count;
 
     private void OnEnable()

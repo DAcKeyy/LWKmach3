@@ -64,7 +64,7 @@ public class ChestAnimationController : MonoBehaviour
             ChestAnimator.SetTrigger("SecondTask");
         }
         if (TaskCounter == 3)//тут не придумал как это сделать в контролере поэтому сделал это с помощью твина
-        {
+        {//на самом деле придумал (Адель), но в падлу переписывать 
             TaskCounter = 0;
 
             StartCoroutine(TweenAnimaton());
