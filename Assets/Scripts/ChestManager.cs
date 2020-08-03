@@ -20,11 +20,16 @@ public class ChestManager : MonoBehaviour
     [SerializeField] CouponsManager couponsManger = null;
     [SerializeField] float FadeDuration = 1;
     [SerializeField] GameObject MainPanel = null;
+    [SerializeField] Counter BombCounter = null;
+    [SerializeField] Counter TimeCounter = null;
 
     private bool isOpend;
 
     void Start()
     {
+        BombCounter.SetText(Prefs.BombBuff);
+        TimeCounter.SetText(Prefs.TimeBuff);
+
         if (GlobalDataBase.LootChests.ChestsList.Count != 0)
         {
             gameObject.GetComponent<Image>().raycastTarget = true;
@@ -32,19 +37,33 @@ public class ChestManager : MonoBehaviour
         }
     }
 
-
     private void OnEnable()
     {
         ChestView.AnimationEnded += ChestOpend;
+        ChestView.BombGotten += BombBuffIncrement;
+        ChestView.TimeGotten += TimeBuffIncrement;
     }
 
     private void OnDisable()
     {
         ChestView.AnimationEnded -= ChestOpend;
+        ChestView.BombGotten -= BombBuffIncrement;
+        ChestView.TimeGotten -= TimeBuffIncrement;
     }
     void ChestOpend()
     {
         isOpend = true;
+    }
+
+    void BombBuffIncrement()
+    {
+        BombCounter.Increment();
+        Prefs.BombBuff++;
+    }
+    void TimeBuffIncrement()
+    {
+        TimeCounter.Increment();
+        Prefs.TimeBuff++;
     }
 
     IEnumerator WaitForAnimation(int ID)
@@ -89,8 +108,8 @@ public class ChestManager : MonoBehaviour
                     ChestOpening(ChestDrop.Coupon, coupon.promo, coupon.company_name);
                     yield return StartCoroutine(WaitForAnimation(i));                 
                     break;
-                case "buff":
-                    ChestOpening(ChestDrop.buff, Obj.data.attributes.buff_name , null);
+                case "boosters":
+                    ChestOpening(ChestDrop.buff, Obj.data.attributes.name, null);
                     yield return StartCoroutine(WaitForAnimation(i));
                     break;
                 default:

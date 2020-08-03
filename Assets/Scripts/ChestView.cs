@@ -13,10 +13,14 @@ namespace LWT.View//
     public class ChestView : MonoBehaviour
     {
         public static Action AnimationEnded;
+        public static Action BombGotten;
+        public static Action TimeGotten;
         //public static Action LootGotten;
 
         [BoxGroup("Prefabs")] [SerializeField] private GameObject chestPrefab = null;
         [BoxGroup("Prefabs")] [SerializeField] private GameObject lootPrefab = null;
+        [BoxGroup("Images")] [SerializeField] private Sprite Bomb = null;
+        [BoxGroup("Images")] [SerializeField] private Sprite Time = null;
         [BoxGroup("Default value")] [SerializeField] private AnimationReferenceAsset openAnimation = null;
         [BoxGroup("Default value")] [SerializeField] private float AnimationScale = 1;
         [BoxGroup("Tweens Duration")] [SerializeField] private float moveDuration = .2f;
@@ -98,10 +102,12 @@ namespace LWT.View//
                     case ChestDrop.buff:
                         switch (DropParam1)
                         {
-                            case "bomb":
+                            case "Bomb":
+                                loot.transform.DOScale(0, moveDuration).OnComplete(()=> BombGotten());
                                 loot.transform.DOMove(BombEndPoint.position, moveDuration).OnComplete(() => AnimationEnded());
                                 break;
-                            case "time":
+                            case "Overtime":
+                                loot.transform.DOScale(0, moveDuration).OnComplete(() => TimeGotten()); ;
                                 loot.transform.DOMove(TimeEndPoint.position, moveDuration).OnComplete(() => AnimationEnded());
                                 break;
                             default:
@@ -149,8 +155,16 @@ namespace LWT.View//
                     loot.GetComponentInChildren<TMP_Text>().text = DropParam1 + "\n" + DropParam2;
                     break;
                 case ChestDrop.buff:
-                    loot.GetComponentInChildren<TMP_Text>().text = "Buff: " + DropParam1;
-                    break;
+                    switch (DropParam1)
+                    {
+                        case "Bomb":
+                            loot.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite = Bomb;
+                            break;
+                        case "Overtime":
+                            loot.transform.Find("Sprite").gameObject.GetComponent<SpriteRenderer>().sprite = Time;
+                            break;
+                    }
+                    break;          
             }
         }
 

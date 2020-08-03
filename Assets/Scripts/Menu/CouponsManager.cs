@@ -29,7 +29,6 @@ public class CouponsManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        CheckCoupons();
         CouponsPanelControler.Check_for_notifications_to_show += ShowNotificationPanel;
         CurrentCoupon.Checked += UpdateCoupon;
     }
@@ -37,6 +36,11 @@ public class CouponsManager : MonoBehaviour
     {
         CouponsPanelControler.Check_for_notifications_to_show -= ShowNotificationPanel;
         CurrentCoupon.Checked -= UpdateCoupon;
+    }
+
+    private void Start()
+    {
+        CheckCoupons();
     }
 
     private void ShowNotificationPanel(CouponsPanelControler obj)
@@ -124,11 +128,13 @@ public class CouponsManager : MonoBehaviour
 
     private void SetNotificationText()//реализовал тут, в падлу придумывать классы ради классов
     {
-        if (Prefs.CoponsAdded != 0 || Prefs.CoponsDeleted != 0)
-        {
-            NotificationCounterScript.SetText((Prefs.CoponsAdded + Prefs.CoponsDeleted).ToString());
-        }
-        else NotificationCounter.SetActive(false);
+        if(NotificationCounter != null)
+            if (Prefs.CoponsAdded != 0 || Prefs.CoponsDeleted != 0)
+            {
+                NotificationCounter.SetActive(true);
+                NotificationCounterScript.SetText((Prefs.CoponsAdded + Prefs.CoponsDeleted).ToString());
+            }
+            else NotificationCounter.SetActive(false);
     }
 
     private void ClearCoupon()

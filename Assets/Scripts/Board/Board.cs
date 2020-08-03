@@ -10,6 +10,7 @@ public class Board : MonoBehaviour
 {
     public static Action BoardUp = delegate { };
 
+    [SerializeField] private Counter BombCounter;
     [BoxGroup("TaskManager")]
     public TaskManager taskManager;
 
@@ -151,7 +152,7 @@ public class Board : MonoBehaviour
     private void Start()
     {
         Application.targetFrameRate = 60;
-
+        BombCounter.SetText(Prefs.BombBuff);
         StartGame();
         //AddLvl();
     }
@@ -215,10 +216,13 @@ public class Board : MonoBehaviour
     }
 
     ////////////////////////BOMB///////////////////////////
-
     public void ActivateBomb()
     {
-        _boardManager.ActiveteBomb(true);
+        if(Prefs.BombBuff != 0)
+        {
+            _boardManager.ActiveteBomb(true);
+            BombCounter.SetText(--Prefs.BombBuff);
+        }
     }
 
     private void BombExplosion(Tile tile)
@@ -236,8 +240,6 @@ public class Board : MonoBehaviour
             }
         }
     }
-
-
     ////////////////////////BOMB///////////////////////////
 
     private IEnumerator ShuffleRoutine()

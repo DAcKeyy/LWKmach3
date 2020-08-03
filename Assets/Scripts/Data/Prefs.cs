@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public static class Prefs 
 {
@@ -17,5 +16,15 @@ public static class Prefs
     {
         get { return PlayerPrefs.GetInt("CoponsAddedTotal", 0); }
         set { PlayerPrefs.SetInt("CoponsAddedTotal", value); }
+    }
+    public static int BombBuff
+    {
+        get { return PlayerPrefs.GetInt("BombBuff", 0); }
+        set { PlayerPrefs.SetInt("BombBuff", value); }
+    }
+    public static int TimeBuff
+    {
+        get { return PlayerPrefs.GetInt("TimeBuff", 0); }
+        set { PlayerPrefs.SetInt("TimeBuff", value); }
     }
 }

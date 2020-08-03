@@ -199,7 +199,8 @@ public class DataLootBox
 [System.Serializable]
 public class AttributesLootBox
 {
-    public string buff_name;
+    public string name;
+
     public string coupon;
     public string expiration_date;
     public string discount;

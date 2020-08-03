@@ -7,6 +7,7 @@ using System;
 public class UpTimer : MonoBehaviour
 {
     public static Action GameIsOver = delegate { };
+    [SerializeField] private Counter TimeCounter;
     [BoxGroup("Time settings")]
     [Slider(5, 120)]
     public float roundTime = 30f;
@@ -22,6 +23,7 @@ public class UpTimer : MonoBehaviour
 
     private void Start()
     {
+        TimeCounter.SetText(Prefs.TimeBuff);
         timeSlider.minValue = 0f;
         timeSlider.maxValue = roundTime;
         initialTime = roundTime;
@@ -29,14 +31,19 @@ public class UpTimer : MonoBehaviour
 
     public void AddTime()
     {
-        if (roundTime + timeToAdd > timeSlider.maxValue)
+        if(Prefs.TimeBuff != 0)
         {
-            roundTime = initialTime;
-        }
-        else
-        {
-            roundTime += timeToAdd;
-            timeSlider.value = roundTime;
+            TimeCounter.SetText(--Prefs.TimeBuff);
+
+            if (roundTime + timeToAdd > timeSlider.maxValue)
+            {
+                roundTime = initialTime;
+            }
+            else
+            {
+                roundTime += timeToAdd;
+                timeSlider.value = roundTime;
+            }
         }
     }
 
