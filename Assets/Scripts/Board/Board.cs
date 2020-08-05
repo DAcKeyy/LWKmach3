@@ -103,7 +103,7 @@ public class Board : MonoBehaviour
             Destroy(GameObject.Find("Mask").gameObject);
         }
 
-        SetupCamera();
+        //SetupCamera();
         taskManager.Init();
 
 

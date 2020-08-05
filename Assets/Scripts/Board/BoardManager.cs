@@ -61,8 +61,12 @@ public class BoardManager
         _tilesParent = new GameObject("Tiles").transform;
         _maskParent = new GameObject("Mask").transform;
 
+        _piecesParent.position = new Vector2(-2, -4);
+        _tilesParent.position = new Vector2(-2, -4);
+        _maskParent.position = new Vector2(-2, -4);
+
         _piecesParent.transform.SetParent(pieceAnimator.transform);
-        _tilesParent.transform.SetParent(pieceAnimator.transform);
+        //_tilesParent.transform.SetParent(pieceAnimator.transform);
         _maskParent.transform.SetParent(pieceAnimator.transform);
 
         _obstaclesHeight = obstaclesHeight;

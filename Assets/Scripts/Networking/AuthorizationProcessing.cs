@@ -44,7 +44,7 @@ namespace LWT.Networking
         [SerializeField] private TMP_InputField RestorePassEmailField = null;
         [SerializeField] private TMP_Text TextUponFields = null;
         [SerializeField] private GameObject PanelWithText = null;
-        [SerializeField] private LevelLoader levelLoader = null;
+        //[SerializeField] private LevelLoader levelLoader = null;
         [SerializeField] private ServerLoadingProcess LoadIndicator = null;
 
         RegistrationFiledsCheker FieldsCheker = new RegistrationFiledsCheker();
@@ -229,7 +229,7 @@ namespace LWT.Networking
 
             //URLStruct.CouponsLink = Obj.data.links.self;
 
-            levelLoader.LoadScene("Menu");
+            FindObjectOfType<LevelLoader>().LoadSceneOnly("Menu");
         }
 
         void Error(string response)

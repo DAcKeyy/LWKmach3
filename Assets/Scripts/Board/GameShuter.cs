@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameShuter : MonoBehaviour
 {
-    [SerializeField] LevelLoader loader;
+    //[SerializeField] LevelLoader loader;
 
     private void OnEnable()
     {
@@ -28,6 +28,6 @@ public class GameShuter : MonoBehaviour
                 break;
         }
         
-        loader.LoadScene("Start");
+        FindObjectOfType<LevelLoader>().LoadScene("Start");
     }
 }

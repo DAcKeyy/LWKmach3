@@ -18,16 +18,30 @@ namespace LWT.System
         [SerializeField]
         private AnimationClip LeavesOpen;
 
-        public void LoadScene(string name)
+        private void Awake()
         {
-            GlobalDataBase.PrevScene = SceneManager.GetActiveScene().name;
+            Debug.Log("Awake" + SceneManager.GetActiveScene().name);
+            DontDestroyOnLoad(this);
+        }
 
+        public void LoadSceneOnly(string name)
+        {
+            SceneManager.LoadScene(name);
+        }
+
+        public void LoadScene(string name)
+        {           
             StartCoroutine(LoadAsynchronously(name));
+        }
+
+        public void OpenLeaves()
+        {
+            StartCoroutine(LeavesAnimation(true));
         }
 
         private IEnumerator LoadAsynchronously(string Scene)
         {
-            yield return StartCoroutine(LeavesAnimation());
+            yield return StartCoroutine(LeavesAnimation(false));
 
             AsyncOperation operation = SceneManager.LoadSceneAsync(Scene);
 
@@ -37,17 +51,23 @@ namespace LWT.System
             }
         }
 
-        private IEnumerator LeavesAnimation()
+        private IEnumerator LeavesAnimation(bool open)
         {
             if (AnimationComponent != null)
             {
-                AnimationComponent.gameObject.SetActive(true);
-
-                AnimationComponent.Play(LeavesClose.name);
-
-                while (AnimationComponent.IsPlaying(LeavesClose.name))
+                if (open)
                 {
-                    yield return null;
+                    AnimationComponent.Play(LeavesOpen.name);
+
+                    while (AnimationComponent.IsPlaying(LeavesOpen.name))
+                        yield return null;                
+                }
+                else
+                {
+                    AnimationComponent.Play(LeavesClose.name);
+
+                    while (AnimationComponent.IsPlaying(LeavesClose.name))
+                        yield return null;                    
                 }
             }
         }
