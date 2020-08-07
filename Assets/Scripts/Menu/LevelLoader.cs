@@ -20,7 +20,8 @@ namespace LWT.System
 
         private void Awake()
         {
-            Debug.Log("Awake" + SceneManager.GetActiveScene().name);
+            //Debug.Log("Awake" + SceneManager.GetActiveScene().name);
+            //OpenLeaves();
             DontDestroyOnLoad(this);
         }
 
@@ -30,12 +31,14 @@ namespace LWT.System
         }
 
         public void LoadScene(string name)
-        {           
+        {
             StartCoroutine(LoadAsynchronously(name));
         }
 
         public void OpenLeaves()
         {
+            Vector3 camPos = Camera.main.transform.position;
+            transform.position = new Vector3(camPos.x - 0.8f, camPos.y, 1.7f);
             StartCoroutine(LeavesAnimation(true));
         }
 
@@ -53,21 +56,36 @@ namespace LWT.System
 
         private IEnumerator LeavesAnimation(bool open)
         {
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+            yield return null;
+
             if (AnimationComponent != null)
             {
                 if (open)
                 {
                     AnimationComponent.Play(LeavesOpen.name);
-
+                    Debug.Log("Open");
                     while (AnimationComponent.IsPlaying(LeavesOpen.name))
-                        yield return null;                
+                        yield return null;
                 }
                 else
                 {
                     AnimationComponent.Play(LeavesClose.name);
 
                     while (AnimationComponent.IsPlaying(LeavesClose.name))
-                        yield return null;                    
+                        yield return null;
                 }
             }
         }

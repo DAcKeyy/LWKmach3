@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeCounter: {fileID: 1886334217}
-  roundTime: 45
+  roundTime: 2
   timeToAdd: 15
   timeSlider: {fileID: 1865658222}
   EndCanvas: {fileID: 966080788}
@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneName: 
+  openLeavesOnStart: 0
 --- !u!1 &197630799
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,7 +915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254310937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 4, z: 0}
   m_LocalScale: {x: 0.82067806, y: 0.82067806, z: 0.82067806}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1871,7 +1872,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: Menu
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 1
       - m_Target: {fileID: 847099772}
         m_MethodName: set_interactable
         m_Mode: 6
@@ -1933,6 +1934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneName: Menu
+  openLeavesOnStart: 0
 --- !u!1 &860291376
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,7 +2355,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 2, y: 4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3325,7 +3327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611868761}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1777020317}

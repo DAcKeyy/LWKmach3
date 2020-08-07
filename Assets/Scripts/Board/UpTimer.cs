@@ -56,7 +56,7 @@ public class UpTimer : MonoBehaviour
 
             if (roundTime <= 0f)
             {
-                   canProcess = false;
+                canProcess = false;
                 roundTime = 0f;
                 Debug.Log("Time is over");
                 EndCanvas.SetActive(true);

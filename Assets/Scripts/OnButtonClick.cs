@@ -4,9 +4,12 @@ using LWT.System;
 public class OnButtonClick : MonoBehaviour
 {
     [SerializeField] private string SceneName;
+    [SerializeField] private bool openLeavesOnStart = true;
+
     public void Start()
     {
-        FindObjectOfType<LevelLoader>().OpenLeaves();
+        if (openLeavesOnStart)
+            FindObjectOfType<LevelLoader>().OpenLeaves();
     }
 
     public void Click()

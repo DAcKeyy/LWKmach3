@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using NaughtyAttributes;
 using System;
-using TMPro;
+using LWT.System;
 
 public class Board : MonoBehaviour
 {
@@ -124,8 +124,9 @@ public class Board : MonoBehaviour
         _boardDeadlock = new BoardDeadlock(width, height);
         _boardShuffler = new BoardShuffler(width, height, _boardManager);
 
-        transform.position = new Vector3(-width - borderSize, 0f, 0f);
-        StartCoroutine(MoveBoardRoutine());
+        FindObjectOfType<LevelLoader>().OpenLeaves();
+        //transform.position = new Vector3(-width - borderSize, 0f, 0f);
+        //StartCoroutine(MoveBoardRoutine());
     }
 
     private IEnumerator MoveBoardRoutine()

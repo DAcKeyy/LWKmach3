@@ -14509,7 +14509,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 1103758198}
+  blendMaterial: {fileID: 1290181139}
   componentExtensionState:
     extendedComponent: {fileID: 1040159223}
     shaderProperties:
@@ -14555,7 +14555,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1103758198}
+  - {fileID: 1290181139}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15058,40 +15058,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1099624690}
   m_CullTransparentMesh: 0
---- !u!21 &1103758198
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/SpritesDefault/Grab
-  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1104173797
 GameObject:
   m_ObjectHideFlags: 0
@@ -15725,40 +15691,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1142478701}
   m_CullTransparentMesh: 0
---- !u!21 &1152124879
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 9
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Hidden/BlendModes/SpritesDefault/Grab
-  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
-  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1162722603
 GameObject:
   m_ObjectHideFlags: 0
@@ -17128,6 +17060,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputField: {fileID: 737091001}
+--- !u!21 &1262679536
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 9
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/BlendModes/SpritesDefault/Grab
+  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
+  m_ShaderKeywords: BLENDMODES_MODE_LINEARDODGE ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1265205556
 GameObject:
   m_ObjectHideFlags: 0
@@ -17766,6 +17732,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285462765}
   m_CullTransparentMesh: 0
+--- !u!21 &1290181139
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 9
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hidden/BlendModes/SpritesDefault/Grab
+  m_Shader: {fileID: 4800000, guid: bf465645edc8c924b95a55ff5b3feb75, type: 3}
+  m_ShaderKeywords: BLENDMODES_MODE_LIGHTEN ETC1_EXTERNAL_ALPHA
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - PixelSnap: 0
+    - _EnableExternalAlpha: 0
+    m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1293036377
 GameObject:
   m_ObjectHideFlags: 0
@@ -18464,7 +18464,7 @@ MonoBehaviour:
   framebufferEnabled: 0
   unifiedGrabEnabled: 0
   shareMaterial: 0
-  blendMaterial: {fileID: 1152124879}
+  blendMaterial: {fileID: 1262679536}
   componentExtensionState:
     extendedComponent: {fileID: 1341448314}
     shaderProperties:
@@ -18510,7 +18510,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1152124879}
+  - {fileID: 1262679536}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19348,8 +19348,8 @@ MonoBehaviour:
   - {fileID: 463846720}
   - {fileID: 1216361971}
   m_Bounds:
-    m_Center: {x: 0.0059919357, y: -0.0024077892, z: 0}
-    m_Extent: {x: 3.4059825, y: 2.062418, z: 0}
+    m_Center: {x: 0.005992174, y: -0.002408266, z: 0}
+    m_Extent: {x: 3.405982, y: 2.0624175, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &1451507803
@@ -20386,8 +20386,8 @@ MonoBehaviour:
   - {fileID: 1007034812}
   - {fileID: 1104173798}
   m_Bounds:
-    m_Center: {x: 0.3383062, y: 0.15259409, z: 0.000015258789}
-    m_Extent: {x: 3.0623083, y: 2.2694001, z: 9.094947e-13}
+    m_Center: {x: 0.33830523, y: 0.1525929, z: 0.000015258789}
+    m_Extent: {x: 3.0623074, y: 2.2693992, z: 9.094947e-13}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
 --- !u!111 &1512479866
@@ -24195,7 +24195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -192, y: 175}
+  m_AnchoredPosition: {x: -191.99994, y: 175}
   m_SizeDelta: {x: -592, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1773633859
@@ -25013,17 +25013,17 @@ PrefabInstance:
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.71758056
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.099357314
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.731782
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
@@ -25068,17 +25068,17 @@ PrefabInstance:
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.6559552
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.6559552
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100353, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.1039702
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 676146315298100382, guid: 8f123aaeb7271ac4b89b1a3a6dfb5223,
         type: 3}
