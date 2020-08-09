@@ -168,7 +168,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 33.75
+  m_fontSize: 101.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 2014574640082581689}
   - component: {fileID: 8875444855499825773}
   - component: {fileID: 5265393642022995560}
+  - component: {fileID: 7516593013399304533}
   m_Layer: 5
   m_Name: Coupon
   m_TagString: Untagged
@@ -273,7 +274,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -8.98, y: -8.19}
-  m_SizeDelta: {x: 200, y: 160}
+  m_SizeDelta: {x: 0, y: 435}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3119927415627967057
 CanvasRenderer:
@@ -506,6 +507,20 @@ MonoBehaviour:
     contact: "Contact \n twirlgamesteam@gmail.com"
     isChecked: False
   NotificationMark: {fileID: 955413072016455928}
+--- !u!114 &7516593013399304533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3119927415627967020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalFit: 2
+  m_VerticalFit: 0
 --- !u!1 &8429993632671740226
 GameObject:
   m_ObjectHideFlags: 0

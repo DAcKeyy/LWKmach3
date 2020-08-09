@@ -21,6 +21,16 @@ public class UpTimer : MonoBehaviour
     private bool canProcess = true;
     private float initialTime;
 
+    private void OnEnable()
+    {
+        ChestAnimationController.ChestCompleted += ChestListener;
+    }
+
+    private void OnDisable()
+    {
+        ChestAnimationController.ChestCompleted -= ChestListener;
+    }
+
     private void Start()
     {
         TimeCounter.SetText(Prefs.TimeBuff);
@@ -45,6 +55,25 @@ public class UpTimer : MonoBehaviour
                 timeSlider.value = roundTime;
             }
         }
+    }
+
+    private void ChestListener()
+    {
+        AddTimeFlexible(5);
+    }
+
+    private void AddTimeFlexible(float seconds)
+    {
+        if (roundTime + seconds > timeSlider.maxValue)
+        {
+            roundTime = initialTime;
+        }
+        else
+        {
+            roundTime += seconds;
+            timeSlider.value = roundTime;
+        }
+
     }
 
     private void FixedUpdate()
