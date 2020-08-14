@@ -52,6 +52,18 @@ public class Board : MonoBehaviour
     [ShowAssetPreview(32, 32)]
     public GameObject tileMaskPrefab;
 
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource BombClickAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource BombExplosionAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource PieceDestroyAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource PieceAppearAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource PieceSwitchAudioSource = null;
+
+
     [ReorderableList]
     public List<GameObject> piecePrefabs;
 
@@ -171,8 +183,11 @@ public class Board : MonoBehaviour
 
     private void PiecesSwitched(Tile clickedTile, Tile targetTile, bool back)
     {
-        List<Piece> piecesToDelete = _boardManager.EndSwitchPieces(clickedTile, targetTile, back);
+        PieceSwitchAudioSource.pitch = UnityEngine.Random.Range(0.75f, 1f);
+        PieceSwitchAudioSource.Play();
 
+        List<Piece> piecesToDelete = _boardManager.EndSwitchPieces(clickedTile, targetTile, back);
+        
         if (piecesToDelete.Count > 0)
         {
             taskManager.CheckTask(piecesToDelete, false);
@@ -183,6 +198,8 @@ public class Board : MonoBehaviour
 
     private void PiecesDeleted(List<Tile> deletedTiles)
     {
+        PieceDestroyAudioSource.Play();
+
         Piece[,] pieces = _modMover.MovePiecesDown();
         _pieceAnimator.MoveAll(pieces, false);
     }
@@ -221,6 +238,8 @@ public class Board : MonoBehaviour
     {
         if(Prefs.BombBuff != 0)
         {
+            BombClickAudioSource.Play();
+
             _boardManager.ActiveteBomb(true);
             BombCounter.SetText(--Prefs.BombBuff);
         }
@@ -232,12 +251,13 @@ public class Board : MonoBehaviour
         {
             if (_boardManager.BombIsActive())
             {
-
                 List<Piece> piecestodel = _boardManager.BombExplosion(tile);
                 taskManager.CheckTask(piecestodel, true);
                 List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
                 _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
+                BombExplosionAudioSource.Play();
                 _boardManager.ActiveteBomb(false);
+
             }
         }
     }

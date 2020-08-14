@@ -2,6 +2,12 @@
 
 public static class Prefs 
 {
+    public static int IsFirstTime
+    {
+        get { return PlayerPrefs.GetInt("IsFirstTime", 1); }
+        set { PlayerPrefs.SetInt("IsFirstTime", value); }
+    }
+
     public static int CoponsDeleted
     {
         get { return PlayerPrefs.GetInt("CoponsDeleted", 0); }

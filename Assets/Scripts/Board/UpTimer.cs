@@ -17,6 +17,12 @@ public class UpTimer : MonoBehaviour
     public Slider timeSlider;
     [BoxGroup("ThenTheTimeEnds")]
     [SerializeField] GameObject EndCanvas = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource TimeUpAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource LowTimeAudioSource = null;
+    [BoxGroup("Other Stuff")]
+    [SerializeField] private AudioSource StartAudioSource = null;
 
     private bool canProcess = true;
     private float initialTime;
@@ -33,6 +39,7 @@ public class UpTimer : MonoBehaviour
 
     private void Start()
     {
+        StartAudioSource.Play();
         TimeCounter.SetText(Prefs.TimeBuff);
         timeSlider.minValue = 0f;
         timeSlider.maxValue = roundTime;
@@ -54,6 +61,8 @@ public class UpTimer : MonoBehaviour
                 roundTime += timeToAdd;
                 timeSlider.value = roundTime;
             }
+
+            TimeUpAudioSource.Play();
         }
     }
 
