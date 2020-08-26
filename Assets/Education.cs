@@ -1,19 +1,24 @@
 ﻿using DG.Tweening;
+using ModestTree;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using NaughtyAttributes;
+using System;
 
 public class Education : MonoBehaviour
 {
+    public static Action EducationEnded;
+    [SerializeField] float ScaleTime = 0.3f;
     [SerializeField] GameObject educationCanvas;
-    [SerializeField] List<GameObject> objectsToShow;
-    [SerializeField] List<VerticalLayoutGroup> layoutGroups;
-    [SerializeField] List<GameObject> objectsToDisable;
+    [BoxGroup("Objects To Show")] [SerializeField] List<GameObject> objectsToShow;
+    [BoxGroup("Layouts")] [SerializeField] List<VerticalLayoutGroup> layoutGroups;
+    [BoxGroup("Objects To Disable")]  [SerializeField] List<GameObject> objectsToDisable;
     [SerializeField] EducationText educationText;
-    [SerializeField] List<TMP_Text> texts;
+    [BoxGroup("Education Texts")] [SerializeField] List<TMP_Text> texts;
     [SerializeField] TMP_Text text;
     private string[] hints;
     private int Steps;
@@ -23,11 +28,14 @@ public class Education : MonoBehaviour
     {
         yield return null;
 
-        if (layoutGroups.Count > 0)
+        if(!layoutGroups.IsEmpty())
         {
-            foreach (VerticalLayoutGroup grops in layoutGroups)
+            if (layoutGroups.Count > 0)
             {
-                grops.enabled = false;
+                foreach (VerticalLayoutGroup grops in layoutGroups)
+                {
+                    grops.enabled = false;
+                }
             }
         }
 
@@ -38,7 +46,7 @@ public class Education : MonoBehaviour
 
         for (int i = 0; i < objectsToShow.Count; i++)
         {
-            objectsToDisable[i].SetActive(false);
+            //objectsToDisable[i].SetActive(false);
             objectsToShow[i].SetActive(false);
         }
 
@@ -109,21 +117,26 @@ public class Education : MonoBehaviour
         Debug.Log(Steps);
         Vector3 scale = image.transform.localScale;
 
-        image.transform.DOScale(0.5f, 0f);        
-        image.transform.DOScale(scale, 0.3f).OnComplete(() => OnComplete());
+        image.transform.DOScale(0.95f, ScaleTime);        
+        image.transform.DOScale(scale, ScaleTime).OnComplete(() => OnComplete());
     }
 
     void OnComplete()
     {
-        objectsToDisable[Steps - 1].SetActive(true);
+        if(!objectsToDisable.IsEmpty())
+            objectsToDisable[Steps - 1].SetActive(true);
+
         canTouch = true;
     }
 
     void EndEducation()
     {
+
+
         if(SceneManager.GetActiveScene().name == "Game")
         {
             Prefs.IsFirstTime = 0;
+            EducationEnded();
         }
 
         educationCanvas.SetActive(false);   

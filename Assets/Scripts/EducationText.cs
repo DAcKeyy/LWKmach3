@@ -3,6 +3,6 @@
 [CreateAssetMenu(menuName = "EducationText")]
 public class EducationText : ScriptableObject
 {
-    [TextArea]
+    [TextArea(0,30)]
     public string text;
 }

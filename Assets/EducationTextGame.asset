@@ -12,4 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43320210768c4b44c8a089772a684bbd, type: 3}
   m_Name: EducationTextGame
   m_EditorClassIdentifier: 
-  text: Hi youre little fucker
+  text: 'Hi there, let me explain what to do in this game
+
+    |This is the game
+    field
+
+    |Match three or more pieces in row or column
+
+    |Here is timer.
+    You have 35 seconds for one round
+
+    |Here is Buff panel
+
+    |Press here
+    to pull out this panel
+
+    |There are two kinds of buffs
+
+    |BOMB
+
+    Breaks
+    pieces around selected piece
+
+    |Press button and then press on the piece
+    to make an explosion
+
+    |TIME
+
+    adds 15 seconds to round
+
+    |Here is
+    task panel
+
+    |Match three or more pieces to complete the task. Tasks goes
+    left to right
+
+    |Each completed task breaks chain on chest
+
+    |Complete
+    three tasks to get the chest
+
+    |Good Luck!'

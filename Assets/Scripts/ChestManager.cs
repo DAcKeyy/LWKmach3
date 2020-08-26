@@ -27,13 +27,13 @@ public class ChestManager : MonoBehaviour
 
     void Start()
     {
-        //BombCounter.SetText(Prefs.BombBuff);
-        //TimeCounter.SetText(Prefs.TimeBuff);
+        BombCounter.SetText(Prefs.BombBuff);
+        TimeCounter.SetText(Prefs.TimeBuff);
 
         if (GlobalDataBase.LootChests.ChestsList.Count != 0)
         {
             gameObject.GetComponent<Image>().raycastTarget = true;
-            //MainPanel.GetComponent<Image>().DOFade(0.6f, FadeDuration).OnComplete(() => StartCoroutine(OpenChests()));
+            MainPanel.GetComponent<Image>().DOFade(0.6f, FadeDuration).OnComplete(() => StartCoroutine(OpenChests()));
         }
     }
 
@@ -119,6 +119,6 @@ public class ChestManager : MonoBehaviour
         }
 
         couponsManger.CheckCoupons();
-        //MainPanel.GetComponent<Image>().DOFade(0, FadeDuration / 3).OnComplete(() => gameObject.GetComponent<Image>().raycastTarget = false);
+        MainPanel.GetComponent<Image>().DOFade(0, FadeDuration / 3).OnComplete(() => gameObject.GetComponent<Image>().raycastTarget = false);
     }
 }

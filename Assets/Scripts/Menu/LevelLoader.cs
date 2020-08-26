@@ -11,12 +11,13 @@ namespace LWT.System
 {
     public class LevelLoader : MonoBehaviour
     {
-        [SerializeField]
-        private Animation AnimationComponent;
-        [SerializeField]
-        private AnimationClip LeavesClose;
-        [SerializeField]
-        private AnimationClip LeavesOpen;
+        [SerializeField] private Animation animationComponent;
+        [SerializeField] private AnimationClip leavesClose;
+        [SerializeField] private AnimationClip leavesOpen;
+        [SerializeField] private AudioSource audioSource;
+        [SerializeField] private AudioClip openSoundAudio;
+        [SerializeField] private AudioClip closeSoundAudio;
+        //[SerializeField] private 
 
         private void Awake()
         {
@@ -71,20 +72,25 @@ namespace LWT.System
             yield return null;
             yield return null;
 
-            if (AnimationComponent != null)
-            {
+            if (animationComponent != null)
+            {                
+
                 if (open)
                 {
-                    AnimationComponent.Play(LeavesOpen.name);
+                    audioSource.clip = openSoundAudio;
+                    audioSource.Play();
+                    animationComponent.Play(leavesOpen.name);
                     Debug.Log("Open");
-                    while (AnimationComponent.IsPlaying(LeavesOpen.name))
+                    while (animationComponent.IsPlaying(leavesOpen.name))
                         yield return null;
                 }
                 else
                 {
-                    AnimationComponent.Play(LeavesClose.name);
+                    audioSource.clip = closeSoundAudio;
+                    audioSource.Play();
+                    animationComponent.Play(leavesClose.name);
 
-                    while (AnimationComponent.IsPlaying(LeavesClose.name))
+                    while (animationComponent.IsPlaying(leavesClose.name))
                         yield return null;
                 }
             }

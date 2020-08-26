@@ -12,6 +12,10 @@ public class ChestAnimationController : MonoBehaviour
     [SerializeField] private float Speed = 1;
     [SerializeField] private GameObject Chest;
     [SerializeField] Ease ease = Ease.Linear;
+    [SerializeField] AudioSource audioSource = null;
+    [SerializeField] AudioClip ChainOff = null;
+    [SerializeField] AudioClip ChestAppear = null;
+    [SerializeField] AudioClip ChestDisappear = null;
 
     private Vector3 StartPosition;
     private Vector3 StartScale;
@@ -45,28 +49,35 @@ public class ChestAnimationController : MonoBehaviour
 
     void MoveToStart()
     {
+        audioSource.clip = ChestAppear;
+        audioSource.panStereo = 1f;
+        audioSource.Play();
         gameObject.transform.DOMove(StartPosition, Speed*2).SetEase(ease);
         gameObject.transform.DOScale(StartScale, Speed*2).SetEase(ease);
     }
 
     void Animation()//на каждое выполненое задание идёт своя анимация (см контролер сундука)
     {
-        
-
         TaskCounter++;
 
         if (TaskCounter == 1)
         {
+            audioSource.clip = ChainOff;
+            audioSource.panStereo = 0f;
+            audioSource.Play();
             ChestAnimator.SetTrigger("FirstTask");
         }
         if (TaskCounter == 2)
-        {
+        {           
+            audioSource.Play();
             ChestAnimator.SetTrigger("SecondTask");
         }
         if (TaskCounter == 3)//тут не придумал как это сделать в контролере поэтому сделал это с помощью твина
         {//на самом деле придумал (Адель), но в падлу переписывать 
             TaskCounter = 0;
-
+            audioSource.clip = ChestDisappear;
+            audioSource.panStereo = -1f;
+            audioSource.Play();
             StartCoroutine(TweenAnimaton());
         }
     }

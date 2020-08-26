@@ -198,6 +198,7 @@ public class Board : MonoBehaviour
 
     private void PiecesDeleted(List<Tile> deletedTiles)
     {
+        PieceDestroyAudioSource.pitch = UnityEngine.Random.Range(0.75f, 1f);
         PieceDestroyAudioSource.Play();
 
         Piece[,] pieces = _modMover.MovePiecesDown();

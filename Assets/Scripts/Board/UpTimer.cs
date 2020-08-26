@@ -23,22 +23,33 @@ public class UpTimer : MonoBehaviour
     [SerializeField] private AudioSource LowTimeAudioSource = null;
     [BoxGroup("Other Stuff")]
     [SerializeField] private AudioSource StartAudioSource = null;
-
     private bool canProcess = true;
     private float initialTime;
+
+    public void StopTimer()
+    {
+        Debug.Log("ZAA WAARDO");
+        canProcess = !canProcess;
+    }
 
     private void OnEnable()
     {
         ChestAnimationController.ChestCompleted += ChestListener;
+        Education.EducationEnded += StopTimer;
     }
 
     private void OnDisable()
     {
         ChestAnimationController.ChestCompleted -= ChestListener;
+        Education.EducationEnded -= StopTimer;
     }
 
     private void Start()
     {
+        if (Prefs.IsFirstTime == 1) canProcess = false;
+
+        Debug.Log(canProcess);
+
         StartAudioSource.Play();
         TimeCounter.SetText(Prefs.TimeBuff);
         timeSlider.minValue = 0f;
@@ -88,7 +99,7 @@ public class UpTimer : MonoBehaviour
     private void FixedUpdate()
     {
         if (canProcess)
-        {
+        {           
             roundTime -= Time.deltaTime;
             timeSlider.value = roundTime;
 
