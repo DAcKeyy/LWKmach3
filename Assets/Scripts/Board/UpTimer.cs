@@ -34,12 +34,14 @@ public class UpTimer : MonoBehaviour
 
     private void OnEnable()
     {
+        ChestAnimationController.TaskCompleted += TaskListener;
         ChestAnimationController.ChestCompleted += ChestListener;
         Education.EducationEnded += StopTimer;
     }
 
     private void OnDisable()
     {
+        ChestAnimationController.TaskCompleted -= TaskListener;
         ChestAnimationController.ChestCompleted -= ChestListener;
         Education.EducationEnded -= StopTimer;
     }
@@ -79,7 +81,12 @@ public class UpTimer : MonoBehaviour
 
     private void ChestListener()
     {
-        AddTimeFlexible(5);
+        AddTimeFlexible(1.5f);
+    }
+
+    private void TaskListener()
+    {
+        AddTimeFlexible(0.833f);
     }
 
     private void AddTimeFlexible(float seconds)

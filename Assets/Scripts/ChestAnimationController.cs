@@ -5,7 +5,8 @@ using System;
 
 public class ChestAnimationController : MonoBehaviour
 {
-    public static Action ChestCompleted;
+    public static Action ChestCompleted;//сундук получен
+    public static Action TaskCompleted;//1 задание выполнено
 
     [SerializeField] private Animator ChestAnimator = null;
     [SerializeField] private Transform CounterPosition = null;
