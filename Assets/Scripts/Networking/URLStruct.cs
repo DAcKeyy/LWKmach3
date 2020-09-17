@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 
 public struct URLStruct
-{
-    public const string Registration = "https://api.wingift.cf/register";
-    public const string Authorization = "https://api.wingift.cf/login";
-    public const string GetAccountInfo = "https://api.wingift.cf/v1/user/me";
-    public const string DaylyCoupon = "https://api.wingift.cf/random";
-    public const string ResetPassword = "https://api.wingift.cf/password/email";
-    public const string GameSessionMessage = "https://api.wingift.cf/password/email";
-    public const string LootBox = "https://api.sarond.cf/lootbox";
-    public const string Logout = "https://api.wingift.cf/logout";
-    public const string ResendEmail = "https://api.wingift.cf/verify/resend";
+{        
+    public const string Registration = "https://api.wingift.tk/register";
+    public const string GoogleLink = "https://www.google.com/";
+    public const string Avability = "https://api.sarond.cf/availability";
+    public const string Authorization = "https://api.wingift.tk/login";
+    public const string GetAccountInfo = "https://api.wingift.tk/v1/user/me";
+    //public const string DaylyCoupon = "https://api.wingift.tk/random";
+    public const string ResetPassword = "https://api.wingift.tk/password/email";
+    //public const string GameSessionMessage = "https://api.wingift.tk/password/email";
+    public const string LootBox = "https://api.sarond.tk/lootbox";
+    //public const string Logout = "https://api.wingift.tk/logout";
+    public const string ResendEmail = "https://api.wingift.tk/verify/resend";
     public static string CouponsLink;
     public static string GamesLink;
 }
