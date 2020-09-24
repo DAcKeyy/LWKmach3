@@ -5,8 +5,8 @@ using TMPro;
 public class CouponsPanelControler : MonoBehaviour//Одноразовое говно
 {
     public int ToDeleted;
-    [SerializeField] private GameObject NotificationPanel;
-    [SerializeField] private TMP_Text Text;
+    [SerializeField] private GameObject NotificationPanel = null;
+    [SerializeField] private TMP_Text Text = null;
 
     public static Action<CouponsPanelControler> Check_for_notifications_to_show;
 

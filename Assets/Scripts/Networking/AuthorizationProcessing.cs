@@ -25,8 +25,7 @@ namespace LWT.Networking
 {
     public class AuthorizationProcessing : MonoBehaviour//жутко перегруженный класс, да простят меня боги ооп
     {
-        [Inject]
-        private StartSceneInputHandels inputHandles = null;
+        //  [Inject] private StartSceneInputHandels inputHandles = null;
 
         [SerializeField] private GameObject ErrorPanel = null;
         [SerializeField] private GameObject UserPanel = null;
@@ -35,7 +34,7 @@ namespace LWT.Networking
         [SerializeField] private GameObject AccountRequestPanel = null;
         [SerializeField] private GameObject AuthPasswordErrorSign = null;
         [SerializeField] private GameObject AuthEmailErrorSign = null;
-        [SerializeField] private GameObject RegistPasswordErrorSign = null;
+        //[SerializeField] private GameObject RegistPasswordErrorSign = null;
         [SerializeField] private GameObject RegistEmailErrorSign = null;
         [SerializeField] private TMP_InputField AuthEmailField = null;
         [SerializeField] private TMP_InputField AuthPasswordField = null;
@@ -80,7 +79,7 @@ namespace LWT.Networking
 
         void CheckInternerConection()
         {
-            var webRequest = UnityWebRequest.Get("https://www.google.com/");
+            var webRequest = UnityWebRequest.Get(URLStruct.GoogleLink);
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckInternerConectionResponse, ConectionError));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
@@ -88,7 +87,7 @@ namespace LWT.Networking
 
         void CheckForCoupons()
         {
-            var webRequest = UnityWebRequest.Get("https://api.sarond.cf/availability");
+            var webRequest = UnityWebRequest.Get(URLStruct.Avability);
 
             StartCoroutine(Sender.SendWebRequest(webRequest, CheckForCouponsResponse, ConectionError));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));

@@ -14,9 +14,9 @@ public class Education : MonoBehaviour
     public static Action EducationEnded;
     [SerializeField] float ScaleTime = 0.3f;
     [SerializeField] GameObject educationCanvas;
-    [BoxGroup("Objects To Show")] [SerializeField] List<GameObject> objectsToShow;
-    [BoxGroup("Layouts")] [SerializeField] List<VerticalLayoutGroup> layoutGroups;
-    [BoxGroup("Objects To Disable")]  [SerializeField] List<GameObject> objectsToDisable;
+    [BoxGroup("Objects To Show")] [SerializeField] List<GameObject> objectsToShow = null;
+    [BoxGroup("Layouts")] [SerializeField] List<VerticalLayoutGroup> layoutGroups  = null;
+    [BoxGroup("Objects To Disable")]  [SerializeField] List<GameObject> objectsToDisable = null;
     [SerializeField] EducationText educationText;
     [BoxGroup("Education Texts")] [SerializeField] List<TMP_Text> texts;
     [SerializeField] TMP_Text text;
