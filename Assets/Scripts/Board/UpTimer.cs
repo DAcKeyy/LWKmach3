@@ -82,6 +82,7 @@ public class UpTimer : MonoBehaviour
     private void ChestListener()
     {
         AddTimeFlexible(1.5f);
+        GlobalDataBase.ChestEarned++;
     }
 
     private void TaskListener()
@@ -108,6 +109,7 @@ public class UpTimer : MonoBehaviour
         if (canProcess)
         {           
             roundTime -= Time.deltaTime;
+            GlobalDataBase.RoundTime += Time.deltaTime;
             timeSlider.value = roundTime;
 
             if (roundTime <= 0f)

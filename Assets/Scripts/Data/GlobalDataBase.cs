@@ -15,10 +15,12 @@
     public static string Password = null;
     public static string TypeOfToken = null;
     public static int Gold;
+    public static int ChestEarned;
     public static uint UserID = 0;
     public static uint MachThreeSessions;
     public static int Tickets = 0;
     public static string PrevScene = "Start";
+    public static float RoundTime = 0;
 
     [System.Serializable]
     public static class LootChests

@@ -145,7 +145,7 @@ namespace LWT.Networking
             webRequest.SetRequestHeader("Accept", "application/vnd.api+json");
             StartCoroutine(Sender.SendWebRequest(webRequest, AuthorizationResponse, Errors));
             StartCoroutine(LoadIndicator.LoadAsynchronously(webRequest));
-        }
+        } 
         void AuthorizationResponse(string response)
         {
             var Objcet = JsonUtility.FromJson<GetToken>(response);
@@ -227,7 +227,7 @@ namespace LWT.Networking
             //var Obj = JsonUtility.FromJson<Me>(response);
 
             //URLStruct.CouponsLink = Obj.data.links.self;
-
+                
             FindObjectOfType<LevelLoader>().LoadSceneOnly("Menu");
         }
 

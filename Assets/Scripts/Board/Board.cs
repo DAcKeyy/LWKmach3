@@ -255,7 +255,7 @@ public class Board : MonoBehaviour
                 List<Piece> piecestodel = _boardManager.BombExplosion(tile);
                 taskManager.CheckTask(piecestodel, true);
                 List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
-                _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
+                _pieceAnimator.ExplotionAnimation(_boardManager.GetTiles(), pieces);
                 BombExplosionAudioSource.Play();
                 _boardManager.ActiveteBomb(false);
 
