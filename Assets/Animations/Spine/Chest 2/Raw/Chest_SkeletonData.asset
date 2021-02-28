@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: Gameplay_Lian_1_SkeletonData
+  m_Name: Chest_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: f73f81d3861809b41bf5dc6926495f6d, type: 2}
+  - {fileID: 11400000, guid: fa5af01afae3d0444befeff99eac4295, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: 23fa470375c0017418c112960b038174, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 00da74cf93c2c3f44a29922bb363248c, type: 3}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

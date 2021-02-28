@@ -196,6 +196,7 @@ public class Board : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void PiecesDeleted(List<Tile> deletedTiles)
     {
         PieceDestroyAudioSource.pitch = UnityEngine.Random.Range(0.75f, 1f);
