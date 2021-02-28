@@ -13,6 +13,7 @@ public class PieceAnimator : MonoBehaviour
     public static Action PiecesMoved = delegate { };
     public static Action OnTileBecameEmpty = delegate { };
 
+    [SerializeField] GameObject ExplotionPoint;
     [BoxGroup("Animation settings")]
     public float fallTime = 0.2f;
     [BoxGroup("Animation settings")]
@@ -29,6 +30,7 @@ public class PieceAnimator : MonoBehaviour
 
     private int _piecesToMove;
     private int _movedPieces;
+
 
     private int _piecesToDelete;
     private int _deletedPieces;
@@ -74,6 +76,18 @@ public class PieceAnimator : MonoBehaviour
             Debug.Log("No pieces for delete animation");
         }
     }
+
+    public void ExplotionAnimation(Tile[,] tiles, List<Piece> piecesToDelete)
+    {
+        foreach (Piece piece in piecesToDelete)
+        {
+            var explotionPointe = Instantiate(ExplotionPoint, new Vector2(piece.xIndex, piece.yIndex), piece.transform.rotation, this.transform);
+            explotionPointe.gameObject.GetComponent<Animation>().Play();
+        }
+
+        DeleteAnimation(tiles, piecesToDelete);
+    }
+
 
     private void Deleted(Piece piece, List<Tile> deletedTiles)
     {

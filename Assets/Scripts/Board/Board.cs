@@ -196,6 +196,7 @@ public class Board : MonoBehaviour
         }
     }
 
+    // ReSharper disable Unity.PerformanceAnalysis
     private void PiecesDeleted(List<Tile> deletedTiles)
     {
         PieceDestroyAudioSource.pitch = UnityEngine.Random.Range(0.75f, 1f);
@@ -255,7 +256,7 @@ public class Board : MonoBehaviour
                 List<Piece> piecestodel = _boardManager.BombExplosion(tile);
                 taskManager.CheckTask(piecestodel, true);
                 List<Piece> pieces = _boardManager.ClearBoard(piecestodel);
-                _pieceAnimator.DeleteAnimation(_boardManager.GetTiles(), pieces);
+                _pieceAnimator.ExplotionAnimation(_boardManager.GetTiles(), pieces);
                 BombExplosionAudioSource.Play();
                 _boardManager.ActiveteBomb(false);
 
