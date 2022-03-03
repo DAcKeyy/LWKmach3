@@ -10,13 +10,12 @@ public enum ServerErrors
 
 public class MachThreeServerMeassage : MonoBehaviour
 {
-
     WebSender Sender = new WebSender();
     public static Action<ServerErrors> ServerError;
+    
     private void Start()
     {
         ChestAnimationController.ChestCompleted += GetChest;
-
     }
 
     private void OnDisable()

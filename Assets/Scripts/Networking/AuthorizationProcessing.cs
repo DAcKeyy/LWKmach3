@@ -21,9 +21,11 @@ public enum ResponseType
 
 }
 
+//Хоть бы это никто не увидел...
+
 namespace LWT.Networking
 {
-    public class AuthorizationProcessing : MonoBehaviour//жутко перегруженный класс, да простят меня боги ооп
+    public class AuthorizationProcessing : MonoBehaviour
     {
         //  [Inject] private StartSceneInputHandels inputHandles = null;
 
@@ -56,7 +58,9 @@ namespace LWT.Networking
             //CheckInternerConection();
 
             //CheckForServerErrors();
-
+            //TODO Убрать бесконечные бафы
+            Prefs.BombBuff = 9999;
+            Prefs.TimeBuff = 9999;
 
 
 

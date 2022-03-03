@@ -7,7 +7,7 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {instanceID: 0}
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
       y: 834
       width: 277
       height: 190
-    spriteID: bf19d1728f0efe5408e307423757340f
+    spriteID: 981742a0569f8244c9bd7843e3828d37
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -124,7 +124,7 @@ ScriptedImporter:
       y: 1185
       width: 313
       height: 256
-    spriteID: 95a569f10738de6479f9fa922a353c31
+    spriteID: 9e5018a172b708c46b1d79436d51e343
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -146,7 +146,7 @@ ScriptedImporter:
       y: 579
       width: 275
       height: 247
-    spriteID: 6e7ff0fa5985c4c42b3ac86fff75808e
+    spriteID: 06f7ccbf3da5dd64e9092888e276e97d
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -168,7 +168,7 @@ ScriptedImporter:
       y: 834
       width: 153
       height: 260
-    spriteID: 6a67e049d59c5f94c8b0faa864ecf810
+    spriteID: a29d6f4bb01f5e341babf1b2b6119a42
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 579
       width: 525
       height: 598
-    spriteID: 4cf1e917674166242b47f778524ea9f1
+    spriteID: 59b90ffcbc61f814da65be7dd053e522
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 562
       height: 567
-    spriteID: d01e3e098aac7584086d317aef64140d
+    spriteID: ceff990f82e606c4b801630e62fdb945
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -234,7 +234,7 @@ ScriptedImporter:
       y: 4
       width: 339
       height: 560
-    spriteID: f2634bf11cac47440830f03cb2ad4b66
+    spriteID: 9cc02cfc50aeca0418da2fd1f77cb22e
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -256,7 +256,7 @@ ScriptedImporter:
       y: 1185
       width: 667
       height: 418
-    spriteID: 974a2c65e57df514498dee7d2674510c
+    spriteID: 6197286d8d3d629418ad54c3e23fe596
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -278,7 +278,7 @@ ScriptedImporter:
       y: 1611
       width: 765
       height: 195
-    spriteID: 50b112955e68a114abb0b164498b2a17
+    spriteID: 0460f8a63094b81438ef0506c06780ff
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -312,63 +312,63 @@ ScriptedImporter:
     spriteName: grass_1_thin
     isGroup: 0
     parentIndex: -1
-    spriteID: bf19d1728f0efe5408e307423757340f
+    spriteID: 981742a0569f8244c9bd7843e3828d37
     layerID: 8
     mosaicPosition: {x: 537, y: 834}
   - name: grass_5_thin
     spriteName: grass_5_thin
     isGroup: 0
     parentIndex: -1
-    spriteID: 95a569f10738de6479f9fa922a353c31
+    spriteID: 9e5018a172b708c46b1d79436d51e343
     layerID: 10
     mosaicPosition: {x: 679, y: 1185}
   - name: grass_5_thin_shadow
     spriteName: grass_5_thin_shadow
     isGroup: 0
     parentIndex: -1
-    spriteID: 6e7ff0fa5985c4c42b3ac86fff75808e
+    spriteID: 06f7ccbf3da5dd64e9092888e276e97d
     layerID: 21
     mosaicPosition: {x: 537, y: 579}
   - name: grass_4_thin
     spriteName: grass_4_thin
     isGroup: 0
     parentIndex: -1
-    spriteID: 6a67e049d59c5f94c8b0faa864ecf810
+    spriteID: a29d6f4bb01f5e341babf1b2b6119a42
     layerID: 9
     mosaicPosition: {x: 822, y: 834}
   - name: grass_1
     spriteName: grass_1
     isGroup: 0
     parentIndex: -1
-    spriteID: 4cf1e917674166242b47f778524ea9f1
+    spriteID: 59b90ffcbc61f814da65be7dd053e522
     layerID: 15
     mosaicPosition: {x: 4, y: 579}
   - name: grass_1_shadow
     spriteName: grass_1_shadow
     isGroup: 0
     parentIndex: -1
-    spriteID: d01e3e098aac7584086d317aef64140d
+    spriteID: ceff990f82e606c4b801630e62fdb945
     layerID: 20
     mosaicPosition: {x: 4, y: 4}
   - name: grass_2
     spriteName: grass_2
     isGroup: 0
     parentIndex: -1
-    spriteID: f2634bf11cac47440830f03cb2ad4b66
+    spriteID: 9cc02cfc50aeca0418da2fd1f77cb22e
     layerID: 11
     mosaicPosition: {x: 574, y: 4}
   - name: grass_3
     spriteName: grass_3
     isGroup: 0
     parentIndex: -1
-    spriteID: 974a2c65e57df514498dee7d2674510c
+    spriteID: 6197286d8d3d629418ad54c3e23fe596
     layerID: 23
     mosaicPosition: {x: 4, y: 1185}
   - name: shade
     spriteName: shade
     isGroup: 0
     parentIndex: -1
-    spriteID: 50b112955e68a114abb0b164498b2a17
+    spriteID: 0460f8a63094b81438ef0506c06780ff
     layerID: 22
     mosaicPosition: {x: 4, y: 1611}
   characterData:

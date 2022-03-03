@@ -7,7 +7,7 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {instanceID: 0}
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
       y: 4
       width: 415
       height: 605
-    spriteID: 8e1e32fc7d4354a45ae9c98c1dadde37
+    spriteID: 229788648379d1a408cc54a72ae6da6a
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -124,7 +124,7 @@ ScriptedImporter:
       y: 617
       width: 480
       height: 492
-    spriteID: 5ac418c9037fea047b2b708840344444
+    spriteID: 4babc761cf744aa4c93be3ff0ae1db9b
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -146,7 +146,7 @@ ScriptedImporter:
       y: 1117
       width: 174
       height: 161
-    spriteID: 3b8a41aea32dcf740ad378b44d3011eb
+    spriteID: 024e7c5eb2fb0a24fba1adfa2c325bd9
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -168,7 +168,7 @@ ScriptedImporter:
       y: 1468
       width: 471
       height: 355
-    spriteID: 75178342faa6d664ba170a53e004955e
+    spriteID: b8f43b535736606499d3838a35cbb360
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 1117
       width: 510
       height: 343
-    spriteID: c093f57af14c3ed4e94eac8e6aca5b2b
+    spriteID: d63410ea3d1971a4abbe1e3f998fd13d
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -212,7 +212,7 @@ ScriptedImporter:
       y: 4
       width: 276
       height: 1448
-    spriteID: df0e5e96778a4d14cbb515463a3e0827
+    spriteID: 4954a13ea43d7354e865cd98ebafb829
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -246,42 +246,42 @@ ScriptedImporter:
     spriteName: palm1
     isGroup: 0
     parentIndex: -1
-    spriteID: 8e1e32fc7d4354a45ae9c98c1dadde37
+    spriteID: 229788648379d1a408cc54a72ae6da6a
     layerID: 5
     mosaicPosition: {x: 288, y: 4}
   - name: palm2
     spriteName: palm2
     isGroup: 0
     parentIndex: -1
-    spriteID: 5ac418c9037fea047b2b708840344444
+    spriteID: 4babc761cf744aa4c93be3ff0ae1db9b
     layerID: 6
     mosaicPosition: {x: 288, y: 617}
   - name: palm6
     spriteName: palm6
     isGroup: 0
     parentIndex: -1
-    spriteID: 3b8a41aea32dcf740ad378b44d3011eb
+    spriteID: 024e7c5eb2fb0a24fba1adfa2c325bd9
     layerID: 4
     mosaicPosition: {x: 806, y: 1117}
   - name: palm3
     spriteName: palm3
     isGroup: 0
     parentIndex: -1
-    spriteID: 75178342faa6d664ba170a53e004955e
+    spriteID: b8f43b535736606499d3838a35cbb360
     layerID: 7
     mosaicPosition: {x: 288, y: 1468}
   - name: palm5
     spriteName: palm5
     isGroup: 0
     parentIndex: -1
-    spriteID: c093f57af14c3ed4e94eac8e6aca5b2b
+    spriteID: d63410ea3d1971a4abbe1e3f998fd13d
     layerID: 8
     mosaicPosition: {x: 288, y: 1117}
   - name: palm0
     spriteName: palm0
     isGroup: 0
     parentIndex: -1
-    spriteID: df0e5e96778a4d14cbb515463a3e0827
+    spriteID: 4954a13ea43d7354e865cd98ebafb829
     layerID: 2
     mosaicPosition: {x: 4, y: 4}
   characterData:

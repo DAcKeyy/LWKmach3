@@ -34,24 +34,25 @@ public class UpTimer : MonoBehaviour
 
     private void OnEnable()
     {
+        /*
         ChestAnimationController.TaskCompleted += TaskListener;
         ChestAnimationController.ChestCompleted += ChestListener;
         Education.EducationEnded += StopTimer;
+        */
     }
 
     private void OnDisable()
     {
+        /*
         ChestAnimationController.TaskCompleted -= TaskListener;
         ChestAnimationController.ChestCompleted -= ChestListener;
         Education.EducationEnded -= StopTimer;
+        */
     }
 
     private void Start()
     {
-        if (Prefs.IsFirstTime == 1) canProcess = false;
-
-        Debug.Log(canProcess);
-
+        //if (Prefs.IsFirstTime == 1) canProcess = false;
         StartAudioSource.Play();
         TimeCounter.SetText(Prefs.TimeBuff);
         timeSlider.minValue = 0f;

@@ -1,41 +1,45 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
-using Zenject;
 
 namespace LWT.System.Music
 {
     public class MusicManager : MonoBehaviour
     {
-        [SerializeField]
-        private AudioSource musicSource = null;
-
-        //[Inject]
-        //private InputHandles inputHandles = null;
-
-        private readonly PlayerPreffsManager prefs = new PlayerPreffsManager();
+        [SerializeField] private AudioSource _musicSource;
+        [SerializeField] private Toggle _musicToggle;
+        
+        private readonly PlayerPreffsManager _prefs = new PlayerPreffsManager();
 
         private void Start()
-        { 
-            GlobalDataBase.MusicValue = prefs.GetMusicValue();
-            //inputHandles.MusicSliderChanged += SetMusicVolume;
+        {
+            Debug.Log("sddas");
+            SetMusicVolume(_prefs.GetMusicValue());
+            GlobalDataBase.MusicValue = _prefs.GetMusicValue();
+
+            if (_musicToggle == null) return;
+            _musicToggle.isOn = (int)Math.Round(GlobalDataBase.MusicValue) == 1;
+            _musicToggle.onValueChanged.AddListener((toggleValue) => {
+                _prefs.SetMusicValue(toggleValue ? 1 : 0);
+                SetMusicVolume(toggleValue ? 1 : 0);
+            });
         }
 
         private void SetMusicVolume(float volume)
         {
-            musicSource.volume = volume;
+            _musicSource.volume = volume;
             GlobalDataBase.MusicValue = volume;
         }
 
         #region Saving value to prefs
         private void OnApplicationPause(bool pause)
         {
-            if (pause) prefs.SetMusicValue(GlobalDataBase.MusicValue);
+            if (pause) _prefs.SetMusicValue(GlobalDataBase.MusicValue);
         }
 
         private void OnApplicationQuit()
         {
-            prefs.SetMusicValue(GlobalDataBase.MusicValue);
+            _prefs.SetMusicValue(GlobalDataBase.MusicValue);
         }
         #endregion
     }

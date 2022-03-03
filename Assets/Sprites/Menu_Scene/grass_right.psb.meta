@@ -7,7 +7,7 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {instanceID: 0}
+  script: {fileID: 11500000, guid: b2a9591990af98743ba3ff7cf1000886, type: 3}
   textureImporterSettings:
     alphaSource: 1
     mipMapMode: 0
@@ -102,7 +102,7 @@ ScriptedImporter:
       y: 4
       width: 219
       height: 548
-    spriteID: e868f4502eefdf94489d2ed772d3ac59
+    spriteID: f89c67b8292984f42a4943f2f091d397
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -124,7 +124,7 @@ ScriptedImporter:
       y: 560
       width: 108
       height: 234
-    spriteID: ade7bf69191fabc49b787009e31e3424
+    spriteID: 844bb65f51e34554680926344492d7f7
     internalID: 0
     spriteBone: []
     spriteOutline: []
@@ -158,14 +158,14 @@ ScriptedImporter:
     spriteName: grass7
     isGroup: 0
     parentIndex: -1
-    spriteID: e868f4502eefdf94489d2ed772d3ac59
+    spriteID: f89c67b8292984f42a4943f2f091d397
     layerID: 7
     mosaicPosition: {x: 4, y: 4}
   - name: grass8
     spriteName: grass8
     isGroup: 0
     parentIndex: -1
-    spriteID: ade7bf69191fabc49b787009e31e3424
+    spriteID: 844bb65f51e34554680926344492d7f7
     layerID: 8
     mosaicPosition: {x: 4, y: 560}
   characterData:

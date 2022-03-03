@@ -39,8 +39,8 @@ public class PlayerPreffsManager
         }
         else
         {
-            PlayerPrefs.SetString("MusicValue", "0");
-            return 0;
+            PlayerPrefs.SetString("MusicValue", "1");
+            return 1;
         }
     }
 
